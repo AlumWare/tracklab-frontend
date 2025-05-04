@@ -81,6 +81,7 @@
   font-weight: bold;
   color: var(--info);
   margin-bottom: 10px;
+  text-align: center;
 }
 
 .button {
