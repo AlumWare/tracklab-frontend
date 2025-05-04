@@ -3,6 +3,7 @@ import { useThemeStore } from '@/stores/theme'
 import SubscriptionPlanComponent from '@/core/guards/views/subscription-plan.component.vue'
 import InputField from '@/shared/components/input.component.vue'
 import { ref } from 'vue'
+import RegisterUser from '@/core/guards/views/register.component.vue'
 
 const themeStore = useThemeStore()
 const userInput = ref('');
@@ -122,11 +123,7 @@ const userInput = ref('');
       </section>
     </main>
   </div>
-  <subscription-plan-component></subscription-plan-component>
-  <InputField
-    v-model="userInput"
-    placeholder="Escribe algo aquí..."
-  />
+  <register-user></register-user>
 </template>
 
 <style scoped>
