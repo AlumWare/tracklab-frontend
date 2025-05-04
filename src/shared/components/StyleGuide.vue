@@ -1,5 +1,6 @@
 <script setup>
 import { useThemeStore } from '@/stores/theme'
+import SubscriptionPlan from '@/core/guards/views/subscription-plan.vue'
 
 const themeStore = useThemeStore()
 
@@ -118,6 +119,7 @@ const themeStore = useThemeStore()
       </section>
     </main>
   </div>
+  <subscription-plan></subscription-plan>
 </template>
 
 <style scoped>
