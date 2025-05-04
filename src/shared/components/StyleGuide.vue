@@ -1,8 +1,11 @@
 <script setup>
 import { useThemeStore } from '@/stores/theme'
 import SubscriptionPlanComponent from '@/core/guards/views/subscription-plan.component.vue'
+import InputField from '@/shared/components/input.component.vue'
+import { ref } from 'vue'
 
 const themeStore = useThemeStore()
+const userInput = ref('');
 
 </script>
 
@@ -120,6 +123,10 @@ const themeStore = useThemeStore()
     </main>
   </div>
   <subscription-plan-component></subscription-plan-component>
+  <InputField
+    v-model="userInput"
+    placeholder="Escribe algo aquí..."
+  />
 </template>
 
 <style scoped>
