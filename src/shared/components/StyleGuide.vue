@@ -1,11 +1,8 @@
 <script setup>
 import { useThemeStore } from '@/stores/theme'
-import PaymentCard from '@/features/billing/components/payment-card.vue'
+import SubscriptionPlan from '@/core/guards/views/subscription-plan.vue'
 
 const themeStore = useThemeStore()
-const handleTypeSaved = (title) => {
-  console.log(`El título del tipo seleccionado es: ${title}`);
-};
 
 </script>
 
@@ -122,12 +119,7 @@ const handleTypeSaved = (title) => {
       </section>
     </main>
   </div>
-  <payment-card
-    title="Plan Basico"
-    :items="['Acceso ilimitado a cursos', 'Soporte 24/7', 'Actualizaciones constantes']"
-    price="$50"
-    @typeSaved="handleTypeSaved"
-  ></payment-card>
+  <subscription-plan></subscription-plan>
 </template>
 
 <style scoped>
