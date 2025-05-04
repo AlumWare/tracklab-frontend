@@ -15,17 +15,22 @@
 </script>
 
 <template>
-  <pv-card :header="title" class="card">
+  <pv-card class="card">
+    <template #header>
+      <h3 class="card-title">{{ title }}</h3>
+    </template>
     <template #content>
-      <p>Beneficios:</p>
-      <ul>
+      <p class="content-title">Beneficios:</p>
+      <ul class="card-list">
         <li v-for="(item, index) in items" :key="index">{{ item }}</li>
       </ul>
     </template>
     <template #footer>
       <div class="card-footer">
         <span class="price">{{ 'Precio: ' + price }}</span>
-        <pv-select-button label="Seleccionar" icon="pi pi-check" class="button" @click="onSaveType"></pv-select-button>
+        <div class="button">
+          <a :href="''" target="_blank">Seleccionar</a>
+        </div>
       </div>
     </template>
   </pv-card>
@@ -44,6 +49,26 @@
   flex-direction: column;
 }
 
+.card-title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  color: var(--info);
+  margin: 10px;
+}
+
+.content-title {
+  padding: 0;
+  margin: 0;
+  margin-top: -15px;
+}
+
+.card-list {
+  color: var(--text-secondary);
+  padding: 4px 16px;
+  margin: 4px;
+}
+
 .card-footer {
   display: flex;
   flex-direction: column;
@@ -54,7 +79,7 @@
   display: block;
   font-size: 18px;
   font-weight: bold;
-  color: #ff7f2a;
+  color: var(--info);
   margin-bottom: 10px;
 }
 
@@ -63,9 +88,11 @@
   border: none;
   border-radius: 5px;
   font-weight: bold;
+  text-align: center;
+  background-color: var(--info);
 }
 
 .button:hover {
-  background-color: #f5f5f5;
+  background-color: var(--primary);
 }
 </style>
