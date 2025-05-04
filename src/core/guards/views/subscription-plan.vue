@@ -13,8 +13,8 @@
 </script>
 
 <template>
-  <div class="general container">
-    <h1>Escoge tu plan</h1>
+  <div class="general-container">
+    <h1 class="title">Escoge tu plan</h1>
     <div class="cards-container">
       <payment-card
         title="Básico"
@@ -39,5 +39,27 @@
 </template>
 
 <style scoped>
+.general-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
 
+.title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 40px;
+}
+
+.cards-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 50px;
+}
 </style>
