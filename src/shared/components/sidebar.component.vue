@@ -1,23 +1,214 @@
 <script>
+import SidebarMenuItem from './sidebar-menu-item.component.vue';
+import SidebarSubmenu from './sidebar-submenu.component.vue';
+
 export default {
     name: 'SidebarComponent',
+    components: {
+        SidebarMenuItem,
+        SidebarSubmenu
+    },
     props: {
-        title: {
-            type: String,
+        isOpen: {
+            type: Boolean,
             required: false,
-            default: 'Sidebar'
+            default: true
+        }
+    },
+    data() {
+        return {
+            menuItems: [
+                { 
+                    id: 1,
+                    icon: 'pi pi-home', 
+                    label: 'Dashboard', 
+                    route: '/',
+                    children: null
+                },
+                { 
+                    id: 2,
+                    icon: 'pi pi-truck', 
+                    label: 'Shipments', 
+                    route: null,
+                    expanded: false,
+                    children: [
+                        { id: 21, icon: 'pi pi-box', label: 'Active Shipments', route: '/shipments/active' },
+                        { id: 22, icon: 'pi pi-check-circle', label: 'Completed', route: '/shipments/completed' },
+                        { id: 23, icon: 'pi pi-sync', label: 'Pending', route: '/shipments/pending' }
+                    ]
+                },
+                { 
+                    id: 3,
+                    icon: 'pi pi-car', 
+                    label: 'Fleet', 
+                    route: null,
+                    expanded: false,
+                    children: [
+                        { id: 31, icon: 'pi pi-car', label: 'Vehicles', route: '/fleet/vehicles' },
+                        { id: 32, icon: 'pi pi-user', label: 'Drivers', route: '/fleet/drivers' },
+                        { id: 33, icon: 'pi pi-wrench', label: 'Maintenance', route: '/fleet/maintenance' }
+                    ]
+                },
+                { 
+                    id: 4,
+                    icon: 'pi pi-file', 
+                    label: 'Reports', 
+                    route: '/reports',
+                    children: null
+                },
+                { 
+                    id: 5,
+                    icon: 'pi pi-cog', 
+                    label: 'Settings', 
+                    route: '/settings',
+                    children: null
+                },
+                { 
+                    id: 6,
+                    icon: 'pi pi-palette', 
+                    label: 'Style Guide', 
+                    route: '/styles',
+                    children: null
+                }
+            ]
+        }
+    },
+    methods: {
+        toggleSubmenu(item) {
+            if (item.children) {
+                item.expanded = !item.expanded;
+            }
+        },
+        toggleSidebar() {
+            this.$emit('toggle', !this.isOpen);
         }
     }
 }
 </script>
 
 <template>
-    <div>
-        <h1>Sidebar</h1>
-    </div>
+    <aside class="sidebar" :class="{ 'sidebar--collapsed': !isOpen }">
+        <div class="sidebar__header">
+            <div class="sidebar__logo">
+                <template v-if="isOpen">
+                    <span class="logo-full">TrackLab</span>
+                </template>
+                <template v-else>
+                    <span class="logo-icon">TL</span>
+                </template>
+            </div>
+        </div>
+        
+        <div class="sidebar__content">
+            <ul class="sidebar__menu">
+                <sidebar-menu-item 
+                    v-for="item in menuItems" 
+                    :key="item.id" 
+                    :item="item" 
+                    :is-open="isOpen"
+                    @toggle-submenu="toggleSubmenu"
+                />
+            </ul>
+        </div>
+        
+        <div class="sidebar__footer">
+            <div class="sidebar__collapse-btn" @click="toggleSidebar">
+                <i class="pi" :class="isOpen ? 'pi-chevron-left' : 'pi-chevron-right'"></i>
+            </div>
+        </div>
+    </aside>
 </template>
 
 <style scoped>
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 240px;
+    height: 100vh;
+    background-color: var(--background, white);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: width 0.3s ease;
+    overflow: hidden;
+    color: var(--text-primary, #333);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 50;
+}
 
+.sidebar--collapsed {
+    width: 60px;
+}
+
+.sidebar__header {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    padding: 0 var(--spacing-md, 16px);
+    flex-shrink: 0;
+    border-bottom: 1px solid var(--secondary, #f0f0f0);
+}
+
+.sidebar__logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--primary, #3098ed);
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.logo-icon {
+    font-weight: bold;
+    color: var(--primary, #3098ed);
+}
+
+.sidebar__content {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--spacing-sm, 8px) 0;
+}
+
+.sidebar__menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar__footer {
+    padding: var(--spacing-md, 16px);
+    border-top: 1px solid var(--secondary, #f0f0f0);
+    display: flex;
+    justify-content: flex-end;
+}
+
+.sidebar__collapse-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    color: var(--text-primary, #333);
+}
+
+.sidebar__collapse-btn:hover {
+    background-color: var(--surface, #f5f5f5);
+    color: var(--primary, #3098ed);
+}
+
+/* Mobile styles */
+@media (max-width: 767px) {
+    .sidebar {
+        transform: translateX(0);
+        transition: transform 0.3s ease, width 0.3s ease;
+    }
+    
+    .sidebar--collapsed {
+        transform: translateX(-100%);
+    }
+}
 </style>
 
