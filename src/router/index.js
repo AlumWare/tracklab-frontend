@@ -18,6 +18,11 @@ const router = createRouter({
       path: '/login',
       name: 'login',
       component: LoginView,
+    },
+    {
+      path: '/orders',
+      name: 'client-orders',
+      component: () => import('@/features/orders/views/ClientOrderListView.vue')
     }
   ],
 })
