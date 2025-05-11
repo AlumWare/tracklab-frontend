@@ -172,7 +172,7 @@ const orders = ref([
     product: 'Vidrios templados',
     quantity: '40 paneles',
     totalItems: 40,
-    deliveredItems: 40,
+    deliveredItems: 30,
     destination: 'Edificio Empresarial – San Isidro'
   })
 ])
@@ -274,7 +274,7 @@ function cancelOrder() {
 .filter-input, .filter-select {
   padding: 10px 14px;
   border-radius: 8px;
-  border: 1px solid #b0c4d6;
+  border: 1px solid #000000;
   font-size: 1rem;
   font-family: 'Inter', sans-serif;
 }
@@ -283,6 +283,7 @@ function cancelOrder() {
 }
 .filter-select {
   flex: 1;
+  color: #000000;
 }
 .order-card {
   display: flex;
