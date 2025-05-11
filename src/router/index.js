@@ -1,15 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import StyleGuide from '../shared/components/StyleGuide.vue'
 import LoginView from '../core/guards/views/login.component.vue'
-import AdminUserManagementView from '../features/orders/views/admin-user-management-view.vue'
+import VehicleManagementView from '@/features/orders/views/vehicle-management-view.vue'
+import AdminUserManagementView from '@/features/orders/views/admin-user-management-view.vue' // Asegúrate que este archivo existe
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'home',
-      redirect: '/admin-usuarios' // opcional: redirige al inicio
+      redirect: '/admin-usuarios' // redirección inicial
     },
     {
       path: '/style',
@@ -27,11 +27,16 @@ const router = createRouter({
       component: () => import('@/features/orders/views/ClientOrderListView.vue')
     },
     {
+      path: '/vehiculos',
+      name: 'vehicle-management',
+      component: VehicleManagementView
+    },
+    {
       path: '/admin-usuarios',
       name: 'admin-user-management',
       component: AdminUserManagementView
     }
-  ],
+  ]
 })
 
 export default router
