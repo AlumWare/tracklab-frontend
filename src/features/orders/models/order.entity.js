@@ -1,40 +1,40 @@
 export class Order {
-  constructor({
-    id,
-    status,
-    date,
-    product,
-    quantity,
-    destination,
-    deliveredItems = 0,
-    totalItems = 0,
-    clientId = null,
-    items = []
-  }) {
-    this.id = id;
-    this.status = status;
-    this.date = date;
-    this.product = product;
-    this.quantity = quantity;
-    this.destination = destination;
-    this.deliveredItems = deliveredItems;
-    this.totalItems = totalItems;
-    this.clientId = clientId;
-    this.items = items;
-  }
-
   static STATUS = {
     PENDING: 'pending',
     IN_PROCESS: 'inprocess',
     DELIVERED: 'delivered'
-  };
-
-  get progress() {
-    if (!this.totalItems) return 0;
-    return (this.deliveredItems / this.totalItems) * 100;
   }
 
-  canBeCancelled() {
-    return this.status === Order.STATUS.PENDING;
+  constructor({
+    id,
+    status = Order.STATUS.PENDING,
+    date,
+    materials = [],
+    destination,
+    totalItems = 0,
+    deliveredItems = 0
+  }) {
+    this.id = id
+    this.status = status
+    this.date = date
+    this.materials = materials
+    this.destination = destination
+    this.totalItems = totalItems
+    this.deliveredItems = deliveredItems
+  }
+
+  get progress() {
+    if (this.totalItems < 30) {
+      return this.deliveredItems >= this.totalItems ? 100 : 0
+    }
+    const validDelivered = Math.floor(this.deliveredItems / 30) * 30
+    if (validDelivered === 0) return 0
+    let percent = Math.round((validDelivered / this.totalItems) * 100)
+    if (percent > 100) percent = 100
+    return percent
+  }
+
+  canBeCanceled() {
+    return this.status === Order.STATUS.PENDING
   }
 }
