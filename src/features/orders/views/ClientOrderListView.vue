@@ -23,12 +23,11 @@
         {{ statusLabel(order.status) }}
       </div>
       <div class="order-info" @click="viewOrder(order)">
-        <div class="order-product">
-          <strong>Producto:</strong> {{ order.product }}
+        <div class="order-id">
+          <strong>ID:</strong> #{{ order.id }}
         </div>
         <div>
-          <strong>Cantidad:</strong> {{ order.quantity }}
-          ({{ order.deliveredItems }} entregados)
+          <strong>Cantidad:</strong> {{ order.totalItems }} ({{ order.deliveredItems }} entregados)
         </div>
         <div><strong>Destino:</strong> {{ order.destination }}</div>
         <!-- Barra de progreso -->
@@ -72,126 +71,19 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import { useRouter } from 'vue-router'
 import { Order } from '../models/order.entity'
+import { useOrderStore } from '@/stores/order.store'
 
-const orders = ref([
-  new Order({
-    id: 1,
-    status: Order.STATUS.PENDING,
-    date: '2024-06-01',
-    product: 'Filtros para maquinaria pesada',
-    quantity: '60 unidades',
-    totalItems: 60,
-    deliveredItems: 0,
-    destination: 'Proyecto Minero Cerro Verde – Arequipa'
-  }),
-  new Order({
-    id: 2,
-    status: Order.STATUS.PENDING,
-    date: '2024-06-02',
-    product: 'Paneles de drywall',
-    quantity: '100 paneles',
-    totalItems: 100,
-    deliveredItems: 0,
-    destination: 'Almacén de materiales – San Juan de Lurigancho'
-  }),
-  new Order({
-    id: 3,
-    status: Order.STATUS.IN_PROCESS,
-    date: '2024-06-03',
-    product: 'Sacos de cal industrial',
-    quantity: '120 sacos',
-    totalItems: 120,
-    deliveredItems: 60,
-    destination: 'Central de procesamiento – Huancayo'
-  }),
-  new Order({
-    id: 4,
-    status: Order.STATUS.DELIVERED,
-    date: '2024-06-04',
-    product: 'Tuberías de PVC',
-    quantity: '20 tubos',
-    totalItems: 20,
-    deliveredItems: 20,
-    destination: 'Obra Nueva Esperanza – Lima'
-  }),
-  new Order({
-    id: 5,
-    status: Order.STATUS.PENDING,
-    date: '2024-06-05',
-    product: 'Cemento Portland',
-    quantity: '50 bolsas',
-    totalItems: 50,
-    deliveredItems: 0,
-    destination: 'Almacén principal – Callao'
-  }),
-  new Order({
-    id: 6,
-    status: Order.STATUS.IN_PROCESS,
-    date: '2024-06-06',
-    product: 'Ladrillos King Kong',
-    quantity: '1000 unidades',
-    totalItems: 1000,
-    deliveredItems: 420,
-    destination: 'Proyecto Residencial – Miraflores'
-  }),
-  new Order({
-    id: 7,
-    status: Order.STATUS.DELIVERED,
-    date: '2024-06-07',
-    product: 'Pintura acrílica blanca',
-    quantity: '30 galones',
-    totalItems: 30,
-    deliveredItems: 30,
-    destination: 'Almacén de acabados – Surco'
-  }),
-  new Order({
-    id: 8,
-    status: Order.STATUS.PENDING,
-    date: '2024-06-08',
-    product: 'Varillas de acero',
-    quantity: '500 varillas',
-    totalItems: 500,
-    deliveredItems: 0,
-    destination: 'Obra San Martín – Trujillo'
-  }),
-  new Order({
-    id: 9,
-    status: Order.STATUS.IN_PROCESS,
-    date: '2024-06-09',
-    product: 'Puertas de madera',
-    quantity: '20 puertas',
-    totalItems: 20,
-    deliveredItems: 0,
-    destination: 'Proyecto Casas del Sol – Arequipa'
-  }),
-  new Order({
-    id: 10,
-    status: Order.STATUS.DELIVERED,
-    date: '2024-06-10',
-    product: 'Vidrios templados',
-    quantity: '40 paneles',
-    totalItems: 40,
-    deliveredItems: 40,
-    destination: 'Edificio Empresarial – San Isidro'
-  })
-])
-
+const router = useRouter()
+const orderStore = useOrderStore()
 const search = ref('')
 const filterStatus = ref('')
 const showCancelModal = ref(false)
 const orderToCancel = ref(null)
 
 const filteredOrders = computed(() => {
-  return orders.value.filter(order => {
-    const matchesStatus = filterStatus.value ? order.status === filterStatus.value : true
-    const searchText = search.value.toLowerCase()
-    const matchesSearch =
-      order.product.toLowerCase().includes(searchText) ||
-      order.destination.toLowerCase().includes(searchText) ||
-      order.quantity.toLowerCase().includes(searchText)
-    return matchesStatus && matchesSearch
-  })
+  return orderStore.filterOrders(search.value, filterStatus.value)
 })
 
 function statusLabel(status) {
@@ -203,25 +95,14 @@ function statusLabel(status) {
   }
 }
 
-// Lógica de porcentaje y entregas por viaje
 function progress(order) {
-  const total = order.totalItems
-  const delivered = order.deliveredItems
-
-  if (total < 30) {
-    // Si el pedido es menor a 30, solo puede estar 0% o 100%
-    return delivered >= total ? 100 : 0
-  } else {
-    // Si el pedido es de 30 o más, solo cuenta entregas en múltiplos de 30 o 60
-    const validDelivered = Math.floor(delivered / 30) * 30
-    if (validDelivered === 0) return 0
-    let percent = Math.round((validDelivered / total) * 100)
-    if (percent > 100) percent = 100
-    return percent
-  }
+  if (!order.totalItems || order.totalItems === 0) return 0
+  let percent = Math.ceil((order.deliveredItems / order.totalItems) * 100)
+  if (percent > 100) percent = 100
+  if (percent < 0) percent = 0
+  return percent
 }
 
-// Colores de barra según porcentaje
 function progressColor(order) {
   const p = progress(order)
   if (p === 100) return 'progress-green-dark'
@@ -231,7 +112,8 @@ function progressColor(order) {
 }
 
 function viewOrder(order) {
-  alert(`Detalle de la orden #${order.id}\nProducto: ${order.product}\nCantidad: ${order.quantity}\nDestino: ${order.destination}`)
+  orderStore.setSelectedOrder(order)
+  router.push({ name: 'order-details', params: { id: order.id } })
 }
 
 function confirmCancel(order) {
@@ -241,7 +123,7 @@ function confirmCancel(order) {
 
 function cancelOrder() {
   if (orderToCancel.value) {
-    orders.value = orders.value.filter(o => o.id !== orderToCancel.value.id)
+    orderStore.deleteOrder(orderToCancel.value.id)
     showCancelModal.value = false
     orderToCancel.value = null
   }
@@ -283,6 +165,7 @@ function cancelOrder() {
 }
 .filter-select {
   flex: 1;
+  color: #282828;
 }
 .order-card {
   display: flex;
