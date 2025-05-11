@@ -4,6 +4,7 @@ import LoginView from '../core/guards/views/login.component.vue'
 import VehicleManagementView from '@/features/orders/views/vehicle-management-view.vue'
 import AdminUserManagementView from '@/features/orders/views/admin-user-management-view.vue' // Asegúrate que este archivo existe
 import OrderDetailsView from '@/features/orders/views/OrderDetailsView.vue'
+import ClientOrderCreationView from '@/features/orders/views/ClientOrderCreationView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,6 +27,11 @@ const router = createRouter({
       path: '/orders',
       name: 'client-orders',
       component: () => import('@/features/orders/views/ClientOrderListView.vue')
+    },
+    {
+      path: '/orders/create',
+      name: 'create-order',
+      component: ClientOrderCreationView
     },
     {
       path: '/orders/:id',
