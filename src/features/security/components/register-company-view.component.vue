@@ -294,16 +294,16 @@ const handleSubmit = async () => {
   align-items: center;
   justify-content: center;
   padding: 2rem;
-  background: linear-gradient(135deg, #87CEEB 0%, #B0E0E6 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
 }
 
 .register-company-card {
-  background: white;
+  background: var(--background);
   border-radius: 20px;
   padding: 2.5rem;
   width: 100%;
   max-width: 600px;
-  box-shadow: 0 8px 32px rgba(135, 206, 235, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 .register-company-header {
@@ -311,14 +311,14 @@ const handleSubmit = async () => {
   margin-bottom: 2rem;
 
   h1 {
-    color: #2F4F4F;
+    color: var(--text-primary);
     font-size: 2rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
   }
 
   .subtitle {
-    color: #4682B4;
+    color: var(--text-secondary);
     font-size: 1rem;
   }
 }
@@ -335,7 +335,7 @@ const handleSubmit = async () => {
   gap: 0.5rem;
 
   label {
-    color: #2F4F4F;
+    color: var(--text-primary);
     font-weight: 600;
     font-size: 0.95rem;
   }
@@ -349,41 +349,40 @@ const handleSubmit = async () => {
   .input-icon {
     position: absolute;
     left: 1rem;
-    color: #4682B4;
+    color: var(--text-secondary);
   }
 
   .status-icon {
     position: absolute;
     right: 1rem;
-    color: #4682B4;
+    color: var(--text-secondary);
 
     &.valid {
-      color: #2E8B57;
+      color: var(--success);
     }
 
     &.invalid {
-      color: #CD5C5C;
+      color: var(--error);
     }
   }
 
   input {
     width: 100%;
     padding: 0.75rem 1rem 0.75rem 2.5rem;
-    border: 2px solid #B0E0E6;
+    border: 2px solid var(--secondary);
     border-radius: 12px;
     font-size: 1rem;
     transition: all 0.3s ease;
-    background: white;
-    color: #2F4F4F;
+    background: var(--surface);
 
     &:focus {
       outline: none;
-      border-color: #4682B4;
-      box-shadow: 0 0 0 3px rgba(70, 130, 180, 0.1);
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.1);
     }
 
     &.error {
-      border-color: #CD5C5C;
+      border-color: var(--error);
     }
   }
 }
@@ -400,50 +399,49 @@ const handleSubmit = async () => {
     justify-content: center;
     gap: 0.5rem;
     padding: 1rem;
-    border: 2px solid #B0E0E6;
+    border: 2px solid var(--secondary);
     border-radius: 12px;
-    background: white;
+    background: var(--surface);
     cursor: pointer;
     transition: all 0.3s ease;
-    color: #2F4F4F;
 
     i {
       font-size: 1.25rem;
-      color: #4682B4;
+      color: var(--text-secondary);
     }
 
     &:hover {
-      border-color: #4682B4;
-      background: rgba(70, 130, 180, 0.05);
+      border-color: var(--primary);
+      background: rgba(var(--primary-rgb), 0.05);
     }
 
     &.active {
-      border-color: #4682B4;
-      background: #4682B4;
-      color: white;
+      border-color: var(--primary);
+      background: var(--primary);
+      color: var(--text-inverted);
 
       i {
-        color: white;
+        color: var(--text-inverted);
       }
     }
   }
 }
 
 .help-text {
-  color: #4682B4;
+  color: var(--text-secondary);
   font-size: 0.85rem;
 }
 
 .error-text {
-  color: #CD5C5C;
+  color: var(--error);
   font-size: 0.85rem;
 }
 
 .submit-button {
   margin-top: 1rem;
   padding: 1rem;
-  background: #4682B4;
-  color: white;
+  background: var(--primary);
+  color: var(--text-inverted);
   border: none;
   border-radius: 12px;
   font-size: 1rem;
@@ -457,8 +455,7 @@ const handleSubmit = async () => {
 
   &:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(70, 130, 180, 0.2);
-    background: #5F9EA0;
+    box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.2);
   }
 
   &:disabled {
