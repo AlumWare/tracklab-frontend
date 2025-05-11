@@ -1,5 +1,7 @@
 <script>
 import logo from '@/assets/logo.svg'
+import InputField from '@/shared/components/input.component.vue'
+
 export default {
   name: 'LoginView',
   data() {
@@ -9,6 +11,7 @@ export default {
       logo
     }
   },
+  components: { InputField },
   methods: {
     handleLogin() {
       // Aquí irá la lógica de autenticación
@@ -33,24 +36,16 @@ export default {
         <h2 class="login-title">TrackLab</h2>
         <form @submit.prevent="handleLogin" class="login-form">
           <label class="login-label" for="email">Email</label>
-          <input
+          <InputField
             id="email"
             v-model="email"
-            type="email"
-            class="login-input"
             placeholder="Email"
-            autocomplete="username"
-            required
           />
           <label class="login-label" for="password">Password</label>
-          <input
+          <InputField
             id="password"
             v-model="password"
-            type="password"
-            class="login-input"
             placeholder="Password"
-            autocomplete="current-password"
-            required
           />
           <button type="submit" class="login-btn">Sign In</button>
         </form>
