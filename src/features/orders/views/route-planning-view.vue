@@ -100,7 +100,6 @@ function onReorder() {
   nextTick(drawRoute)
 }
 function saveRoute() {
-  // Guardar como nueva ruta
   const all = getAllSavedRoutes()
   const newRoute = {
     id: Date.now().toString(),
@@ -140,12 +139,10 @@ function drawRoute() {
   if (!canvas) return
   const ctx = canvas.getContext('2d')
   ctx.clearRect(0, 0, canvas.width, canvas.height)
-  // Parámetros de layout
   const margin = 80
   const nodeRadius = 28
   const total = routeNodes.value.length
   if (total === 0) return
-  // Distribuir nodos en círculo
   const centerX = canvas.width / 2
   const centerY = canvas.height / 2
   const radius = Math.min(centerX, centerY) - margin
@@ -167,9 +164,7 @@ function drawRoute() {
     else ctx.lineTo(x, y)
   }
   ctx.stroke()
-  // Dibujar nodos
   positions.forEach(({ x, y, node }, idx) => {
-    // Círculo
     ctx.beginPath()
     ctx.arc(x, y, nodeRadius, 0, 2 * Math.PI)
     ctx.fillStyle = getNodeColor(node.type)
@@ -177,13 +172,11 @@ function drawRoute() {
     ctx.lineWidth = 3
     ctx.strokeStyle = '#1E88E5'
     ctx.stroke()
-    // Nombre
     ctx.fillStyle = '#000000'
     ctx.font = 'bold 15px sans-serif'
     ctx.textAlign = 'center'
     ctx.textBaseline = 'middle'
     ctx.fillText(node.name, x, y)
-    // Tipo
     ctx.font = '12px sans-serif'
     ctx.fillStyle = '#1E88E5'
     ctx.fillText(getTypeLabel(node.type), x, y + nodeRadius + 14)
@@ -200,7 +193,6 @@ function drawRoute() {
     ctx.fillText(idx + 1, x + nodeRadius - 12, y - nodeRadius + 12)
   })
 }
-
 onMounted(() => {
   warehouseStore.fetchWarehouses()
   savedRoutes.value = getAllSavedRoutes()
