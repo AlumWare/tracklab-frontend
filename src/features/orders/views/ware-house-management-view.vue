@@ -8,7 +8,6 @@
       </button>
     </div>
 
-    <!-- Filtros -->
     <div class="filters">
       <div class="filter-group">
         <label>Zona:</label>
@@ -31,14 +30,14 @@
       </div>
     </div>
 
-    <!-- Contenido principal -->
+
     <div class="main-content">
       <!-- Mapa -->
       <div class="map-container">
         <div id="warehouse-map" class="map"></div>
       </div>
 
-      <!-- Tabla -->
+
       <div class="table-container">
         <table class="warehouse-table">
           <thead>
@@ -89,7 +88,6 @@
       </div>
     </div>
 
-    <!-- Modal de creación/edición -->
     <warehouse-modal
       v-if="showModal"
       :warehouse="selectedWarehouse"
@@ -124,7 +122,6 @@ export default {
     const showModal = ref(false)
     const selectedWarehouse = ref(null)
 
-    // Cargar datos iniciales
     const loadInitialData = async () => {
       try {
         await Promise.all([
@@ -138,7 +135,6 @@ export default {
       }
     }
 
-    // Cargar almacenes
     const loadWarehouses = async () => {
       try {
         const response = await warehouseStore.fetchWarehouses()
@@ -326,7 +322,6 @@ export default {
     })
 
     onMounted(() => {
-      // Cargar el script de Google Maps
       const script = document.createElement('script')
       script.src = `https://maps.googleapis.com/maps/api/js?key=${import.meta.env.VITE_GOOGLE_MAPS_API_KEY}`
       script.async = true

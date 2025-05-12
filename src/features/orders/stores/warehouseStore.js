@@ -2,9 +2,9 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import axios from 'axios'
 
-// Almacenes predeterminados
+
 const defaultWarehouses = [
-  // Zona Norte
+
   {
     id: 'n1',
     name: 'Almacén Norte 1',
@@ -35,7 +35,7 @@ const defaultWarehouses = [
     longitude: -77.0628,
     occupation: 30
   },
-  // Zona Sur
+
   {
     id: 's1',
     name: 'Almacén Sur 1',
@@ -97,7 +97,7 @@ const defaultWarehouses = [
     longitude: -76.8628,
     occupation: 40
   },
-  // Zona Oeste
+
   {
     id: 'o1',
     name: 'Almacén Oeste 1',
@@ -136,14 +136,10 @@ export const useWarehouseStore = defineStore('warehouse', () => {
   const loading = ref(false)
   const error = ref(null)
 
-  // Obtener todos los almacenes
   const fetchWarehouses = async () => {
     loading.value = true
     error.value = null
     try {
-      // En un entorno real, esto sería una llamada a la API
-      // const response = await axios.get('/api/warehouses')
-      // warehouses.value = response.data
       return warehouses.value
     } catch (err) {
       error.value = err.message
@@ -153,7 +149,6 @@ export const useWarehouseStore = defineStore('warehouse', () => {
     }
   }
 
-  // Obtener todas las zonas
   const fetchZones = async () => {
     loading.value = true
     error.value = null
@@ -169,16 +164,15 @@ export const useWarehouseStore = defineStore('warehouse', () => {
     }
   }
 
-  // Crear un nuevo almacén
+
   const createWarehouse = async (warehouseData) => {
     loading.value = true
     error.value = null
     try {
-      // En un entorno real, esto sería una llamada a la API
-      // const response = await axios.post('/api/warehouses', warehouseData)
+
       const newWarehouse = {
         ...warehouseData,
-        id: Date.now().toString() // Generar un ID temporal
+        id: Date.now().toString()
       }
       warehouses.value.push(newWarehouse)
       return newWarehouse
@@ -190,13 +184,12 @@ export const useWarehouseStore = defineStore('warehouse', () => {
     }
   }
 
-  // Actualizar un almacén existente
+
   const updateWarehouse = async (warehouseData) => {
     loading.value = true
     error.value = null
     try {
-      // En un entorno real, esto sería una llamada a la API
-      // const response = await axios.put(`/api/warehouses/${warehouseData.id}`, warehouseData)
+
       const index = warehouses.value.findIndex(w => w.id === warehouseData.id)
       if (index !== -1) {
         warehouses.value[index] = { ...warehouses.value[index], ...warehouseData }
@@ -210,13 +203,11 @@ export const useWarehouseStore = defineStore('warehouse', () => {
     }
   }
 
-  // Eliminar un almacén
+
   const deleteWarehouse = async (warehouseId) => {
     loading.value = true
     error.value = null
     try {
-      // En un entorno real, esto sería una llamada a la API
-      // await axios.delete(`/api/warehouses/${warehouseId}`)
       warehouses.value = warehouses.value.filter(w => w.id !== warehouseId)
     } catch (err) {
       error.value = err.message
