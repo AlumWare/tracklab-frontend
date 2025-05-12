@@ -5,6 +5,7 @@ import VehicleManagementView from '@/features/orders/views/vehicle-management-vi
 import AdminUserManagementView from '@/features/orders/views/admin-user-management-view.vue' // Asegúrate que este archivo existe
 import OrderDetailsView from '@/features/orders/views/OrderDetailsView.vue'
 import ClientOrderCreationView from '@/features/orders/views/ClientOrderCreationView.vue'
+import OperationHistoryView from '@/features/orders/views/OperationHistoryView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -47,6 +48,11 @@ const router = createRouter({
       path: '/admin-usuarios',
       name: 'admin-user-management',
       component: AdminUserManagementView
+    },
+    {
+      path: '/orders/history',
+      name: 'operation-history',
+      component: OperationHistoryView
     }
   ]
 })
