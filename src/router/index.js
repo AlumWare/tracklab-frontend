@@ -9,6 +9,7 @@ import OrderDetailsView from '@/features/orders/views/OrderDetailsView.vue'
 import ClientOrderCreationView from '@/features/orders/views/ClientOrderCreationView.vue'
 import OperationHistoryView from '@/features/orders/views/OperationHistoryView.vue'
 import wareHouseManagementView from '@/features/orders/views/ware-house-management-view.vue'
+import routePlanningView from '@/features/orders/views/route-planning-view.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -75,6 +76,11 @@ const router = createRouter({
       path: '/ware-house-management-view',
       name: 'ware-house-management-view',
       component: wareHouseManagementView
+    },
+    {
+      path: '/route-planing-view',
+      name: 'route-planing-view',
+      component: routePlanningView
     }
 
   ]
