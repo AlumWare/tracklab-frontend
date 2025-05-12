@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import StyleGuide from '../shared/components/StyleGuide.vue'
+import MainLayout from '../layouts/main-layout.component.vue'
+import App from '../App.vue'
 import LoginView from '../core/guards/views/login.component.vue'
 import VehicleManagementView from '@/features/orders/views/vehicle-management-view.vue'
 import AdminUserManagementView from '@/features/orders/views/admin-user-management-view.vue' // Asegúrate que este archivo existe
@@ -12,6 +14,20 @@ const router = createRouter({
   routes: [
     {
       path: '/',
+      name: 'home',
+      component: MainLayout,
+      children: [
+        {
+          path: 'styles',
+          name: 'styles',
+          component: StyleGuide,
+        },
+        {
+          path: '',
+          name: 'caldo',
+          component: App,
+        },
+      ],
       redirect: '/admin-usuarios' // redirección inicial
     },
     {
