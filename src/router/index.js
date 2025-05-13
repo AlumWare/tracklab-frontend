@@ -9,6 +9,7 @@ import OrderDetailsView from '@/features/orders/views/OrderDetailsView.vue'
 import ClientOrderCreationView from '@/features/orders/views/ClientOrderCreationView.vue'
 import OperationHistoryView from '@/features/orders/views/OperationHistoryView.vue'
 import wareHouseManagementView from '@/features/orders/views/ware-house-management-view.vue'
+import OperationExecutionView from '@/features/orders/views/OperationExecutionView.vue'
 import routePlanningView from '@/features/orders/views/route-planning-view.vue'
 
 const router = createRouter({
@@ -81,6 +82,11 @@ const router = createRouter({
       path: '/route-planing-view',
       name: 'route-planing-view',
       component: routePlanningView
+    },
+    {
+      path: '/operation-execution-view',
+      name: 'operation-execution-view',
+      component: OperationExecutionView
     }
 
   ]
