@@ -10,10 +10,22 @@ import ClientOrderCreationView from '@/features/orders/views/ClientOrderCreation
 import OperationHistoryView from '@/features/orders/views/OperationHistoryView.vue'
 import wareHouseManagementView from '@/features/orders/views/ware-house-management-view.vue'
 import routePlanningView from '@/features/orders/views/route-planning-view.vue'
+import ClientHomeView from '@/features/home/views/client-home.view.vue'
+import LogisticsHomeView from '@/features/home/views/logistics-home.view.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    {
+      path: '/',
+      name: 'client-home',
+      component: ClientHomeView
+    },
+    {
+      path: '/logistics-home',
+      name: 'logistics-home',
+      component: LogisticsHomeView
+    },
     {
       path: '/',
       name: 'home',
@@ -82,7 +94,6 @@ const router = createRouter({
       name: 'route-planing-view',
       component: routePlanningView
     }
-
   ]
 })
 
