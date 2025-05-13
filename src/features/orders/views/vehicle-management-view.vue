@@ -35,12 +35,12 @@
     <div v-if="viewMode === 'grid'" class="vehicle-grid">
       <div v-for="vehicle in filteredVehicles" :key="vehicle.id" class="vehicle-card">
         <div class="vehicle-image">
-          <img :src="vehicle.thumbnail" :alt="vehicle.plate">
+          <img :src="vehicle.thumbnail" :alt="vehicle.plateNumber">
           <span :class="['status-badge', vehicle.status]">{{ vehicle.status }}</span>
         </div>
         <div class="vehicle-info">
-          <h3>{{ vehicle.plate }}</h3>
-          <p>{{ vehicle.model }}</p>
+          <h3>{{ vehicle.plateNumber }}</h3>
+          <p>{{ vehicle.type }}</p>
           <div class="vehicle-actions">
             <button @click="editVehicle(vehicle)" class="btn-icon">
               <i class="fas fa-edit"></i>Editar
@@ -101,17 +101,17 @@
         <form @submit.prevent="saveVehicle">
           <div class="form-group">
             <label>Placa</label>
-            <input v-model="vehicleForm.plate" type="text" required>
+            <input v-model="vehicleForm.plateNumber" type="text" required>
           </div>
           <div class="form-group">
             <label>Modelo</label>
-            <input v-model="vehicleForm.model" type="text" required>
+            <input v-model="vehicleForm.type" type="text" required>
           </div>
           <div class="form-group">
             <label>Estado</label>
             <select v-model="vehicleForm.status">
-              <option value="available">Disponible</option>
-              <option value="maintenance">Mantenimiento</option>
+              <option value="AVAILABLE">Disponible</option>
+              <option value="MAINTENANCE">Mantenimiento</option>
             </select>
           </div>
           <div class="form-actions">
@@ -125,6 +125,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'VehicleManagementView',
   data() {
@@ -139,15 +141,7 @@ export default {
         status: 'available'
       },
       vehicles: [
-        // Datos de ejemplo
-        {
-          id: 1,
-          plate: 'ABC123',
-          model: 'Toyota Corolla 2023',
-          status: 'available',
-          thumbnail: '/path/to/thumbnail1.jpg'
-        },
-        // Añadir más vehículos según sea necesario
+
       ]
     }
   },
@@ -158,10 +152,21 @@ export default {
     }
   },
   methods: {
+    InvocaVehicle(){
+      axios.get('http://localhost:3000/vehicle')
+        .then(res=>{this.vehicles = res.data})
+    },
     editVehicle(vehicle) {
+
       this.editingVehicle = vehicle
       this.vehicleForm = { ...vehicle }
       this.showAddVehicleModal = true
+      console.log(vehicle)
+      console.log(this.editingVehicle)
+    },
+    UpdateVehicle() {
+      axios.put(`http://localhost:3000/vehicle/${this.editingVehicle.id}`)
+        .then(res=>{this.vehicles = res.data})
     },
     uploadPhotos(vehicle) {
   console.log('Subiendo fotos del vehículo:', vehicle.plate)
@@ -191,6 +196,9 @@ export default {
         status: 'available'
       }
     }
+  },
+  mounted() {
+    this.InvocaVehicle();
   }
 }
 </script>
