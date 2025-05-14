@@ -1,0 +1,406 @@
+{
+  "employee": [
+    {
+      "id": 1001,
+      "name": "Juan Pérez",
+      "email": "juan.perez@example.com",
+      "role": "OPERATOR",
+      "status": "ACTIVE",
+      "createdAt": "2025-05-13T10:00:00Z",
+      "updatedAt": "2025-05-13T10:00:00Z"
+    },
+    {
+      "id": 1002,
+      "name": "Ana Torres",
+      "email": "ana.torres@example.com",
+      "role": "ADMIN",
+      "status": "ACTIVE",
+      "createdAt": "2025-04-20T12:00:00Z",
+      "updatedAt": "2025-05-01T15:00:00Z"
+    },
+    {
+      "id": 1003,
+      "name": "Luis Gómez",
+      "email": "luis.gomez@example.com",
+      "role": "OPERATOR",
+      "status": "INACTIVE",
+      "createdAt": "2025-03-10T09:00:00Z",
+      "updatedAt": "2025-03-15T10:30:00Z"
+    },
+    {
+      "id": 1004,
+      "name": "Carla Ruiz",
+      "email": "carla.ruiz@example.com",
+      "role": "SUPERVISOR",
+      "status": "ACTIVE",
+      "createdAt": "2025-02-01T08:00:00Z",
+      "updatedAt": "2025-05-13T09:45:00Z"
+    },
+    {
+      "id": 1005,
+      "name": "Daniel Mejía",
+      "email": "daniel.mejia@example.com",
+      "role": "OPERATOR",
+      "status": "ACTIVE",
+      "createdAt": "2025-01-20T10:10:00Z",
+      "updatedAt": "2025-05-01T11:00:00Z"
+    },
+    {
+      "id": 1006,
+      "name": "Lucía Vargas",
+      "email": "lucia.vargas@example.com",
+      "role": "OPERATOR",
+      "status": "ACTIVE",
+      "createdAt": "2025-03-15T13:45:00Z",
+      "updatedAt": "2025-04-10T09:00:00Z"
+    },
+    {
+      "id": 1007,
+      "name": "Jorge Salas",
+      "email": "jorge.salas@example.com",
+      "role": "MANAGER",
+      "status": "ACTIVE",
+      "createdAt": "2025-01-01T12:00:00Z",
+      "updatedAt": "2025-05-13T10:00:00Z"
+    },
+    {
+      "id": 1008,
+      "name": "Andrea León",
+      "email": "andrea.leon@example.com",
+      "role": "OPERATOR",
+      "status": "INACTIVE",
+      "createdAt": "2025-02-10T14:20:00Z",
+      "updatedAt": "2025-03-01T11:45:00Z"
+    },
+    {
+      "id": 1009,
+      "name": "Mario Castillo",
+      "email": "mario.castillo@example.com",
+      "role": "OPERATOR",
+      "status": "ACTIVE",
+      "createdAt": "2025-04-01T16:00:00Z",
+      "updatedAt": "2025-04-05T09:00:00Z"
+    },
+    {
+      "id": 1010,
+      "name": "Sofía Rivas",
+      "email": "sofia.rivas@example.com",
+      "role": "ADMIN",
+      "status": "ACTIVE",
+      "createdAt": "2025-05-10T10:00:00Z",
+      "updatedAt": "2025-05-13T10:00:00Z"
+    },
+    {
+      "id": 1011,
+      "name": "Pedro López",
+      "email": "pedro.lopez@example.com",
+      "role": "OPERATOR",
+      "status": "ACTIVE",
+      "createdAt": "2025-01-25T09:00:00Z",
+      "updatedAt": "2025-04-01T12:00:00Z"
+    },
+    {
+      "id": 1012,
+      "name": "Valeria Mendoza",
+      "email": "valeria.mendoza@example.com",
+      "role": "SUPERVISOR",
+      "status": "ACTIVE",
+      "createdAt": "2025-02-14T08:30:00Z",
+      "updatedAt": "2025-05-13T10:00:00Z"
+    },
+    {
+      "id": 1013,
+      "name": "Camilo Ortega",
+      "email": "camilo.ortega@example.com",
+      "role": "OPERATOR",
+      "status": "INACTIVE",
+      "createdAt": "2025-03-05T11:00:00Z",
+      "updatedAt": "2025-03-07T10:00:00Z"
+    },
+    {
+      "id": 1014,
+      "name": "Isabel Romero",
+      "email": "isabel.romero@example.com",
+      "role": "MANAGER",
+      "status": "ACTIVE",
+      "createdAt": "2025-04-18T12:15:00Z",
+      "updatedAt": "2025-05-13T10:00:00Z"
+    },
+    {
+      "id": 1015,
+      "name": "Diego Navarro",
+      "email": "diego.navarro@example.com",
+      "role": "OPERATOR",
+      "status": "ACTIVE",
+      "createdAt": "2025-03-22T14:00:00Z",
+      "updatedAt": "2025-05-01T09:45:00Z"
+    },
+    {
+      "id": 1016,
+      "name": "Fernanda Díaz",
+      "email": "fernanda.diaz@example.com",
+      "role": "ADMIN",
+      "status": "ACTIVE",
+      "createdAt": "2025-02-05T13:30:00Z",
+      "updatedAt": "2025-05-13T10:00:00Z"
+    },
+    {
+      "id": 1017,
+      "name": "Ricardo Palma",
+      "email": "ricardo.palma@example.com",
+      "role": "OPERATOR",
+      "status": "ACTIVE",
+      "createdAt": "2025-01-30T11:10:00Z",
+      "updatedAt": "2025-04-10T08:00:00Z"
+    },
+    {
+      "id": 1018,
+      "name": "Natalia Silva",
+      "email": "natalia.silva@example.com",
+      "role": "SUPERVISOR",
+      "status": "ACTIVE",
+      "createdAt": "2025-03-12T10:20:00Z",
+      "updatedAt": "2025-05-13T10:00:00Z"
+    },
+    {
+      "id": 1019,
+      "name": "Tomás Quispe",
+      "email": "tomas.quispe@example.com",
+      "role": "OPERATOR",
+      "status": "INACTIVE",
+      "createdAt": "2025-04-03T12:30:00Z",
+      "updatedAt": "2025-04-10T10:10:00Z"
+    },
+    {
+      "id": 1020,
+      "name": "Rosa Linares",
+      "email": "rosa.linares@example.com",
+      "role": "OPERATOR",
+      "status": "ACTIVE",
+      "createdAt": "2025-05-01T10:00:00Z",
+      "updatedAt": "2025-05-13T10:00:00Z"
+    }
+  ],
+  "vehicle": [
+    {
+      "id": "VH1001",
+      "accountId": "AC5001",
+      "plateNumber": "ABC-123",
+      "type": "Truck",
+      "capacityTons": 10,
+      "capacityPassengers": 2,
+      "status": "AVAILABLE",
+      "createdAt": "2025-05-01T08:00:00Z",
+      "updatedAt": "2025-05-13T10:00:00Z"
+    },
+    {
+      "id": "VH1002",
+      "accountId": "AC5002",
+      "plateNumber": "XYZ-456",
+      "type": "Bus",
+      "capacityTons": 0,
+      "capacityPassengers": 45,
+      "status": "ASSIGNED",
+      "createdAt": "2025-03-12T10:30:00Z",
+      "updatedAt": "2025-04-20T09:45:00Z"
+    },
+    {
+      "id": "VH1003",
+      "accountId": "AC5003",
+      "plateNumber": "MNO-789",
+      "type": "Van",
+      "capacityTons": 1.5,
+      "capacityPassengers": 8,
+      "status": "MAINTENANCE",
+      "createdAt": "2025-04-01T11:00:00Z",
+      "updatedAt": "2025-05-10T10:00:00Z"
+    },
+    {
+      "id": "VH1004",
+      "accountId": "AC5004",
+      "plateNumber": "JKL-321",
+      "type": "Truck",
+      "capacityTons": 15,
+      "capacityPassengers": 3,
+      "status": "AVAILABLE",
+      "createdAt": "2025-01-01T08:30:00Z",
+      "updatedAt": "2025-05-13T09:00:00Z"
+    },
+    {
+      "id": "VH1005",
+      "accountId": "AC5005",
+      "plateNumber": "DEF-654",
+      "type": "Pickup",
+      "capacityTons": 2,
+      "capacityPassengers": 5,
+      "status": "AVAILABLE",
+      "createdAt": "2025-02-14T13:20:00Z",
+      "updatedAt": "2025-04-01T11:30:00Z"
+    },
+    {
+      "id": "VH1006",
+      "accountId": "AC5006",
+      "plateNumber": "GHI-111",
+      "type": "Bus",
+      "capacityTons": 0,
+      "capacityPassengers": 50,
+      "status": "ASSIGNED",
+      "createdAt": "2025-03-25T15:00:00Z",
+      "updatedAt": "2025-05-01T08:00:00Z"
+    },
+    {
+      "id": "VH1007",
+      "accountId": "AC5007",
+      "plateNumber": "QWE-222",
+      "type": "Truck",
+      "capacityTons": 12,
+      "capacityPassengers": 2,
+      "status": "MAINTENANCE",
+      "createdAt": "2025-01-20T09:10:00Z",
+      "updatedAt": "2025-05-13T08:45:00Z"
+    },
+    {
+      "id": "VH1008",
+      "accountId": "AC5008",
+      "plateNumber": "RTY-333",
+      "type": "Van",
+      "capacityTons": 1.2,
+      "capacityPassengers": 7,
+      "status": "AVAILABLE",
+      "createdAt": "2025-04-05T10:00:00Z",
+      "updatedAt": "2025-05-13T10:00:00Z"
+    },
+    {
+      "id": "VH1009",
+      "accountId": "AC5009",
+      "plateNumber": "UIO-444",
+      "type": "Pickup",
+      "capacityTons": 2.5,
+      "capacityPassengers": 4,
+      "status": "ASSIGNED",
+      "createdAt": "2025-02-02T12:00:00Z",
+      "updatedAt": "2025-03-01T09:30:00Z"
+    },
+    {
+      "id": "VH1010",
+      "accountId": "AC5010",
+      "plateNumber": "PAS-555",
+      "type": "Truck",
+      "capacityTons": 18,
+      "capacityPassengers": 2,
+      "status": "AVAILABLE",
+      "createdAt": "2025-05-01T10:00:00Z",
+      "updatedAt": "2025-05-13T10:00:00Z"
+    },
+    {
+      "id": "VH1011",
+      "accountId": "AC5011",
+      "plateNumber": "BVC-666",
+      "type": "Bus",
+      "capacityTons": 0,
+      "capacityPassengers": 60,
+      "status": "MAINTENANCE",
+      "createdAt": "2025-03-01T08:00:00Z",
+      "updatedAt": "2025-05-01T10:00:00Z"
+    },
+    {
+      "id": "VH1012",
+      "accountId": "AC5012",
+      "plateNumber": "NMB-777",
+      "type": "Van",
+      "capacityTons": 2,
+      "capacityPassengers": 6,
+      "status": "AVAILABLE",
+      "createdAt": "2025-01-18T11:00:00Z",
+      "updatedAt": "2025-04-15T09:00:00Z"
+    },
+    {
+      "id": "VH1013",
+      "accountId": "AC5013",
+      "plateNumber": "ZXV-888",
+      "type": "Truck",
+      "capacityTons": 14,
+      "capacityPassengers": 2,
+      "status": "ASSIGNED",
+      "createdAt": "2025-02-10T12:15:00Z",
+      "updatedAt": "2025-05-13T09:15:00Z"
+    },
+    {
+      "id": "VH1014",
+      "accountId": "AC5014",
+      "plateNumber": "POL-999",
+      "type": "Pickup",
+      "capacityTons": 3,
+      "capacityPassengers": 5,
+      "status": "AVAILABLE",
+      "createdAt": "2025-01-01T10:00:00Z",
+      "updatedAt": "2025-03-30T11:00:00Z"
+    },
+    {
+      "id": "VH1015",
+      "accountId": "AC5015",
+      "plateNumber": "LKJ-000",
+      "type": "Bus",
+      "capacityTons": 0,
+      "capacityPassengers": 55,
+      "status": "AVAILABLE",
+      "createdAt": "2025-02-15T10:30:00Z",
+      "updatedAt": "2025-05-13T10:00:00Z"
+    },
+    {
+      "id": "VH1016",
+      "accountId": "AC5016",
+      "plateNumber": "MNB-111",
+      "type": "Truck",
+      "capacityTons": 20,
+      "capacityPassengers": 2,
+      "status": "MAINTENANCE",
+      "createdAt": "2025-04-10T14:00:00Z",
+      "updatedAt": "2025-05-13T09:00:00Z"
+    },
+    {
+      "id": "VH1017",
+      "accountId": "AC5017",
+      "plateNumber": "TRE-222",
+      "type": "Van",
+      "capacityTons": 1,
+      "capacityPassengers": 5,
+      "status": "ASSIGNED",
+      "createdAt": "2025-03-20T15:45:00Z",
+      "updatedAt": "2025-05-13T10:00:00Z"
+    },
+    {
+      "id": "VH1018",
+      "accountId": "AC5018",
+      "plateNumber": "CVB-333",
+      "type": "Pickup",
+      "capacityTons": 2.2,
+      "capacityPassengers": 4,
+      "status": "AVAILABLE",
+      "createdAt": "2025-05-05T09:00:00Z",
+      "updatedAt": "2025-05-13T10:00:00Z"
+    },
+    {
+      "id": "VH1019",
+      "accountId": "AC5019",
+      "plateNumber": "ASD-444",
+      "type": "Truck",
+      "capacityTons": 16,
+      "capacityPassengers": 2,
+      "status": "AVAILABLE",
+      "createdAt": "2025-01-10T08:00:00Z",
+      "updatedAt": "2025-03-01T10:00:00Z"
+    },
+    {
+      "id": "VH1020",
+      "accountId": "AC5020",
+      "plateNumber": "FGH-555",
+      "type": "Bus",
+      "capacityTons": 0,
+      "capacityPassengers": 48,
+      "status": "MAINTENANCE",
+      "createdAt": "2025-02-25T10:30:00Z",
+      "updatedAt": "2025-04-15T08:45:00Z"
+    }
+  ]
+}
