@@ -5,7 +5,7 @@ import AuthLayout from '../layouts/auth-layout.component.vue'
 import App from '../App.vue'
 import LoginView from '../core/guards/views/login.component.vue'
 import VehicleManagementView from '@/features/orders/views/vehicle-management-view.vue'
-import AdminUserManagementView from '@/features/orders/views/admin-user-management-view.vue' // Asegúrate que este archivo existe
+import AdminUserManagementView from '@/features/orders/views/admin-user-management-view.vue'
 import OrderDetailsView from '@/features/orders/views/OrderDetailsView.vue'
 import ClientOrderCreationView from '@/features/orders/views/ClientOrderCreationView.vue'
 import OperationHistoryView from '@/features/orders/views/OperationHistoryView.vue'
@@ -24,7 +24,7 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/login',
+      redirect: '/auth/login',
     },
     {
       path: '/auth',
@@ -33,7 +33,7 @@ const router = createRouter({
         {
           path: 'login',
           name: 'login',
-          component: LoginView,
+          component: LoginView
         },
         {
           path: 'subscription-plan',
@@ -43,12 +43,12 @@ const router = createRouter({
         {
           path: 'register-company',
           name: 'register-company',
-          component: RegisterCompanyView,
+          component: RegisterCompanyView
         },
         {
           path: 'register-user',
           name: 'register-user',
-          component: RegisterUser,
+          component: RegisterUser
         }
       ]
     },
@@ -120,20 +120,13 @@ const router = createRouter({
         {
           path: 'styles',
           name: 'styles',
-          component: StyleGuide,
-        },
-        {
-          path: '',
-          name: 'caldo',
-          component: App,
-        },
-      ],
-      redirect: '/admin-usuarios' // redirección inicial
+          component: StyleGuide
+        }
+      ]
     },
     {
-      path: '/style',
-      name: 'style',
-      component: StyleGuide,
+      path: '/:pathMatch(.*)*',
+      redirect: '/auth/login'
     }
   ]
 })
