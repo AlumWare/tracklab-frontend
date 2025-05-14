@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import StyleGuide from '../shared/components/StyleGuide.vue'
 import MainLayout from '../layouts/main-layout.component.vue'
+import AuthLayout from '../layouts/auth-layout.component.vue'
 import App from '../App.vue'
 import LoginView from '../core/guards/views/login.component.vue'
 import VehicleManagementView from '@/features/orders/views/vehicle-management-view.vue'
@@ -23,27 +24,33 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: LoginView,
+      redirect: '/login',
     },
     {
-      path: '/login',
-      name: 'login',
-      component: LoginView,
-    },
-    {
-      path: '/subscription-plan',
-      name: 'subscription-plan',
-      component: SubscriptionPlanComponent
-    },
-    {
-      path: '/register-company',
-      name: 'register-company',
-      component: RegisterCompanyView,
-    },
-    {
-      path: '/register-user',
-      name: 'register-user',
-      component: RegisterUser,
+      path: '/auth',
+      component: AuthLayout,
+      children: [
+        {
+          path: 'login',
+          name: 'login',
+          component: LoginView,
+        },
+        {
+          path: 'subscription-plan',
+          name: 'subscription-plan',
+          component: SubscriptionPlanComponent
+        },
+        {
+          path: 'register-company',
+          name: 'register-company',
+          component: RegisterCompanyView,
+        },
+        {
+          path: 'register-user',
+          name: 'register-user',
+          component: RegisterUser,
+        }
+      ]
     },
     {
       path: '/tracklab',

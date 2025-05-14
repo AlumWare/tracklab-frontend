@@ -62,24 +62,25 @@ export default {
     display: flex;
     align-items: center;
     padding: var(--spacing-sm, 8px) var(--spacing-md, 16px) var(--spacing-sm, 8px) var(--spacing-lg, 24px);
-    color: var(--text-secondary, #666);
+    color: var(--text-inverted);
     text-decoration: none;
     cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
+    transition: background 0.2s, color 0.2s;
     font-size: 0.85rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    border-radius: var(--border-radius-sm);
 }
 
-.sidebar__submenu-link:hover,
-.sidebar__submenu-link.active {
-    background-color: var(--surface, #f5f5f5);
-    color: var(--primary, #3098ed);
+.sidebar__submenu-link:hover {
+    background: rgba(255,255,255,0.10);
 }
 
 .sidebar__submenu-link.active {
-    border-left: 3px solid var(--primary, #3098ed);
+    border-left: 3px solid var(--primary);
+    background: rgba(255,255,255,0.18);
+    color: var(--text-inverted);
 }
 
 .sidebar__submenu-icon {

@@ -168,20 +168,6 @@
       "status": "ACTIVE",
       "createdAt": "2025-05-01T10:00:00Z",
       "updatedAt": "2025-05-13T10:00:00Z"
-    },
-    {
-      "name": "jean",
-      "email": "u202310148@upc.edu.pe",
-      "role": "MANAGER",
-      "status": "ACTIVE",
-      "id": 1021
-    },
-    {
-      "name": "Alex",
-      "email": "alex.sanchez@upc.edu.pe",
-      "role": "ADMIN",
-      "status": "ACTIVE",
-      "id": 1022
     }
   ],
   "vehicle": [
@@ -722,6 +708,27 @@
       "totalWeight": 281790,
       "deliveredItems": 0,
       "id": 12
+    },
+    {
+      "logisticsCompany": {
+        "id": 2,
+        "name": "Transportes Rápidos"
+      },
+      "deliveryAddress": "MI CASA",
+      "deliveryDate": "2025-10-10",
+      "status": "pending",
+      "items": [
+        {
+          "description": "wiwi",
+          "quantity": 1,
+          "weight": 1,
+          "delivered": 0
+        }
+      ],
+      "totalItems": 1,
+      "totalWeight": 1,
+      "deliveredItems": 0,
+      "id": 13
     }
   ]
 }

@@ -1,143 +1,145 @@
 <template>
   <div class="register-company-container">
-    <div class="register-company-card">
-      <div class="register-company-header">
-        <h1>Registro de Empresa</h1>
-        <p class="subtitle">Complete los datos de su empresa para comenzar</p>
+    <div class="register-company-header">
+      <h1>Registro de Empresa</h1>
+      <p class="subtitle">Complete los datos de su empresa para comenzar</p>
+    </div>
+
+    <form @submit.prevent="handleSubmit" class="register-company-form">
+      <!-- Tipo de Empresa -->
+      <div class="form-group">
+        <label for="companyType">Tipo de Empresa</label>
+        <div class="company-type-selector">
+          <button
+            type="button"
+            :class="['type-option', { active: formData.companyType === 'client' }]"
+            @click="formData.companyType = 'client'"
+          >
+            <i class="pi pi-building"></i>
+            <span>Cliente</span>
+          </button>
+          <button
+            type="button"
+            :class="['type-option', { active: formData.companyType === 'logistics' }]"
+            @click="formData.companyType = 'logistics'"
+          >
+            <i class="pi pi-truck"></i>
+            <span>Logística</span>
+          </button>
+        </div>
+        <small class="help-text">Seleccione el tipo de empresa que desea registrar</small>
       </div>
 
-      <form @submit.prevent="handleSubmit" class="register-company-form">
-        <!-- Tipo de Empresa -->
-        <div class="form-group">
-          <label for="companyType">Tipo de Empresa</label>
-          <div class="company-type-selector">
-            <button
-              type="button"
-              :class="['type-option', { active: formData.companyType === 'client' }]"
-              @click="formData.companyType = 'client'"
-            >
-              <i class="pi pi-building"></i>
-              <span>Cliente</span>
-            </button>
-            <button
-              type="button"
-              :class="['type-option', { active: formData.companyType === 'logistics' }]"
-              @click="formData.companyType = 'logistics'"
-            >
-              <i class="pi pi-truck"></i>
-              <span>Logística</span>
-            </button>
-          </div>
-          <small class="help-text">Seleccione el tipo de empresa que desea registrar</small>
+      <!-- Nombre de la Empresa -->
+      <div class="form-group">
+        <label for="companyName">Nombre de la Empresa</label>
+        <div class="input-wrapper">
+          <i class="pi pi-building input-icon"></i>
+          <input
+            id="companyName"
+            v-model="formData.companyName"
+            type="text"
+            :class="{ 'error': errors.companyName }"
+            placeholder="Ingrese el nombre de su empresa"
+            @input="validateCompanyName"
+          />
         </div>
+        <small v-if="errors.companyName" class="error-text">{{ errors.companyName }}</small>
+        <small v-else class="help-text">Ingrese el nombre legal de su empresa</small>
+      </div>
 
-        <!-- Nombre de la Empresa -->
-        <div class="form-group">
-          <label for="companyName">Nombre de la Empresa</label>
-          <div class="input-wrapper">
-            <i class="pi pi-building input-icon"></i>
-            <input
-              id="companyName"
-              v-model="formData.companyName"
-              type="text"
-              :class="{ 'error': errors.companyName }"
-              placeholder="Ingrese el nombre de su empresa"
-              @input="validateCompanyName"
-            />
-          </div>
-          <small v-if="errors.companyName" class="error-text">{{ errors.companyName }}</small>
-          <small v-else class="help-text">Ingrese el nombre legal de su empresa</small>
+      <!-- RUC -->
+      <div class="form-group">
+        <label for="ruc">RUC</label>
+        <div class="input-wrapper">
+          <i class="pi pi-id-card input-icon"></i>
+          <input
+            id="ruc"
+            v-model="formData.ruc"
+            type="text"
+            :class="{ 'error': errors.ruc }"
+            placeholder="Ingrese el RUC de su empresa"
+            @input="validateRUC"
+          />
+          <i v-if="rucStatus === 'checking'" class="pi pi-spin pi-spinner status-icon"></i>
+          <i v-else-if="rucStatus === 'valid'" class="pi pi-check status-icon valid"></i>
+          <i v-else-if="rucStatus === 'invalid'" class="pi pi-times status-icon invalid"></i>
         </div>
+        <small v-if="errors.ruc" class="error-text">{{ errors.ruc }}</small>
+        <small v-else class="help-text">Ingrese el número de RUC de su empresa (11 dígitos)</small>
+      </div>
 
-        <!-- RUC -->
-        <div class="form-group">
-          <label for="ruc">RUC</label>
-          <div class="input-wrapper">
-            <i class="pi pi-id-card input-icon"></i>
-            <input
-              id="ruc"
-              v-model="formData.ruc"
-              type="text"
-              :class="{ 'error': errors.ruc }"
-              placeholder="Ingrese el RUC de su empresa"
-              @input="validateRUC"
-            />
-            <i v-if="rucStatus === 'checking'" class="pi pi-spin pi-spinner status-icon"></i>
-            <i v-else-if="rucStatus === 'valid'" class="pi pi-check status-icon valid"></i>
-            <i v-else-if="rucStatus === 'invalid'" class="pi pi-times status-icon invalid"></i>
-          </div>
-          <small v-if="errors.ruc" class="error-text">{{ errors.ruc }}</small>
-          <small v-else class="help-text">Ingrese el número de RUC de su empresa (11 dígitos)</small>
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Correo Electrónico</label>
+        <div class="input-wrapper">
+          <i class="pi pi-envelope input-icon"></i>
+          <input
+            id="email"
+            v-model="formData.email"
+            type="email"
+            :class="{ 'error': errors.email }"
+            placeholder="Ingrese el correo electrónico"
+            @input="validateEmail"
+          />
+          <i v-if="emailStatus === 'checking'" class="pi pi-spin pi-spinner status-icon"></i>
+          <i v-else-if="emailStatus === 'valid'" class="pi pi-check status-icon valid"></i>
+          <i v-else-if="emailStatus === 'invalid'" class="pi pi-times status-icon invalid"></i>
         </div>
+        <small v-if="errors.email" class="error-text">{{ errors.email }}</small>
+        <small v-else class="help-text">Ingrese el correo electrónico corporativo</small>
+      </div>
 
-        <!-- Email -->
-        <div class="form-group">
-          <label for="email">Correo Electrónico</label>
-          <div class="input-wrapper">
-            <i class="pi pi-envelope input-icon"></i>
-            <input
-              id="email"
-              v-model="formData.email"
-              type="email"
-              :class="{ 'error': errors.email }"
-              placeholder="Ingrese el correo electrónico"
-              @input="validateEmail"
-            />
-            <i v-if="emailStatus === 'checking'" class="pi pi-spin pi-spinner status-icon"></i>
-            <i v-else-if="emailStatus === 'valid'" class="pi pi-check status-icon valid"></i>
-            <i v-else-if="emailStatus === 'invalid'" class="pi pi-times status-icon invalid"></i>
-          </div>
-          <small v-if="errors.email" class="error-text">{{ errors.email }}</small>
-          <small v-else class="help-text">Ingrese el correo electrónico corporativo</small>
+      <!-- Teléfono -->
+      <div class="form-group">
+        <label for="phone">Teléfono</label>
+        <div class="input-wrapper">
+          <i class="pi pi-phone input-icon"></i>
+          <input
+            id="phone"
+            v-model="formData.phone"
+            type="tel"
+            :class="{ 'error': errors.phone }"
+            placeholder="Ingrese el número de teléfono"
+            @input="validatePhone"
+          />
         </div>
+        <small v-if="errors.phone" class="error-text">{{ errors.phone }}</small>
+        <small v-else class="help-text">Ingrese el número de teléfono de contacto</small>
+      </div>
 
-        <!-- Teléfono -->
-        <div class="form-group">
-          <label for="phone">Teléfono</label>
-          <div class="input-wrapper">
-            <i class="pi pi-phone input-icon"></i>
-            <input
-              id="phone"
-              v-model="formData.phone"
-              type="tel"
-              :class="{ 'error': errors.phone }"
-              placeholder="Ingrese el número de teléfono"
-              @input="validatePhone"
-            />
-          </div>
-          <small v-if="errors.phone" class="error-text">{{ errors.phone }}</small>
-          <small v-else class="help-text">Ingrese el número de teléfono de contacto</small>
+      <!-- Dirección -->
+      <div class="form-group">
+        <label for="address">Dirección</label>
+        <div class="input-wrapper">
+          <i class="pi pi-map-marker input-icon"></i>
+          <input
+            id="address"
+            v-model="formData.address"
+            type="text"
+            :class="{ 'error': errors.address }"
+            placeholder="Ingrese la dirección de su empresa"
+            @input="validateAddress"
+          />
         </div>
+        <small v-if="errors.address" class="error-text">{{ errors.address }}</small>
+        <small v-else class="help-text">Ingrese la dirección legal de su empresa</small>
+      </div>
 
-        <!-- Dirección -->
-        <div class="form-group">
-          <label for="address">Dirección</label>
-          <div class="input-wrapper">
-            <i class="pi pi-map-marker input-icon"></i>
-            <input
-              id="address"
-              v-model="formData.address"
-              type="text"
-              :class="{ 'error': errors.address }"
-              placeholder="Ingrese la dirección de su empresa"
-              @input="validateAddress"
-            />
-          </div>
-          <small v-if="errors.address" class="error-text">{{ errors.address }}</small>
-          <small v-else class="help-text">Ingrese la dirección legal de su empresa</small>
-        </div>
+      <!-- Botón de Registro -->
+      <button
+        type="submit"
+        class="submit-button"
+        :disabled="!isFormValid || isSubmitting"
+      >
+        <i v-if="isSubmitting" class="pi pi-spin pi-spinner"></i>
+        <span v-else>Registrar Empresa</span>
+      </button>
 
-        <!-- Botón de Registro -->
-        <button
-          type="submit"
-          class="submit-button"
-          :disabled="!isFormValid || isSubmitting"
-        >
-          <i v-if="isSubmitting" class="pi pi-spin pi-spinner"></i>
-          <span v-else>Registrar Empresa</span>
-        </button>
-      </form>
-    </div>
+      <div class="form-footer">
+        <p>¿Ya tiene una cuenta? <a href="#" @click.prevent="$router.push('/auth/login')">Iniciar Sesión</a></p>
+      </div>
+    </form>
   </div>
 </template>
 
@@ -207,10 +209,10 @@ const validateRUC = async () => {
         rucStatus.value = 'invalid'
       }
     } catch (error) {
-  console.error(error)
-  errors.ruc = 'Error al validar el RUC'  // o `errors.email = ...`
-  rucStatus.value = 'invalid'             // o `emailStatus.value = ...`
-}
+      console.error(error)
+      errors.ruc = 'Error al validar el RUC'
+      rucStatus.value = 'invalid'
+    }
   }
 }
 
@@ -235,10 +237,10 @@ const validateEmail = async () => {
         emailStatus.value = 'invalid'
       }
     } catch (error) {
-  console.error(error)
-  errors.ruc = 'Error al validar el RUC'  // o `errors.email = ...`
-  rucStatus.value = 'invalid'             // o `emailStatus.value = ...`
-}
+      console.error(error)
+      errors.email = 'Error al validar el correo'
+      emailStatus.value = 'invalid'
+    }
   }
 }
 
@@ -278,7 +280,7 @@ const handleSubmit = async () => {
   try {
     // Aquí iría la llamada a la API para registrar la empresa
     await new Promise(resolve => setTimeout(resolve, 2000)) // Simulación de llamada API
-    router.push('/login') // Redirección después del registro exitoso
+    router.push('/auth/login') // Redirección después del registro exitoso
   } catch (error) {
     console.error('Error al registrar la empresa:', error)
   } finally {
@@ -287,40 +289,29 @@ const handleSubmit = async () => {
 }
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 .register-company-container {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-}
-
-.register-company-card {
-  background: var(--background);
-  border-radius: 20px;
-  padding: 2.5rem;
   width: 100%;
   max-width: 600px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
 }
 
 .register-company-header {
   text-align: center;
   margin-bottom: 2rem;
+}
 
-  h1 {
-    color: var(--text-primary);
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-  }
+.register-company-header h1 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
 
-  .subtitle {
-    color: var(--text-secondary);
-    font-size: 1rem;
-  }
+.subtitle {
+  color: #666;
+  font-size: 1rem;
+  margin: 0;
 }
 
 .register-company-form {
@@ -333,117 +324,111 @@ const handleSubmit = async () => {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
 
-  label {
-    color: var(--text-primary);
-    font-weight: 600;
-    font-size: 0.95rem;
-  }
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333;
 }
 
 .input-wrapper {
   position: relative;
   display: flex;
   align-items: center;
+}
 
-  .input-icon {
-    position: absolute;
-    left: 1rem;
-    color: var(--text-secondary);
-  }
+.input-icon {
+  position: absolute;
+  left: 1rem;
+  color: #666;
+}
 
-  .status-icon {
-    position: absolute;
-    right: 1rem;
-    color: var(--text-secondary);
+.status-icon {
+  position: absolute;
+  right: 1rem;
+  color: #666;
+}
 
-    &.valid {
-      color: var(--success);
-    }
+.status-icon.valid {
+  color: #4caf50;
+}
 
-    &.invalid {
-      color: var(--error);
-    }
-  }
+.status-icon.invalid {
+  color: #f44336;
+}
 
-  input {
-    width: 100%;
-    padding: 0.75rem 1rem 0.75rem 2.5rem;
-    border: 2px solid var(--secondary);
-    border-radius: 12px;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-    background: var(--surface);
+.input-wrapper input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.5rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.9);
+}
 
-    &:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.1);
-    }
+.input-wrapper input:focus {
+  outline: none;
+  border-color: #4bb0fa;
+  box-shadow: 0 0 0 3px rgba(75, 176, 250, 0.1);
+}
 
-    &.error {
-      border-color: var(--error);
-    }
-  }
+.input-wrapper input.error {
+  border-color: #f44336;
 }
 
 .company-type-selector {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
-  margin-bottom: 0.5rem;
+}
 
-  .type-option {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 1rem;
-    border: 2px solid var(--secondary);
-    border-radius: 12px;
-    background: var(--surface);
-    cursor: pointer;
-    transition: all 0.3s ease;
+.type-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
 
-    i {
-      font-size: 1.25rem;
-      color: var(--text-secondary);
-    }
+.type-option:hover {
+  border-color: #4bb0fa;
+  background: rgba(75, 176, 250, 0.05);
+}
 
-    &:hover {
-      border-color: var(--primary);
-      background: rgba(var(--primary-rgb), 0.05);
-    }
+.type-option.active {
+  border-color: #4bb0fa;
+  background: #4bb0fa;
+  color: white;
+}
 
-    &.active {
-      border-color: var(--primary);
-      background: var(--primary);
-      color: var(--text-inverted);
-
-      i {
-        color: var(--text-inverted);
-      }
-    }
-  }
+.type-option.active i {
+  color: white;
 }
 
 .help-text {
-  color: var(--text-secondary);
+  color: #666;
   font-size: 0.85rem;
 }
 
 .error-text {
-  color: var(--error);
+  color: #f44336;
   font-size: 0.85rem;
 }
 
 .submit-button {
   margin-top: 1rem;
-  padding: 1rem;
-  background: var(--primary);
-  color: var(--text-inverted);
+  padding: 0.75rem;
+  background: #4bb0fa;
+  color: white;
   border: none;
-  border-radius: 12px;
+  border-radius: 8px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -452,33 +437,47 @@ const handleSubmit = async () => {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+}
 
-  &:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.2);
-  }
+.submit-button:hover:not(:disabled) {
+  background: #2196f3;
+  transform: translateY(-1px);
+}
 
-  &:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-  }
+.submit-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
 
-  i {
-    font-size: 1.25rem;
-  }
+.form-footer {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.form-footer a {
+  color: #4bb0fa;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.form-footer a:hover {
+  color: #2196f3;
 }
 
 @media (max-width: 640px) {
   .register-company-container {
-    padding: 1rem;
-  }
-
-  .register-company-card {
     padding: 1.5rem;
   }
 
   .company-type-selector {
     grid-template-columns: 1fr;
+  }
+
+  .register-company-header h1 {
+    font-size: 1.75rem;
   }
 }
 </style>

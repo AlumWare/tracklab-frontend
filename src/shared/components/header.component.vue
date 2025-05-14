@@ -1,6 +1,11 @@
 <script>
+import LanguageSwitcher from './language-switcher.component.vue';
+
 export default {
     name: 'HeaderComponent',
+    components: {
+        LanguageSwitcher
+    },
     props: {
         title: {
             type: String,
@@ -26,7 +31,7 @@ export default {
         </div>
         
         <div class="header__right">
-            <!-- Puedes agregar componentes adicionales aquí, como perfil de usuario, notificaciones, etc. -->
+            <LanguageSwitcher class="header__language-switcher" />
         </div>
     </header>
 </template>
@@ -34,18 +39,24 @@ export default {
 <style scoped>
 .header {
     height: 64px;
-    background-color: var(--surface);
-    border-bottom: 1px solid var(--secondary);
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 var(--spacing-md);
     width: 100%;
+    box-shadow: var(--box-shadow);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .header__left {
     display: flex;
     align-items: center;
+    gap: var(--spacing-md);
 }
 
 .header__title {
@@ -53,11 +64,14 @@ export default {
     font-weight: var(--font-weight-bold);
     color: var(--text-primary);
     margin: 0;
-    margin-left: var(--spacing-md);
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .header__menu-toggle {
-    background: none;
+    background: rgba(0, 0, 0, 0.05);
     border: none;
     width: 40px;
     height: 40px;
@@ -66,16 +80,24 @@ export default {
     justify-content: center;
     cursor: pointer;
     position: relative;
+    border-radius: var(--border-radius-sm);
+    transition: var(--transition-fast);
+}
+
+.header__menu-toggle:hover {
+    background: rgba(0, 0, 0, 0.1);
+    transform: scale(1.05);
 }
 
 .hamburger-icon,
 .hamburger-icon:before,
 .hamburger-icon:after {
-    width: 24px;
+    width: 20px;
     height: 2px;
-    background-color: var(--text-primary);
+    background: var(--primary);
     position: relative;
-    transition: all 0.3s ease;
+    transition: var(--transition-base);
+    border-radius: 2px;
 }
 
 .hamburger-icon:before,
@@ -86,11 +108,11 @@ export default {
 }
 
 .hamburger-icon:before {
-    top: -8px;
+    top: -6px;
 }
 
 .hamburger-icon:after {
-    top: 8px;
+    top: 6px;
 }
 
 .header__right {
@@ -99,11 +121,18 @@ export default {
     gap: var(--spacing-md);
 }
 
+.header__language-switcher {
+    margin-left: auto;
+}
+
 @media (min-width: 1024px) {
-    /* En pantallas grandes podemos ocultar el botón de hamburguesa si queremos */
-    /* .header__menu-toggle {
-        display: none;
-    } */
+    .header__menu-toggle:hover .hamburger-icon {
+        background: var(--primary-dark);
+    }
+    .header__menu-toggle:hover .hamburger-icon:before,
+    .header__menu-toggle:hover .hamburger-icon:after {
+        background: var(--primary-dark);
+    }
 }
 </style>
 
