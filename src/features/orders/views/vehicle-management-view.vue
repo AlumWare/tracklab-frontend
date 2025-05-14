@@ -9,8 +9,8 @@
         <div class="filters">
           <select v-model="statusFilter" class="filter-select">
             <option value="all">Todos</option>
-            <option value="available">Disponible</option>
-            <option value="maintenance">Mantenimiento</option>
+            <option value="AVAILABLE">Disponible</option>
+            <option value="MAINTENANCE">Mantenimiento</option>
           </select>
         </div>
       </div>
