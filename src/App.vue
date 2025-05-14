@@ -6,6 +6,8 @@ import LanguageSwitcher from '@/shared/components/language-switcher.component.vu
 import MainLayout from '@/layouts/main-layout.component.vue'
 import LoginView from '@/core/guards/views/login.component.vue'
 import VehicleManagementView from '@/features/orders/views/vehicle-management-view.vue'
+import Snackbar from '@/shared/components/snackbar.vue'
+import { uxStore } from '@/core/services/ux.service.js'
 
 const themeStore = useThemeStore()
 
@@ -16,6 +18,12 @@ onMounted(() => {
 
 <template>
   <RouterView />
+  <Snackbar
+    v-model="uxStore.snackbar.visible"
+    :message="uxStore.snackbar.message"
+    :type="uxStore.snackbar.type"
+    :duration="uxStore.snackbar.duration"
+  />
 </template>
 
 <style scoped>

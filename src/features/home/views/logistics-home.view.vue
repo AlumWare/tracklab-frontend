@@ -8,8 +8,8 @@ const { t } = useI18n()
 <template>
   <div class="home-view">
     <div class="welcome-section">
-      <h1>Bienvenido a TrackLab</h1>
-      <p class="subtitle">Gestiona tu flota, almacenes y operaciones de entrega en un solo lugar</p>
+      <h1>{{ t('home.welcome') }}</h1>
+      <p class="subtitle">{{ t('home.logistics.subtitle') }}</p>
     </div>
 
     <div class="features-grid">
@@ -17,41 +17,41 @@ const { t } = useI18n()
         <div class="icon-container">
           <i class="pi pi-truck"></i>
         </div>
-        <h3>Gestión de Flota</h3>
-        <p>Administra tus vehículos y conductores eficientemente</p>
+        <h3>{{ t('home.logistics.features.fleetManagement.title') }}</h3>
+        <p>{{ t('home.logistics.features.fleetManagement.description') }}</p>
       </div>
 
       <div class="feature-card">
         <div class="icon-container">
           <i class="pi pi-building"></i>
         </div>
-        <h3>Operaciones de Almacén</h3>
-        <p>Controla el inventario y gestiona espacios de almacenamiento</p>
+        <h3>{{ t('home.logistics.features.warehouseOperations.title') }}</h3>
+        <p>{{ t('home.logistics.features.warehouseOperations.description') }}</p>
       </div>
 
       <div class="feature-card">
         <div class="icon-container">
           <i class="pi pi-map"></i>
         </div>
-        <h3>Planificación de Rutas</h3>
-        <p>Optimiza rutas y horarios de entrega</p>
+        <h3>{{ t('home.logistics.features.routePlanning.title') }}</h3>
+        <p>{{ t('home.logistics.features.routePlanning.description') }}</p>
       </div>
     </div>
 
     <div class="quick-actions">
-      <h2>Acciones Rápidas</h2>
+      <h2>{{ t('home.logistics.quickActions.title') }}</h2>
       <div class="actions-grid">
         <button class="action-button" @click="$router.push('/tracklab/vehiculos')">
           <i class="pi pi-truck"></i>
-          Gestionar Vehículos
+          {{ t('home.logistics.quickActions.manageVehicles') }}
         </button>
         <button class="action-button" @click="$router.push('/tracklab/ware-house-management-view')">
           <i class="pi pi-building"></i>
-          Gestionar Almacén
+          {{ t('home.logistics.quickActions.manageWarehouse') }}
         </button>
         <button class="action-button" @click="$router.push('/tracklab/route-planing-view')">
           <i class="pi pi-map"></i>
-          Planificar Ruta
+          {{ t('home.logistics.quickActions.planRoute') }}
         </button>
       </div>
     </div>
