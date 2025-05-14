@@ -1,0 +1,136 @@
+{
+  "title": "Título",
+  "languageChanged": "Idioma cambiado a {lang}",
+  "sidebar": {
+    "menu": {
+      "home": {
+        "label": "Inicio",
+        "client": "Cliente",
+        "company": "Empresa"
+      },
+      "orders": {
+        "label": "Pedidos",
+        "create": "Crear Pedido",
+        "history": "Historial de Pedidos",
+        "list": "Lista de Pedidos"
+      },
+      "users": {
+        "label": "Usuarios"
+      },
+      "containers": {
+        "label": "Contenedores",
+        "details": "Detalles del Contenedor",
+        "manage": "Gestionar Contenedor",
+        "list": "Lista de Contenedores"
+      },
+      "vehicles": {
+        "label": "Vehículos"
+      },
+      "routePlanning": {
+        "label": "Planificación de Rutas"
+      }
+    }
+  },
+  "login": {
+    "title": "TrackLab",
+    "slogan": "Seguimiento logístico en tiempo real",
+    "email": "Correo electrónico",
+    "emailPlaceholder": "Ingresa tu correo electrónico",
+    "password": "Contraseña",
+    "passwordPlaceholder": "Ingresa tu contraseña",
+    "loginButton": "Iniciar sesión",
+    "registerCompany": "Registrar Empresa",
+    "registerUser": "Registrar Usuario"
+  },
+  "registerCompany": {
+    "title": "Registro de Empresa",
+    "subtitle": "Completa la información de tu empresa para comenzar",
+    "companyType": "Tipo de Empresa",
+    "companyTypeHelp": "Selecciona el tipo de empresa que deseas registrar",
+    "client": "Cliente",
+    "logistics": "Logística",
+    "companyName": "Nombre de la Empresa",
+    "companyNamePlaceholder": "Ingresa el nombre de tu empresa",
+    "companyNameHelp": "Ingresa el nombre legal de tu empresa",
+    "ruc": "RUC",
+    "rucPlaceholder": "Ingresa el RUC de tu empresa",
+    "rucHelp": "Ingresa el número de RUC de tu empresa (11 dígitos)",
+    "email": "Correo electrónico",
+    "emailPlaceholder": "Ingresa el correo electrónico",
+    "emailHelp": "Ingresa el correo electrónico corporativo",
+    "phone": "Teléfono",
+    "phonePlaceholder": "Ingresa el número de teléfono",
+    "phoneHelp": "Ingresa el número de teléfono de contacto",
+    "address": "Dirección",
+    "addressPlaceholder": "Ingresa la dirección de tu empresa",
+    "addressHelp": "Ingresa la dirección legal de tu empresa",
+    "submitButton": "Registrar Empresa",
+    "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+    "login": "Iniciar sesión",
+    "validation": {
+      "companyNameRequired": "El nombre de la empresa es requerido",
+      "companyNameMinLength": "El nombre debe tener al menos 3 caracteres",
+      "rucRequired": "El RUC es requerido",
+      "rucInvalid": "El RUC debe tener 11 dígitos",
+      "rucExists": "Este RUC ya está registrado",
+      "rucError": "Error al validar el RUC",
+      "emailRequired": "El correo electrónico es requerido",
+      "emailInvalid": "Por favor ingresa un correo electrónico válido",
+      "emailExists": "Este correo electrónico ya está registrado",
+      "emailError": "Error al validar el correo electrónico",
+      "phoneRequired": "El número de teléfono es requerido",
+      "phoneInvalid": "Por favor ingresa un número de teléfono válido (9 dígitos)",
+      "addressRequired": "La dirección es requerida",
+      "addressMinLength": "La dirección debe tener al menos 10 caracteres"
+    }
+  },
+  "home": {
+    "welcome": "Bienvenido a TrackLab",
+    "client": {
+      "subtitle": "Rastrea tus envíos en tiempo real y gestiona tus operaciones logísticas de manera eficiente",
+      "features": {
+        "orderManagement": {
+          "title": "Gestión de Pedidos",
+          "description": "Crea y gestiona tus órdenes de envío fácilmente"
+        },
+        "realTimeTracking": {
+          "title": "Seguimiento en Tiempo Real",
+          "description": "Rastrea tus envíos con actualizaciones detalladas de estado"
+        },
+        "analytics": {
+          "title": "Análisis y Reportes",
+          "description": "Obtén información sobre tus operaciones de envío"
+        }
+      },
+      "quickActions": {
+        "title": "Acciones Rápidas",
+        "newOrder": "Nuevo Pedido",
+        "trackOrder": "Rastrear Pedido",
+        "viewHistory": "Ver Historial"
+      }
+    },
+    "logistics": {
+      "subtitle": "Gestiona tu flota, almacenes y operaciones de entrega en un solo lugar",
+      "features": {
+        "fleetManagement": {
+          "title": "Gestión de Flota",
+          "description": "Administra tus vehículos y conductores eficientemente"
+        },
+        "warehouseOperations": {
+          "title": "Operaciones de Almacén",
+          "description": "Controla el inventario y gestiona espacios de almacenamiento"
+        },
+        "routePlanning": {
+          "title": "Planificación de Rutas",
+          "description": "Optimiza rutas y horarios de entrega"
+        }
+      },
+      "quickActions": {
+        "title": "Acciones Rápidas",
+        "manageVehicles": "Gestionar Vehículos",
+        "manageWarehouse": "Gestionar Almacén",
+        "planRoute": "Planificar Ruta"
+      }
+    }
+  }
+}

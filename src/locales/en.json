@@ -1,0 +1,136 @@
+{
+  "title": "Title",
+  "languageChanged": "Language changed to {lang}",
+  "sidebar": {
+    "menu": {
+      "home": {
+        "label": "Home",
+        "client": "Client",
+        "company": "Company"
+      },
+      "orders": {
+        "label": "Orders",
+        "create": "Create Order",
+        "history": "Orders History",
+        "list": "Orders List"
+      },
+      "users": {
+        "label": "Users"
+      },
+      "containers": {
+        "label": "Containers",
+        "details": "Container Details",
+        "manage": "Manage Container",
+        "list": "Containers List"
+      },
+      "vehicles": {
+        "label": "Vehicles"
+      },
+      "routePlanning": {
+        "label": "Route Planning"
+      }
+    }
+  },
+  "login": {
+    "title": "TrackLab",
+    "slogan": "Real-time logistics tracking",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "loginButton": "Login",
+    "registerCompany": "Register Company",
+    "registerUser": "Register User"
+  },
+  "registerCompany": {
+    "title": "Company Registration",
+    "subtitle": "Complete your company information to get started",
+    "companyType": "Company Type",
+    "companyTypeHelp": "Select the type of company you want to register",
+    "client": "Client",
+    "logistics": "Logistics",
+    "companyName": "Company Name",
+    "companyNamePlaceholder": "Enter your company name",
+    "companyNameHelp": "Enter your company's legal name",
+    "ruc": "RUC",
+    "rucPlaceholder": "Enter your company's RUC",
+    "rucHelp": "Enter your company's RUC number (11 digits)",
+    "email": "Email",
+    "emailPlaceholder": "Enter email address",
+    "emailHelp": "Enter corporate email address",
+    "phone": "Phone",
+    "phonePlaceholder": "Enter phone number",
+    "phoneHelp": "Enter contact phone number",
+    "address": "Address",
+    "addressPlaceholder": "Enter your company address",
+    "addressHelp": "Enter your company's legal address",
+    "submitButton": "Register Company",
+    "alreadyHaveAccount": "Already have an account?",
+    "login": "Login",
+    "validation": {
+      "companyNameRequired": "Company name is required",
+      "companyNameMinLength": "Name must be at least 3 characters long",
+      "rucRequired": "RUC is required",
+      "rucInvalid": "RUC must be 11 digits",
+      "rucExists": "This RUC is already registered",
+      "rucError": "Error validating RUC",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please enter a valid email address",
+      "emailExists": "This email is already registered",
+      "emailError": "Error validating email",
+      "phoneRequired": "Phone number is required",
+      "phoneInvalid": "Please enter a valid phone number (9 digits)",
+      "addressRequired": "Address is required",
+      "addressMinLength": "Address must be at least 10 characters long"
+    }
+  },
+  "home": {
+    "welcome": "Welcome to TrackLab",
+    "client": {
+      "subtitle": "Track your shipments in real-time and manage your logistics operations efficiently",
+      "features": {
+        "orderManagement": {
+          "title": "Order Management",
+          "description": "Create and manage your shipping orders easily"
+        },
+        "realTimeTracking": {
+          "title": "Real-Time Tracking",
+          "description": "Track your shipments with detailed status updates"
+        },
+        "analytics": {
+          "title": "Analytics & Reports",
+          "description": "Get insights about your shipping operations"
+        }
+      },
+      "quickActions": {
+        "title": "Quick Actions",
+        "newOrder": "New Order",
+        "trackOrder": "Track Order",
+        "viewHistory": "View History"
+      }
+    },
+    "logistics": {
+      "subtitle": "Manage your fleet, warehouses, and delivery operations in one place",
+      "features": {
+        "fleetManagement": {
+          "title": "Fleet Management",
+          "description": "Efficiently manage your vehicles and drivers"
+        },
+        "warehouseOperations": {
+          "title": "Warehouse Operations",
+          "description": "Control inventory and manage storage spaces"
+        },
+        "routePlanning": {
+          "title": "Route Planning",
+          "description": "Optimize delivery routes and schedules"
+        }
+      },
+      "quickActions": {
+        "title": "Quick Actions",
+        "manageVehicles": "Manage Vehicles",
+        "manageWarehouse": "Manage Warehouse",
+        "planRoute": "Plan Route"
+      }
+    }
+  }
+}

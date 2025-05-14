@@ -1,7 +1,13 @@
 <script setup>
 import { useThemeStore } from '@/stores/theme'
+import SubscriptionPlanComponent from '@/core/guards/views/subscription-plan.component.vue'
+import InputField from '@/shared/components/input.component.vue'
+import { ref } from 'vue'
+import RegisterUser from '@/core/guards/views/register.component.vue'
 
 const themeStore = useThemeStore()
+const userInput = ref('');
+
 </script>
 
 <template>
@@ -117,6 +123,7 @@ const themeStore = useThemeStore()
       </section>
     </main>
   </div>
+  <register-user></register-user>
 </template>
 
 <style scoped>
@@ -345,4 +352,4 @@ h2 {
     font-size: 1.75rem;
   }
 }
-</style> 
+</style>
