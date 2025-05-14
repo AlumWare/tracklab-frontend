@@ -2,30 +2,30 @@
   <div class="warehouse-management">
     <!-- Encabezado -->
     <div class="header">
-      <h1 class="title">Gestión de Almacenes</h1>
+      <h1 class="title">{{ t('warehouse.management.title') }}</h1>
       <button class="create-button" @click="openCreateModal">
-        <i class="fas fa-plus"></i> Crear Almacén
+        <i class="fas fa-plus"></i> {{ t('warehouse.management.create') }}
       </button>
     </div>
 
     <div class="filters">
       <div class="filter-group">
-        <label>Zona:</label>
+        <label>{{ t('warehouse.management.filters.zone.label') }}</label>
         <select v-model="filters.zone" class="filter-select">
-          <option value="">Todas las zonas</option>
-          <option value="norte">Norte</option>
-          <option value="sur">Sur</option>
-          <option value="este">Este</option>
-          <option value="oeste">Oeste</option>
+          <option value="">{{ t('warehouse.management.filters.zone.all') }}</option>
+          <option value="north">{{ t('warehouse.management.filters.zone.north') }}</option>
+          <option value="south">{{ t('warehouse.management.filters.zone.south') }}</option>
+          <option value="east">{{ t('warehouse.management.filters.zone.east') }}</option>
+          <option value="west">{{ t('warehouse.management.filters.zone.west') }}</option>
         </select>
       </div>
       <div class="filter-group">
-        <label>Tipo:</label>
+        <label>{{ t('warehouse.management.filters.type.label') }}</label>
         <select v-model="filters.type" class="filter-select">
-          <option value="">Todos los tipos</option>
-          <option value="own">Propio</option>
-          <option value="provider">Proveedor</option>
-          <option value="client">Cliente</option>
+          <option value="">{{ t('warehouse.management.filters.type.all') }}</option>
+          <option value="own">{{ t('warehouse.types.own') }}</option>
+          <option value="provider">{{ t('warehouse.types.provider') }}</option>
+          <option value="client">{{ t('warehouse.types.client') }}</option>
         </select>
       </div>
     </div>
@@ -42,11 +42,11 @@
         <table class="warehouse-table">
           <thead>
             <tr>
-              <th>Nombre</th>
-              <th>Tipo</th>
-              <th>Zona</th>
-              <th>Ocupación</th>
-              <th>Acciones</th>
+              <th>{{ t('warehouse.management.table.name') }}</th>
+              <th>{{ t('warehouse.management.table.type') }}</th>
+              <th>{{ t('warehouse.management.table.zone') }}</th>
+              <th>{{ t('warehouse.management.table.occupation') }}</th>
+              <th>{{ t('warehouse.management.table.actions') }}</th>
             </tr>
           </thead>
           <tbody>
@@ -71,6 +71,7 @@
                 <button
                   class="action-button edit"
                   @click="editWarehouse(warehouse)"
+                  :title="t('warehouse.management.actions.edit')"
                 >
                   <i class="fas fa-edit"></i>
                 </button>
@@ -78,6 +79,7 @@
                   class="action-button delete"
                   @click="deleteWarehouse(warehouse)"
                   :disabled="warehouse.occupation > 0"
+                  :title="t('warehouse.management.actions.delete')"
                 >
                   <i class="fas fa-trash"></i>
                 </button>
@@ -102,6 +104,8 @@ import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import { useToast } from 'vue-toastification'
 import WarehouseModal from '../components/WarehouseModal.vue'
 import { useWarehouseStore } from '../stores/warehouseStore'
+import { useTheme } from '@/shared/composables/useTheme'
+import { useI18n } from 'vue-i18n'
 
 export default {
   name: 'WarehouseManagementView',
@@ -111,6 +115,8 @@ export default {
   setup() {
     const toast = useToast()
     const warehouseStore = useWarehouseStore()
+    const { theme } = useTheme()
+    const { t } = useI18n()
     const map = ref(null)
     const markers = ref([])
     const warehouses = ref([])
@@ -130,7 +136,7 @@ export default {
         ])
         initializeMap()
       } catch (error) {
-        toast.error('Error al cargar los datos iniciales')
+        toast.error(t('warehouse.management.messages.loadError'))
         console.error(error)
       }
     }
@@ -141,7 +147,7 @@ export default {
         warehouses.value = response
         updateMapMarkers()
       } catch (error) {
-        toast.error('Error al cargar los almacenes')
+        toast.error(t('warehouse.management.messages.warehousesLoadError'))
         console.error(error)
       }
     }
@@ -152,7 +158,7 @@ export default {
         const response = await warehouseStore.fetchZones()
         zones.value = response
       } catch (error) {
-        toast.error('Error al cargar las zonas')
+        toast.error(t('warehouse.management.messages.zonesLoadError'))
         console.error(error)
       }
     }
@@ -224,12 +230,7 @@ export default {
     })
 
     const getWarehouseType = (type) => {
-      const types = {
-        own: 'Propio',
-        provider: 'Proveedor',
-        client: 'Cliente'
-      }
-      return types[type] || type
+      return t(`warehouse.types.${type}`) || type
     }
 
     const getZoneName = (zone) => {
@@ -265,16 +266,16 @@ export default {
 
     const deleteWarehouse = async (warehouse) => {
       if (warehouse.occupation > 0) {
-        toast.warning('No se puede eliminar un almacén con ocupación')
+        toast.warning(t('warehouse.management.messages.deleteWarning'))
         return
       }
 
       try {
         await warehouseStore.deleteWarehouse(warehouse.id)
         await loadWarehouses()
-        toast.success('Almacén eliminado correctamente')
+        toast.success(t('warehouse.management.messages.deleteSuccess'))
       } catch (error) {
-        toast.error('Error al eliminar el almacén')
+        toast.error(t('warehouse.management.messages.deleteError'))
         console.error(error)
       }
     }
@@ -288,15 +289,15 @@ export default {
       try {
         if (selectedWarehouse.value) {
           await warehouseStore.updateWarehouse(warehouseData)
-          toast.success('Almacén actualizado correctamente')
+          toast.success(t('warehouse.management.messages.saveSuccess'))
         } else {
           await warehouseStore.createWarehouse(warehouseData)
-          toast.success('Almacén creado correctamente')
+          toast.success(t('warehouse.management.messages.saveSuccess'))
         }
         await loadWarehouses()
         closeModal()
       } catch (error) {
-        toast.error('Error al guardar el almacén')
+        toast.error(t('warehouse.management.messages.saveError'))
         console.error(error)
       }
     }
@@ -328,7 +329,7 @@ export default {
       script.defer = true
       script.onload = loadInitialData
       script.onerror = () => {
-        toast.error('Error al cargar Google Maps')
+        toast.error(t('warehouse.management.messages.mapsLoadError'))
       }
       document.head.appendChild(script)
     })
@@ -355,7 +356,9 @@ export default {
       editWarehouse,
       deleteWarehouse,
       closeModal,
-      saveWarehouse
+      saveWarehouse,
+      theme,
+      t
     }
   }
 }
@@ -363,61 +366,84 @@ export default {
 
 <style scoped>
 .warehouse-management {
-  padding: 20px;
-  background-color: #FFFFFF;
+  padding: v-bind('theme.spacing.lg');
+  background-color: v-bind('theme.colors.background');
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: v-bind('theme.spacing.lg');
 }
 
 .title {
-  color: #42A5F5;
-  font-size: 24px;
+  color: v-bind('theme.colors.primary');
+  font-size: v-bind('theme.fontSize.lg');
   margin: 0;
+  font-weight: v-bind('theme.fontWeight.bold');
 }
 
 .create-button {
-  background-color: #42A5F5;
-  color: white;
+  background-color: v-bind('theme.colors.primary');
+  color: v-bind('theme.textColors.inverted');
   border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
+  padding: v-bind('theme.spacing.sm') v-bind('theme.spacing.md');
+  border-radius: v-bind('theme.borderRadius.sm');
   cursor: pointer;
+  transition: v-bind('theme.transition');
+  display: flex;
+  align-items: center;
+  gap: v-bind('theme.spacing.xs');
+
+  &:hover {
+    background-color: v-bind('theme.colors.primaryDark');
+  }
+
+  i {
+    font-size: v-bind('theme.fontSize.sm');
+  }
 }
 
 .filters {
   display: flex;
-  gap: 20px;
-  margin-bottom: 20px;
+  gap: v-bind('theme.spacing.lg');
+  margin-bottom: v-bind('theme.spacing.lg');
 }
 
 .filter-group {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: v-bind('theme.spacing.sm');
 }
 
 .filter-select {
-  padding: 8px;
-  border: 1px solid #8E8E8E;
-  border-radius: 4px;
-  background-color: black;
+  padding: v-bind('theme.spacing.sm');
+  border: 1px solid v-bind('theme.borderColor');
+  border-radius: v-bind('theme.borderRadius.sm');
+  background-color: v-bind('theme.colors.surface');
+  color: v-bind('theme.textColors.primary');
+  transition: v-bind('theme.transition');
+
+  &:focus {
+    outline: none;
+    border-color: v-bind('theme.colors.primary');
+    box-shadow: 0 0 0 2px v-bind('theme.colors.primaryLight');
+  }
 }
 
 .main-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: v-bind('theme.spacing.lg');
 }
 
 .map-container {
   height: 500px;
-  border: 1px solid #8E8E8E;
-  border-radius: 4px;
+  border: 1px solid v-bind('theme.borderColor');
+  border-radius: v-bind('theme.borderRadius.base');
+  overflow: hidden;
+  box-shadow: v-bind('theme.boxShadow');
 }
 
 .map {
@@ -426,9 +452,11 @@ export default {
 }
 
 .table-container {
-  border: 1px solid #8E8E8E;
-  border-radius: 4px;
+  border: 1px solid v-bind('theme.borderColor');
+  border-radius: v-bind('theme.borderRadius.base');
   overflow: auto;
+  background-color: v-bind('theme.colors.surface');
+  box-shadow: v-bind('theme.boxShadow');
 }
 
 .warehouse-table {
@@ -438,136 +466,156 @@ export default {
 
 .warehouse-table th,
 .warehouse-table td {
-  padding: 12px;
+  padding: v-bind('theme.spacing.md');
   text-align: left;
-  border-bottom: 1px solid #8E8E8E;
-  color: #000000;
+  border-bottom: 1px solid v-bind('theme.borderColor');
+  color: v-bind('theme.textColors.primary');
 }
 
 .warehouse-table th {
-  background-color: #42A5F5;
-  color: #000000;
-  font-weight: 600;
+  background-color: v-bind('theme.colors.primary');
+  color: v-bind('theme.textColors.inverted');
+  font-weight: v-bind('theme.fontWeight.bold');
 }
 
 .occupation-bar {
   width: 100%;
   height: 24px;
-  background-color: #D9D9D9;
-  border-radius: 12px;
+  background-color: v-bind('theme.colors.backgroundSecondary');
+  border-radius: v-bind('theme.borderRadius.sm');
   overflow: hidden;
   position: relative;
-  border: 1px solid #8E8E8E;
+  border: 1px solid v-bind('theme.borderColor');
   display: flex;
   align-items: center;
 }
 
 .occupation-progress {
   height: 100%;
-  border-radius: 12px;
-  transition: width 0.3s ease;
+  border-radius: v-bind('theme.borderRadius.sm');
+  transition: v-bind('theme.transition');
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding-right: 8px;
+  padding-right: v-bind('theme.spacing.sm');
   min-width: 40px;
 }
 
 .occupation-label {
-  font-weight: 600;
-  font-size: 14px;
-  transition: color 0.3s;
+  font-weight: v-bind('theme.fontWeight.bold');
+  font-size: v-bind('theme.fontSize.sm');
+  transition: v-bind('theme.transition');
 }
 
 .occupation-label-dark {
-  color: #000000;
+  color: v-bind('theme.textColors.primary');
 }
 
 .occupation-label-light {
-  color: #fff;
+  color: v-bind('theme.textColors.inverted');
 }
 
 .low-occupation {
-  background-color: #66BB6A;
+  background-color: v-bind('theme.colors.success');
 }
 
 .medium-occupation {
-  background-color: #FFF176;
+  background-color: v-bind('theme.colors.warning');
 }
 
 .high-occupation {
-  background-color: #EF5350;
+  background-color: v-bind('theme.colors.error');
 }
 
 .actions {
   display: flex;
-  gap: 10px;
+  gap: v-bind('theme.spacing.sm');
 }
 
 .action-button {
-  padding: 6px;
+  padding: v-bind('theme.spacing.xs');
   border: none;
-  border-radius: 4px;
+  border-radius: v-bind('theme.borderRadius.sm');
   cursor: pointer;
+  transition: v-bind('theme.transition');
+
+  &.edit {
+    background-color: v-bind('theme.colors.primary');
+    color: v-bind('theme.textColors.inverted');
+
+    &:hover {
+      background-color: v-bind('theme.colors.primaryDark');
+    }
+  }
+
+  &.delete {
+    background-color: v-bind('theme.colors.error');
+    color: v-bind('theme.textColors.inverted');
+
+    &:hover {
+      background-color: darken(v-bind('theme.colors.error'), 10%);
+    }
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }
 
-.action-button.edit {
-  background-color: #42A5F5;
-  color: white;
-}
-
-.action-button.delete {
-  background-color: #262828;
-  color: red;
-}
-
-.action-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-/* Estilos para la ventana de información del marcador */
-.marker-info {
-  padding: 10px;
+:deep(.marker-info) {
+  padding: v-bind('theme.spacing.sm');
   max-width: 200px;
-}
 
-.marker-info h3 {
-  margin: 0 0 8px 0;
-  color: #42A5F5;
-}
+  h3 {
+    margin: 0 0 v-bind('theme.spacing.xs') 0;
+    color: v-bind('theme.colors.primary');
+    font-size: v-bind('theme.fontSize.sm');
+    font-weight: v-bind('theme.fontWeight.bold');
+  }
 
-.marker-info p {
-  margin: 4px 0;
-}
+  p {
+    margin: v-bind('theme.spacing.xs') 0;
+    color: v-bind('theme.textColors.secondary');
+    font-size: v-bind('theme.fontSize.sm');
+  }
 
-.marker-actions {
-  display: flex;
-  gap: 8px;
-  margin-top: 8px;
-}
+  .marker-actions {
+    display: flex;
+    gap: v-bind('theme.spacing.xs');
+    margin-top: v-bind('theme.spacing.xs');
 
-.marker-actions button {
-  padding: 4px 8px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 12px;
-}
+    button {
+      padding: v-bind('theme.spacing.xs') v-bind('theme.spacing.sm');
+      border: none;
+      border-radius: v-bind('theme.borderRadius.sm');
+      cursor: pointer;
+      font-size: v-bind('theme.fontSize.sm');
+      transition: v-bind('theme.transition');
 
-.marker-actions button:first-child {
-  background-color: #42A5F5;
-  color: white;
-}
+      &:first-child {
+        background-color: v-bind('theme.colors.primary');
+        color: v-bind('theme.textColors.inverted');
 
-.marker-actions button:last-child {
-  background-color: #262828;
-  color: white;
-}
+        &:hover {
+          background-color: v-bind('theme.colors.primaryDark');
+        }
+      }
 
-.marker-actions button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
+      &:last-child {
+        background-color: v-bind('theme.colors.error');
+        color: v-bind('theme.textColors.inverted');
 
+        &:hover {
+          background-color: darken(v-bind('theme.colors.error'), 10%);
+        }
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
 </style>

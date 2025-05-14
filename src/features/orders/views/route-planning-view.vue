@@ -1,48 +1,72 @@
 <template>
   <div class="route-planning-view">
-    <aside class="sidebar">
-      <div class="tabs">
-        <button :class="{ active: activeTab === 'plan' }" @click="activeTab = 'plan'">Planificar Ruta</button>
-        <button :class="{ active: activeTab === 'saved' }" @click="activeTab = 'saved'">Rutas Guardadas</button>
-      </div>
-      <div v-if="activeTab === 'plan'">
-        <h3>Secuencia de Paradas</h3>
-        <button class="reorder-btn" :class="{ active: isReordering }" @click="toggleReorder">
-          <span v-if="!isReordering">🔀 Reorganizar secuencia</span>
-          <span v-else>✅ Finalizar reorganización</span>
-        </button>
-        <draggable v-model="routeNodes" @end="onReorder" item-key="id" :disabled="!isReordering">
-          <template #item="{ element, index }">
-            <div class="stop-item" :class="{ reordering: isReordering }">
-              <span class="node-dot" :style="{ background: getNodeColor(element.type) }"></span>
-              <div class="stop-info">
-                <span class="stop-name">{{ element.name }}</span>
-                <span class="stop-type">({{ getTypeLabel(element.type) }})</span>
-              </div>
-              <button class="remove-btn" @click="removeNode(index)">➖</button>
-            </div>
-          </template>
-        </draggable>
-        <button class="add-btn" @click="showAddNodeModal = true">➕ Añadir nodo</button>
-        <button class="save-btn" @click="saveRoute">💾 Guardar ruta</button>
-      </div>
-      <div v-else>
-        <h3>Rutas Guardadas</h3>
-        <div v-if="savedRoutes.length === 0" class="empty-saved">No hay rutas guardadas.</div>
-        <div v-for="(route, idx) in savedRoutes" :key="route.id" class="saved-route-item">
-          <div class="saved-route-info">
-            <span class="saved-route-name">Ruta #{{ idx + 1 }}</span>
-            <span class="saved-route-stops">({{ route.nodes.length }} paradas)</span>
+    <aside class="sidebar" :class="{ 'sidebar-collapsed': isSidebarCollapsed }">
+      <button class="collapse-btn" @click="toggleSidebar">
+        <i :class="isSidebarCollapsed ? 'fas fa-chevron-right' : 'fas fa-chevron-left'"></i>
+      </button>
+      <div class="sidebar-content" v-show="!isSidebarCollapsed">
+        <div class="tabs">
+          <button :class="{ active: activeTab === 'plan' }" @click="activeTab = 'plan'">
+            {{ t('routePlanning.tabs.plan') }}
+          </button>
+          <button :class="{ active: activeTab === 'saved' }" @click="activeTab = 'saved'">
+            {{ t('routePlanning.tabs.saved') }}
+          </button>
+        </div>
+        <div v-if="activeTab === 'plan'" class="tab-content">
+          <h3>{{ t('routePlanning.sequence.title') }}</h3>
+          <div class="route-info" v-if="routeNodes.length > 0">
+            <p>{{ t('routePlanning.sequence.estimatedDistance', { distance: routeDistance.toFixed(2) }) }}</p>
           </div>
-          <div class="saved-route-actions">
-            <button class="load-btn" @click="loadSavedRoute(route)">✏️ Modificar</button>
-            <button class="delete-btn" @click="deleteSavedRoute(route.id)">🗑️ Eliminar</button>
+          <button class="reorder-btn" :class="{ active: isReordering }" @click="toggleReorder">
+            <span v-if="!isReordering">{{ t('routePlanning.sequence.reorder') }}</span>
+            <span v-else>{{ t('routePlanning.sequence.finishReorder') }}</span>
+          </button>
+          <draggable v-model="routeNodes" @end="onReorder" item-key="id" :disabled="!isReordering">
+            <template #item="{ element, index }">
+              <div class="stop-item" :class="{ reordering: isReordering }">
+                <span class="node-dot" :style="{ background: getNodeColor(element.type) }"></span>
+                <div class="stop-info">
+                  <span class="stop-name">{{ element.name }}</span>
+                  <span class="stop-type">({{ getTypeLabel(element.type) }})</span>
+                </div>
+                <button class="remove-btn" @click="removeNode(index)">➖</button>
+              </div>
+            </template>
+          </draggable>
+          <button class="add-btn" @click="showAddNodeModal = true">
+            {{ t('routePlanning.sequence.addNode') }}
+          </button>
+          <button class="save-btn" @click="saveRoute">
+            {{ t('routePlanning.sequence.saveRoute') }}
+          </button>
+        </div>
+        <div v-else class="tab-content">
+          <h3>{{ t('routePlanning.saved.title') }}</h3>
+          <div v-if="savedRoutes.length === 0" class="empty-saved">
+            {{ t('routePlanning.saved.empty') }}
+          </div>
+          <div v-for="(route, idx) in savedRoutes" :key="route.id" class="saved-route-item">
+            <div class="saved-route-info">
+              <span class="saved-route-name">{{ t('routePlanning.saved.routeNumber', { number: idx + 1 }) }}</span>
+              <span class="saved-route-stops">{{ t('routePlanning.saved.stops', { count: route.nodes.length }) }}</span>
+            </div>
+            <div class="saved-route-actions">
+              <button class="load-btn" @click="loadSavedRoute(route)">
+                {{ t('routePlanning.saved.modify') }}
+              </button>
+              <button class="delete-btn" @click="deleteSavedRoute(route.id)">
+                {{ t('routePlanning.saved.delete') }}
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </aside>
     <section class="canvas-section">
-      <canvas ref="routeCanvas" width="800" height="600"></canvas>
+      <div class="canvas-container">
+        <canvas ref="routeCanvas" :width="canvasWidth" :height="canvasHeight"></canvas>
+      </div>
     </section>
     <AddNodeModal
       v-if="showAddNodeModal"
@@ -54,17 +78,25 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch, computed, nextTick } from 'vue'
+import { ref, onMounted, watch, computed, nextTick, onBeforeUnmount } from 'vue'
 import { useWarehouseStore } from '../stores/warehouseStore'
+import { useTheme } from '@/shared/composables/useTheme'
+import { useI18n } from 'vue-i18n'
 import draggable from 'vuedraggable'
 import AddNodeModal from '../components/AddNodeModal.vue'
 
 const warehouseStore = useWarehouseStore()
+const { theme } = useTheme()
+const { t } = useI18n()
 const routeNodes = ref([])
 const showAddNodeModal = ref(false)
 const routeCanvas = ref(null)
 const isReordering = ref(false)
 const activeTab = ref('plan')
+const routeDistance = ref(0)
+const isSidebarCollapsed = ref(false)
+const canvasWidth = ref(800)
+const canvasHeight = ref(600)
 
 const savedRoutes = ref([])
 
@@ -81,10 +113,12 @@ function getNodeColor(type) {
   return '#1E88E5'
 }
 function getTypeLabel(type) {
-  if (type === 'own') return 'Propio'
-  if (type === 'provider') return 'Proveedor'
-  if (type === 'client') return 'Cliente'
-  return type
+  const types = {
+    own: t('warehouse.types.own'),
+    provider: t('warehouse.types.provider'),
+    client: t('warehouse.types.client')
+  }
+  return types[type] || type
 }
 
 function addNode(node) {
@@ -137,15 +171,20 @@ function toggleReorder() {
 function drawRoute() {
   const canvas = routeCanvas.value
   if (!canvas) return
+  
   const ctx = canvas.getContext('2d')
   ctx.clearRect(0, 0, canvas.width, canvas.height)
-  const margin = 80
-  const nodeRadius = 28
+  
+  const margin = Math.min(canvas.width, canvas.height) * 0.1 // 10% del tamaño más pequeño
+  const nodeRadius = Math.min(canvas.width, canvas.height) * 0.035 // 3.5% del tamaño más pequeño
   const total = routeNodes.value.length
+  
   if (total === 0) return
+  
   const centerX = canvas.width / 2
   const centerY = canvas.height / 2
   const radius = Math.min(centerX, centerY) - margin
+  
   const positions = routeNodes.value.map((node, i) => {
     const angle = (2 * Math.PI * i) / total - Math.PI / 2
     return {
@@ -154,185 +193,424 @@ function drawRoute() {
       node
     }
   })
+
   // Dibujar líneas
-  ctx.strokeStyle = '#1E88E5'
-  ctx.lineWidth = 4
+  ctx.strokeStyle = v-bind('theme.colors.primary')
+  ctx.lineWidth = Math.max(2, canvas.width * 0.005) // Línea proporcional al tamaño
   ctx.beginPath()
+  
   for (let i = 0; i < positions.length; i++) {
     const { x, y } = positions[i]
     if (i === 0) ctx.moveTo(x, y)
     else ctx.lineTo(x, y)
   }
+  
+  // Cerrar el círculo si hay más de 2 nodos
+  if (positions.length > 2) {
+    ctx.lineTo(positions[0].x, positions[0].y)
+  }
+  
   ctx.stroke()
+
+  // Dibujar nodos
   positions.forEach(({ x, y, node }, idx) => {
+    // Círculo principal
     ctx.beginPath()
     ctx.arc(x, y, nodeRadius, 0, 2 * Math.PI)
     ctx.fillStyle = getNodeColor(node.type)
     ctx.fill()
-    ctx.lineWidth = 3
-    ctx.strokeStyle = '#1E88E5'
+    ctx.lineWidth = Math.max(1.5, canvas.width * 0.003)
+    ctx.strokeStyle = v-bind('theme.colors.primary')
     ctx.stroke()
-    ctx.fillStyle = '#000000'
-    ctx.font = 'bold 15px sans-serif'
+
+    // Texto del nombre
+    ctx.fillStyle = v-bind('theme.textColors.primary')
+    ctx.font = `bold ${Math.max(12, canvas.width * 0.015)}px sans-serif`
     ctx.textAlign = 'center'
     ctx.textBaseline = 'middle'
     ctx.fillText(node.name, x, y)
-    ctx.font = '12px sans-serif'
-    ctx.fillStyle = '#1E88E5'
-    ctx.fillText(getTypeLabel(node.type), x, y + nodeRadius + 14)
+
+    // Texto del tipo
+    ctx.font = `${Math.max(10, canvas.width * 0.012)}px sans-serif`
+    ctx.fillStyle = v-bind('theme.colors.primary')
+    ctx.fillText(getTypeLabel(node.type), x, y + nodeRadius + Math.max(10, canvas.width * 0.012))
+
     // Índice
+    const indexRadius = nodeRadius * 0.4
     ctx.beginPath()
-    ctx.arc(x + nodeRadius - 12, y - nodeRadius + 12, 12, 0, 2 * Math.PI)
-    ctx.fillStyle = '#FFFFFF'
+    ctx.arc(x + nodeRadius - indexRadius, y - nodeRadius + indexRadius, indexRadius, 0, 2 * Math.PI)
+    ctx.fillStyle = v-bind('theme.colors.surface')
     ctx.fill()
-    ctx.strokeStyle = '#42A5F5'
-    ctx.lineWidth = 2
+    ctx.strokeStyle = v-bind('theme.colors.primary')
+    ctx.lineWidth = Math.max(1, canvas.width * 0.002)
     ctx.stroke()
-    ctx.fillStyle = '#1E88E5'
-    ctx.font = 'bold 13px sans-serif'
-    ctx.fillText(idx + 1, x + nodeRadius - 12, y - nodeRadius + 12)
+    ctx.fillStyle = v-bind('theme.colors.primary')
+    ctx.font = `bold ${Math.max(10, canvas.width * 0.012)}px sans-serif`
+    ctx.fillText(idx + 1, x + nodeRadius - indexRadius, y - nodeRadius + indexRadius)
   })
 }
+
+function calculateRouteDistance() {
+  if (routeNodes.value.length < 2) {
+    routeDistance.value = 0
+    return
+  }
+
+  let totalDistance = 0
+  for (let i = 0; i < routeNodes.value.length - 1; i++) {
+    const node1 = routeNodes.value[i]
+    const node2 = routeNodes.value[i + 1]
+    
+    // Calcular distancia usando la fórmula de Haversine
+    const R = 6371 // Radio de la Tierra en km
+    const lat1 = node1.latitude * Math.PI / 180
+    const lat2 = node2.latitude * Math.PI / 180
+    const deltaLat = (node2.latitude - node1.latitude) * Math.PI / 180
+    const deltaLon = (node2.longitude - node1.longitude) * Math.PI / 180
+
+    const a = Math.sin(deltaLat/2) * Math.sin(deltaLat/2) +
+              Math.cos(lat1) * Math.cos(lat2) *
+              Math.sin(deltaLon/2) * Math.sin(deltaLon/2)
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))
+    const distance = R * c
+
+    totalDistance += distance
+  }
+  
+  routeDistance.value = totalDistance
+}
+
+const toggleSidebar = () => {
+  isSidebarCollapsed.value = !isSidebarCollapsed.value
+}
+
+const updateCanvasSize = () => {
+  const container = document.querySelector('.canvas-container')
+  if (container) {
+    const rect = container.getBoundingClientRect()
+    canvasWidth.value = rect.width
+    canvasHeight.value = rect.height
+    nextTick(() => {
+      const canvas = routeCanvas.value
+      if (canvas) {
+        // Ajustar el tamaño del canvas para pantallas de alta resolución
+        const dpr = window.devicePixelRatio || 1
+        canvas.style.width = `${rect.width}px`
+        canvas.style.height = `${rect.height}px`
+        canvas.width = rect.width * dpr
+        canvas.height = rect.height * dpr
+        const ctx = canvas.getContext('2d')
+        ctx.scale(dpr, dpr)
+      }
+      drawRoute()
+    })
+  }
+}
+
 onMounted(() => {
   warehouseStore.fetchWarehouses()
   savedRoutes.value = getAllSavedRoutes()
-  nextTick(drawRoute)
+  updateCanvasSize()
+  window.addEventListener('resize', updateCanvasSize)
 })
-watch(routeNodes, () => nextTick(drawRoute), { deep: true })
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', updateCanvasSize)
+})
+
+watch(routeNodes, () => {
+  nextTick(() => {
+    drawRoute()
+    calculateRouteDistance()
+  })
+}, { deep: true })
 </script>
 
 <style scoped>
 .route-planning-view {
   display: flex;
   height: 100vh;
-  background: #F5F5F5;
+  background: v-bind('theme.colors.background');
+  position: relative;
+  overflow: hidden;
 }
+
 .sidebar {
   width: 340px;
-  background: #FFFFFF;
-  padding: 2rem 1.2rem 1.2rem 1.2rem;
-  border-right: 2px solid #1E88E5;
+  background: v-bind('theme.colors.surface');
+  padding: v-bind('theme.spacing.lg') v-bind('theme.spacing.md');
+  border-right: 2px solid v-bind('theme.colors.primary');
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: v-bind('theme.spacing.md');
+  transition: v-bind('theme.transition');
+  position: relative;
+  z-index: 10;
 }
+
+.sidebar-collapsed {
+  width: 50px;
+  padding: v-bind('theme.spacing.md');
+}
+
+.collapse-btn {
+  position: absolute;
+  right: -12px;
+  top: 20px;
+  width: 24px;
+  height: 24px;
+  background: v-bind('theme.colors.primary');
+  color: v-bind('theme.textColors.inverted');
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 11;
+  transition: v-bind('theme.transition');
+
+  &:hover {
+    background: v-bind('theme.colors.primaryDark');
+  }
+}
+
+.sidebar-content {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.tab-content {
+  height: calc(100% - 50px);
+  overflow-y: auto;
+  padding-right: v-bind('theme.spacing.xs');
+}
+
+.canvas-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: v-bind('theme.colors.background');
+  padding: v-bind('theme.spacing.md');
+  overflow: hidden;
+}
+
+.canvas-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+canvas {
+  background: v-bind('theme.colors.surface');
+  border-radius: v-bind('theme.borderRadius.base');
+  box-shadow: v-bind('theme.boxShadow');
+  border: 2px solid v-bind('theme.colors.primary');
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 300px;
+  }
+
+  .sidebar-collapsed {
+    width: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .route-planning-view {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    max-height: 50vh;
+    border-right: none;
+    border-bottom: 2px solid v-bind('theme.colors.primary');
+  }
+
+  .sidebar-collapsed {
+    width: 100%;
+    height: 50px;
+  }
+
+  .canvas-section {
+    height: 50vh;
+  }
+
+  .collapse-btn {
+    top: 50%;
+    transform: translateY(-50%);
+    right: v-bind('theme.spacing.sm');
+  }
+
+  .saved-route-item {
+    flex-direction: column;
+    gap: v-bind('theme.spacing.sm');
+  }
+
+  .saved-route-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 480px) {
+  .tabs {
+    flex-direction: column;
+  }
+
+  .tabs button {
+    width: 100%;
+    border-radius: v-bind('theme.borderRadius.sm');
+  }
+
+  .saved-route-actions {
+    flex-direction: column;
+    gap: v-bind('theme.spacing.sm');
+  }
+
+  .load-btn, .delete-btn {
+    width: 100%;
+  }
+}
+
 .tabs {
   display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1.2rem;
+  gap: v-bind('theme.spacing.sm');
+  margin-bottom: v-bind('theme.spacing.md');
 }
 .tabs button {
   flex: 1;
-  background: #F5F5F5;
-  color: #1E88E5;
+  background: v-bind('theme.colors.backgroundSecondary');
+  color: v-bind('theme.colors.primary');
   border: none;
-  border-radius: 6px 6px 0 0;
-  padding: 0.7rem 0.5rem;
-  font-weight: 500;
+  border-radius: v-bind('theme.borderRadius.sm') v-bind('theme.borderRadius.sm') 0 0;
+  padding: v-bind('theme.spacing.sm');
+  font-weight: v-bind('theme.fontWeight.bold');
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
+  transition: v-bind('theme.transition');
 }
 .tabs button.active {
-  background: #42A5F5;
-  color: #FFFFFF;
+  background: v-bind('theme.colors.primary');
+  color: v-bind('theme.textColors.inverted');
+}
+.route-info {
+  background: v-bind('theme.colors.backgroundSecondary');
+  padding: v-bind('theme.spacing.sm');
+  border-radius: v-bind('theme.borderRadius.sm');
+  margin-bottom: v-bind('theme.spacing.md');
+  border: 1px solid v-bind('theme.borderColor');
+}
+.route-info p {
+  color: v-bind('theme.textColors.primary');
+  font-weight: v-bind('theme.fontWeight.bold');
+  margin: 0;
 }
 .empty-saved {
-  color: #8E8E8E;
+  color: v-bind('theme.textColors.secondary');
   font-style: italic;
-  margin-bottom: 1rem;
+  margin-bottom: v-bind('theme.spacing.md');
 }
 .saved-route-item {
-  background: #F5F5F5;
-  border-radius: 8px;
-  padding: 0.7rem 1rem;
-  margin-bottom: 0.7rem;
+  background: v-bind('theme.colors.backgroundSecondary');
+  border-radius: v-bind('theme.borderRadius.sm');
+  padding: v-bind('theme.spacing.sm') v-bind('theme.spacing.md');
+  margin-bottom: v-bind('theme.spacing.sm');
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 2px solid #E3F2FD;
+  border: 2px solid v-bind('theme.colors.primaryLight');
 }
 .saved-route-info {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  gap: v-bind('theme.spacing.xs');
 }
 .saved-route-name {
-  color: #1E88E5;
-  font-weight: 600;
+  color: v-bind('theme.colors.primary');
+  font-weight: v-bind('theme.fontWeight.bold');
 }
 .saved-route-stops {
-  color: #000000;
-  font-size: 0.95em;
+  color: v-bind('theme.textColors.primary');
+  font-size: v-bind('theme.fontSize.sm');
 }
 .saved-route-actions {
   display: flex;
-  gap: 0.5rem;
+  gap: v-bind('theme.spacing.sm');
 }
 .load-btn {
-  background: #42A5F5;
-  color: #FFFFFF;
+  background: v-bind('theme.colors.primary');
+  color: v-bind('theme.textColors.inverted');
   border: none;
-  border-radius: 6px;
-  padding: 0.3rem 0.9rem;
-  font-weight: 500;
+  border-radius: v-bind('theme.borderRadius.sm');
+  padding: v-bind('theme.spacing.xs') v-bind('theme.spacing.sm');
+  font-weight: v-bind('theme.fontWeight.bold');
   cursor: pointer;
-  transition: background 0.2s;
+  transition: v-bind('theme.transition');
 }
 .load-btn:hover {
-  background: #1E88E5;
+  background: v-bind('theme.colors.primaryDark');
 }
 .delete-btn {
-  background: #FFF176;
-  color: #000000;
+  background: v-bind('theme.colors.warning');
+  color: v-bind('theme.textColors.primary');
   border: none;
-  border-radius: 6px;
-  padding: 0.3rem 0.9rem;
-  font-weight: 500;
+  border-radius: v-bind('theme.borderRadius.sm');
+  padding: v-bind('theme.spacing.xs') v-bind('theme.spacing.sm');
+  font-weight: v-bind('theme.fontWeight.bold');
   cursor: pointer;
-  transition: background 0.2s;
+  transition: v-bind('theme.transition');
 }
 .delete-btn:hover {
-  background: #FFD600;
+  background: v-bind('theme.colors.warningDark');
 }
 .reorder-btn {
-  background: #1E88E5;
-  color: #FFFFFF;
+  background: v-bind('theme.colors.primary');
+  color: v-bind('theme.textColors.inverted');
   border: none;
-  border-radius: 6px;
-  padding: 0.5rem 1.2rem;
-  font-weight: 500;
-  margin-bottom: 1rem;
+  border-radius: v-bind('theme.borderRadius.sm');
+  padding: v-bind('theme.spacing.sm') v-bind('theme.spacing.md');
+  font-weight: v-bind('theme.fontWeight.bold');
+  margin-bottom: v-bind('theme.spacing.md');
   cursor: pointer;
-  transition: background 0.2s;
+  transition: v-bind('theme.transition');
 }
 .reorder-btn.active {
-  background: #FFF176;
-  color: #1E88E5;
-}
-.stop-item.reordering {
-  cursor: move;
-  border: 2px solid #42A5F5;
-  background: #E3F2FD;
-}
-.draggable--disabled .stop-item {
-  cursor: default;
+  background: v-bind('theme.colors.warning');
+  color: v-bind('theme.textColors.primary');
 }
 .stop-item {
   display: flex;
   align-items: center;
-  gap: 0.7rem;
-  background: #F5F5F5;
-  border-radius: 8px;
-  padding: 0.6rem 0.8rem;
-  margin-bottom: 0.5rem;
-  border: 2px solid #E3F2FD;
+  gap: v-bind('theme.spacing.sm');
+  background: v-bind('theme.colors.backgroundSecondary');
+  border-radius: v-bind('theme.borderRadius.sm');
+  padding: v-bind('theme.spacing.sm');
+  margin-bottom: v-bind('theme.spacing.sm');
+  border: 2px solid v-bind('theme.colors.primaryLight');
+}
+.stop-item.reordering {
+  cursor: move;
+  border: 2px solid v-bind('theme.colors.primary');
+  background: v-bind('theme.colors.primaryLight');
 }
 .node-dot {
   width: 18px;
   height: 18px;
   border-radius: 50%;
   display: inline-block;
-  border: 2px solid #1E88E5;
+  border: 2px solid v-bind('theme.colors.primary');
 }
 .stop-info {
   flex: 1;
@@ -340,66 +618,53 @@ watch(routeNodes, () => nextTick(drawRoute), { deep: true })
   flex-direction: column;
 }
 .stop-name {
-  color: #000000;
-  font-weight: 500;
+  color: v-bind('theme.textColors.primary');
+  font-weight: v-bind('theme.fontWeight.bold');
 }
 .stop-type {
-  color: #1E88E5;
-  font-size: 0.95em;
+  color: v-bind('theme.colors.primary');
+  font-size: v-bind('theme.fontSize.sm');
 }
 .remove-btn {
-  background: #FFF176;
-  color: #000000;
+  background: v-bind('theme.colors.warning');
+  color: v-bind('theme.textColors.primary');
   border: none;
-  border-radius: 6px;
-  padding: 0.2rem 0.7rem;
-  font-size: 1.1rem;
+  border-radius: v-bind('theme.borderRadius.sm');
+  padding: v-bind('theme.spacing.xs') v-bind('theme.spacing.sm');
+  font-size: v-bind('theme.fontSize.lg');
   cursor: pointer;
-  font-weight: bold;
-  transition: background 0.2s;
+  font-weight: v-bind('theme.fontWeight.bold');
+  transition: v-bind('theme.transition');
 }
 .remove-btn:hover {
-  background: #FFD600;
+  background: v-bind('theme.colors.warningDark');
 }
 .add-btn {
-  background: #42A5F5;
-  color: #FFFFFF;
+  background: v-bind('theme.colors.primary');
+  color: v-bind('theme.textColors.inverted');
   border: none;
-  border-radius: 6px;
-  padding: 0.6rem 1.2rem;
-  font-weight: 500;
-  margin-top: 0.7rem;
+  border-radius: v-bind('theme.borderRadius.sm');
+  padding: v-bind('theme.spacing.sm') v-bind('theme.spacing.md');
+  font-weight: v-bind('theme.fontWeight.bold');
+  margin-top: v-bind('theme.spacing.sm');
   cursor: pointer;
-  transition: background 0.2s;
+  transition: v-bind('theme.transition');
 }
 .add-btn:hover {
-  background: #1E88E5;
+  background: v-bind('theme.colors.primaryDark');
 }
 .save-btn {
-  background: #66BB6A;
-  color: #FFFFFF;
+  background: v-bind('theme.colors.success');
+  color: v-bind('theme.textColors.inverted');
   border: none;
-  border-radius: 6px;
-  padding: 0.6rem 1.2rem;
-  font-weight: 500;
-  margin-top: 0.7rem;
+  border-radius: v-bind('theme.borderRadius.sm');
+  padding: v-bind('theme.spacing.sm') v-bind('theme.spacing.md');
+  font-weight: v-bind('theme.fontWeight.bold');
+  margin-top: v-bind('theme.spacing.sm');
   cursor: pointer;
-  transition: background 0.2s;
+  transition: v-bind('theme.transition');
 }
 .save-btn:hover {
-  background: #388E3C;
-}
-.canvas-section {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #F5F5F5;
-}
-canvas {
-  background: #FFFFFF;
-  border-radius: 18px;
-  box-shadow: 0 2px 16px rgba(66,165,245,0.10);
-  border: 2px solid #42A5F5;
+  background: v-bind('theme.colors.successDark');
 }
 </style>

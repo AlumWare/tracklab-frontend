@@ -37,7 +37,7 @@ export default {
     <Sidebar class="main-layout__sidebar" :isOpen="isSidebarOpen"></Sidebar>
     
     <div class="main-layout__content">
-      <Header class="main-layout__header" :title="'title'" @toggle-sidebar="toggleSidebar"></Header>
+      <Header class="main-layout__header" :title="'TrackLab'" @toggle-sidebar="toggleSidebar"></Header>
       
       <main class="main-layout__main">
         <router-view></router-view>

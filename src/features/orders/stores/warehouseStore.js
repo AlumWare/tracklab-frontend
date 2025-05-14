@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
-import axios from 'axios'
+import { LocalStorageService } from '@/core/services/local-storage.service'
 
+const STORAGE_KEY = 'warehouses'
 
 const defaultWarehouses = [
 
@@ -130,102 +130,63 @@ const defaultWarehouses = [
   }
 ]
 
-export const useWarehouseStore = defineStore('warehouse', () => {
-  const warehouses = ref([...defaultWarehouses])
-  const zones = ref([])
-  const loading = ref(false)
-  const error = ref(null)
+export const useWarehouseStore = defineStore('warehouse', {
+  state: () => ({
+    warehouses: [],
+    zones: [
+      { id: 'norte', name: 'Norte' },
+      { id: 'sur', name: 'Sur' },
+      { id: 'este', name: 'Este' },
+      { id: 'oeste', name: 'Oeste' }
+    ]
+  }),
 
-  const fetchWarehouses = async () => {
-    loading.value = true
-    error.value = null
-    try {
-      return warehouses.value
-    } catch (err) {
-      error.value = err.message
-      throw err
-    } finally {
-      loading.value = false
-    }
-  }
+  actions: {
+    async fetchWarehouses() {
+      const storedWarehouses = LocalStorageService.getItem(STORAGE_KEY)
+      if (storedWarehouses) {
+        this.warehouses = storedWarehouses
+      }
+      return this.warehouses
+    },
 
-  const fetchZones = async () => {
-    loading.value = true
-    error.value = null
-    try {
-      const response = await axios.get('/api/zones')
-      zones.value = response.data
-      return response.data
-    } catch (err) {
-      error.value = err.message
-      throw err
-    } finally {
-      loading.value = false
-    }
-  }
+    async fetchZones() {
+      return this.zones
+    },
 
-
-  const createWarehouse = async (warehouseData) => {
-    loading.value = true
-    error.value = null
-    try {
-
+    async createWarehouse(warehouse) {
       const newWarehouse = {
-        ...warehouseData,
-        id: Date.now().toString()
+        ...warehouse,
+        id: Date.now().toString(),
+        createdAt: new Date().toISOString()
       }
-      warehouses.value.push(newWarehouse)
+      this.warehouses.push(newWarehouse)
+      LocalStorageService.setItem(STORAGE_KEY, this.warehouses)
       return newWarehouse
-    } catch (err) {
-      error.value = err.message
-      throw err
-    } finally {
-      loading.value = false
-    }
-  }
+    },
 
-
-  const updateWarehouse = async (warehouseData) => {
-    loading.value = true
-    error.value = null
-    try {
-
-      const index = warehouses.value.findIndex(w => w.id === warehouseData.id)
+    async updateWarehouse(warehouse) {
+      const index = this.warehouses.findIndex(w => w.id === warehouse.id)
       if (index !== -1) {
-        warehouses.value[index] = { ...warehouses.value[index], ...warehouseData }
+        this.warehouses[index] = {
+          ...this.warehouses[index],
+          ...warehouse,
+          updatedAt: new Date().toISOString()
+        }
+        LocalStorageService.setItem(STORAGE_KEY, this.warehouses)
+        return this.warehouses[index]
       }
-      return warehouses.value[index]
-    } catch (err) {
-      error.value = err.message
-      throw err
-    } finally {
-      loading.value = false
+      throw new Error('Warehouse not found')
+    },
+
+    async deleteWarehouse(id) {
+      const index = this.warehouses.findIndex(w => w.id === id)
+      if (index !== -1) {
+        this.warehouses.splice(index, 1)
+        LocalStorageService.setItem(STORAGE_KEY, this.warehouses)
+        return true
+      }
+      throw new Error('Warehouse not found')
     }
-  }
-
-
-  const deleteWarehouse = async (warehouseId) => {
-    loading.value = true
-    error.value = null
-    try {
-      warehouses.value = warehouses.value.filter(w => w.id !== warehouseId)
-    } catch (err) {
-      error.value = err.message
-      throw err
-    } finally {
-      loading.value = false
-    }
-  }
-
-  return {
-    warehouses,
-    zones,
-    loading,
-    error,
-    fetchWarehouses,
-    fetchZones,
-    createWarehouse,
-    updateWarehouse,
-    deleteWarehouse
   }
 })

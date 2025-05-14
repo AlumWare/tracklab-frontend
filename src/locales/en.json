@@ -11,20 +11,20 @@
       "orders": {
         "label": "Orders",
         "create": "Create Order",
-        "history": "Orders History",
-        "list": "Orders List"
+        "history": "History",
+        "list": "Order List"
       },
-      "users": {
-        "label": "Users"
+      "admin": {
+        "label": "Administration",
+        "users": "Users",
+        "vehicles": "Vehicles",
+        "warehouses": "Warehouses"
       },
       "containers": {
         "label": "Containers",
-        "details": "Container Details",
-        "manage": "Manage Container",
-        "list": "Containers List"
-      },
-      "vehicles": {
-        "label": "Vehicles"
+        "details": "Details",
+        "manage": "Manage",
+        "list": "Container List"
       },
       "routePlanning": {
         "label": "Route Planning"
@@ -131,6 +131,160 @@
         "manageWarehouse": "Manage Warehouse",
         "planRoute": "Plan Route"
       }
+    }
+  },
+  "warehouse": {
+    "types": {
+      "own": "Own",
+      "provider": "Provider",
+      "client": "Client"
+    },
+    "management": {
+      "title": "Warehouse Management",
+      "create": "Create Warehouse",
+      "filters": {
+        "zone": {
+          "label": "Zone:",
+          "all": "All zones",
+          "north": "North",
+          "south": "South",
+          "east": "East",
+          "west": "West"
+        },
+        "type": {
+          "label": "Type:",
+          "all": "All types"
+        }
+      },
+      "table": {
+        "name": "Name",
+        "type": "Type",
+        "zone": "Zone",
+        "occupation": "Occupation",
+        "actions": "Actions"
+      },
+      "actions": {
+        "edit": "Edit",
+        "delete": "Delete"
+      },
+      "messages": {
+        "deleteWarning": "Cannot delete a warehouse with occupation",
+        "deleteSuccess": "Warehouse deleted successfully",
+        "deleteError": "Error deleting warehouse",
+        "saveSuccess": "Warehouse saved successfully",
+        "saveError": "Error saving warehouse",
+        "loadError": "Error loading initial data",
+        "warehousesLoadError": "Error loading warehouses",
+        "zonesLoadError": "Error loading zones",
+        "mapsLoadError": "Error loading Google Maps"
+      }
+    }
+  },
+  "routePlanning": {
+    "tabs": {
+      "plan": "Plan Route",
+      "saved": "Saved Routes"
+    },
+    "sequence": {
+      "title": "Stop Sequence",
+      "estimatedDistance": "Estimated distance: {distance} km",
+      "reorder": "🔀 Reorder sequence",
+      "finishReorder": "✅ Finish reordering",
+      "addNode": "➕ Add node",
+      "saveRoute": "💾 Save route"
+    },
+    "saved": {
+      "title": "Saved Routes",
+      "empty": "No saved routes.",
+      "routeNumber": "Route #{number}",
+      "stops": "({count} stops)",
+      "modify": "✏️ Modify",
+      "delete": "🗑️ Delete"
+    }
+  },
+  "vehicle": {
+    "management": {
+      "title": "Vehicle Management",
+      "add": "Add Vehicle",
+      "edit": "Edit Vehicle",
+      "filters": {
+        "status": {
+          "label": "Status",
+          "all": "All",
+          "available": "Available",
+          "maintenance": "Maintenance"
+        }
+      },
+      "table": {
+        "image": "Image",
+        "plate": "Plate",
+        "model": "Model",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "form": {
+        "plate": "Plate",
+        "model": "Model",
+        "status": "Status",
+        "cancel": "Cancel",
+        "save": "Save"
+      },
+      "actions": {
+        "edit": "Edit",
+        "uploadPhoto": "Upload Photo",
+        "status": "Status"
+      },
+      "status": {
+        "available": "Available",
+        "maintenance": "Maintenance"
+      }
+    }
+  },
+  "orderCreation": {
+    "title": "Create Order",
+    "steps": {
+      "logistics": "Logistics Company",
+      "items": "Add Items",
+      "summary": "Summary"
+    },
+    "logistics": {
+      "title": "Select your logistics company",
+      "selectPlaceholder": "Select a company"
+    },
+    "items": {
+      "title": "Add items to the order",
+      "delivery": {
+        "address": "Delivery Address",
+        "addressPlaceholder": "Enter delivery address",
+        "date": "Delivery Date"
+      },
+      "table": {
+        "description": "Description",
+        "quantity": "Quantity",
+        "weight": "Weight (kg)",
+        "actions": "Actions"
+      },
+      "descriptionPlaceholder": "Item description",
+      "addItem": "Add Item",
+      "removeItem": "Remove"
+    },
+    "summary": {
+      "title": "Order Summary",
+      "logisticsCompany": "Logistics Company",
+      "totalItems": "Total Items",
+      "totalWeight": "Total Weight",
+      "includedItems": "Included Items"
+    },
+    "navigation": {
+      "previous": "Previous",
+      "next": "Next",
+      "submit": "Submit Order"
+    },
+    "success": {
+      "title": "Order Sent Successfully!",
+      "message": "What would you like to do now?",
+      "createAnother": "Create Another Order",
+      "viewOrders": "Go to Orders List"
     }
   }
 }
