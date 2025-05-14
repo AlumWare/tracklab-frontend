@@ -1,9 +1,10 @@
 export class Order {
-  constructor(id, logisticsCompany, deliveryAddress, deliveryDate, items) {
+  constructor(id, logisticsCompany, deliveryAddress, deliveryDate, status, items) {
     this.id = id;
     this.logisticsCompany = logisticsCompany || null;
     this.deliveryAddress = deliveryAddress || '';
     this.deliveryDate = deliveryDate || '';
+    this.status = status || '';
     this.items = items || [];
     this.totalItems = this.calculateTotalItems();
     this.totalWeight = this.calculateTotalWeight();

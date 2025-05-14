@@ -423,6 +423,305 @@
     }
   ],
   "order": [
-
+    {
+      "logisticsCompany": {
+        "id": 3,
+        "name": "Envíos Seguros"
+      },
+      "deliveryAddress": "Dirección 1",
+      "deliveryDate": "2025-05-30",
+      "status": "inprocess",
+      "items": [
+        {
+          "description": "madera",
+          "quantity": 369,
+          "weight": 9,
+          "delivered": 278
+        },
+        {
+          "description": "cemento",
+          "quantity": 631,
+          "weight": 9,
+          "delivered": 500
+        }
+      ],
+      "totalItems": 1000,
+      "totalWeight": 10572,
+      "deliveredItems": 778,
+      "id": 1
+    },
+    {
+      "logisticsCompany": {
+        "id": 1,
+        "name": "Envíos Seguros"
+      },
+      "deliveryAddress": "Dirección 2",
+      "deliveryDate": "2025-05-10",
+      "status": "inprocess",
+      "items": [
+        {
+          "description": "lana",
+          "quantity": 828,
+          "weight": 7,
+          "delivered": 55
+        },
+        {
+          "description": "ladrillos",
+          "quantity": 188,
+          "weight": 16,
+          "delivered": 966
+        }
+      ],
+      "totalItems": 1016,
+      "totalWeight": 14240,
+      "deliveredItems": 1021,
+      "id": 2
+    },
+    {
+      "logisticsCompany": {
+        "id": 5,
+        "name": "Envíos Seguros"
+      },
+      "deliveryAddress": "Dirección 3",
+      "deliveryDate": "2025-05-27",
+      "status": "inprocess",
+      "items": [
+        {
+          "description": "lana",
+          "quantity": 739,
+          "weight": 8,
+          "delivered": 533
+        },
+        {
+          "description": "herramientas",
+          "quantity": 839,
+          "weight": 6,
+          "delivered": 775
+        }
+      ],
+      "totalItems": 1578,
+      "totalWeight": 12774,
+      "deliveredItems": 1308,
+      "id": 3
+    },
+    {
+      "logisticsCompany": {
+        "id": 4,
+        "name": "Delivery Plus"
+      },
+      "deliveryAddress": "Dirección 4",
+      "deliveryDate": "2025-05-20",
+      "status": "delivered",
+      "items": [
+        {
+          "description": "cemento",
+          "quantity": 537,
+          "weight": 16,
+          "delivered": 537
+        }
+      ],
+      "totalItems": 537,
+      "totalWeight": 8592,
+      "deliveredItems": 537,
+      "id": 4
+    },
+    {
+      "logisticsCompany": {
+        "id": 4,
+        "name": "Mensajería Nacional"
+      },
+      "deliveryAddress": "Dirección 5",
+      "deliveryDate": "2025-05-18",
+      "status": "inprocess",
+      "items": [
+        {
+          "description": "cemento",
+          "quantity": 654,
+          "weight": 5,
+          "delivered": 456
+        },
+        {
+          "description": "plástico",
+          "quantity": 463,
+          "weight": 12,
+          "delivered": 357
+        },
+        {
+          "description": "lana",
+          "quantity": 100,
+          "weight": 10,
+          "delivered": 45
+        }
+      ],
+      "totalItems": 1217,
+      "totalWeight": 12347,
+      "deliveredItems": 858,
+      "id": 5
+    },
+    {
+      "logisticsCompany": {
+        "id": 3,
+        "name": "Envíos Seguros"
+      },
+      "deliveryAddress": "Dirección 6",
+      "deliveryDate": "2025-05-25",
+      "status": "delivered",
+      "items": [
+        {
+          "description": "plástico",
+          "quantity": 576,
+          "weight": 11,
+          "delivered": 576
+        },
+        {
+          "description": "madera",
+          "quantity": 203,
+          "weight": 8,
+          "delivered": 203
+        }
+      ],
+      "totalItems": 779,
+      "totalWeight": 12877,
+      "deliveredItems": 779,
+      "id": 6
+    },
+    {
+      "logisticsCompany": {
+        "id": 2,
+        "name": "Transportes Rápidos"
+      },
+      "deliveryAddress": "Dirección 7",
+      "deliveryDate": "2025-05-16",
+      "status": "pending",
+      "items": [
+        {
+          "description": "madera",
+          "quantity": 532,
+          "weight": 8,
+          "delivered": 50
+        }
+      ],
+      "totalItems": 532,
+      "totalWeight": 4256,
+      "deliveredItems": 50,
+      "id": 7
+    },
+    {
+      "logisticsCompany": {
+        "id": 1,
+        "name": "Logística Express"
+      },
+      "deliveryAddress": "Dirección 8",
+      "deliveryDate": "2025-05-14",
+      "status": "delivered",
+      "items": [
+        {
+          "description": "cemento",
+          "quantity": 324,
+          "weight": 7,
+          "delivered": 324
+        }
+      ],
+      "totalItems": 324,
+      "totalWeight": 2268,
+      "deliveredItems": 324,
+      "id": 8
+    },
+    {
+      "logisticsCompany": {
+        "id": 4,
+        "name": "Mensajería Nacional"
+      },
+      "deliveryAddress": "Dirección 9",
+      "deliveryDate": "2025-05-12",
+      "status": "inprocess",
+      "items": [
+        {
+          "description": "lana",
+          "quantity": 739,
+          "weight": 12,
+          "delivered": 500
+        },
+        {
+          "description": "plástico",
+          "quantity": 204,
+          "weight": 10,
+          "delivered": 145
+        }
+      ],
+      "totalItems": 943,
+      "totalWeight": 11858,
+      "deliveredItems": 645,
+      "id": 9
+    },
+    {
+      "logisticsCompany": {
+        "id": 5,
+        "name": "Logística Express"
+      },
+      "deliveryAddress": "Dirección 10",
+      "deliveryDate": "2025-05-17",
+      "status": "pending",
+      "items": [
+        {
+          "description": "madera",
+          "quantity": 210,
+          "weight": 14,
+          "delivered": 0
+        },
+        {
+          "description": "cemento",
+          "quantity": 456,
+          "weight": 8,
+          "delivered": 0
+        }
+      ],
+      "totalItems": 666,
+      "totalWeight": 9444,
+      "deliveredItems": 0,
+      "id": 10
+    },
+    {
+      "logisticsCompany": {
+        "id": 4,
+        "name": "Delivery Plus"
+      },
+      "deliveryAddress": "wakanda",
+      "deliveryDate": "2025-06-01",
+      "status": "pending",
+      "items": [
+        {
+          "description": "rubies",
+          "quantity": 1000,
+          "weight": 8,
+          "delivered": 0
+        }
+      ],
+      "totalItems": 1000,
+      "totalWeight": 8000,
+      "deliveredItems": 0,
+      "id": 11
+    },
+    {
+      "logisticsCompany": {
+        "id": 3,
+        "name": "Envíos Seguros"
+      },
+      "deliveryAddress": "wakanda",
+      "deliveryDate": "2025-05-30",
+      "status": "pending",
+      "items": [
+        {
+          "description": "tableros",
+          "quantity": 9090,
+          "weight": 31,
+          "delivered": 0
+        }
+      ],
+      "totalItems": 9090,
+      "totalWeight": 281790,
+      "deliveredItems": 0,
+      "id": 12
+    }
   ]
 }
