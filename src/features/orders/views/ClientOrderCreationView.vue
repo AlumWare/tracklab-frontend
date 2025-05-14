@@ -260,7 +260,7 @@ export default {
       this.orderSent = false
     },
     goToOrderList() {
-      this.$router.push('/orders')
+      this.$router.push('/tracklab/orders')
     }
   }
 }

@@ -76,37 +76,37 @@ const router = createRouter({
           component: OperationHistoryView
         },
         {
-          path: '/admin-usuarios',
+          path: 'admin-usuarios',
           name: 'admin-user-management',
           component: AdminUserManagementView
         },
         {
-          path: '/container-detail-view',
+          path: 'container-detail-view',
           name: 'container-detail-view',
           component: ContainerDetailView
         },
         {
-          path: '/operation-execution-view',
+          path: 'operation-execution-view',
           name: 'operation-execution-view',
           component: OperationExecutionView
         },
         {
-          path: '/orders/:id',
+          path: 'orders/:id',
           name: 'order-details',
           component: OrderDetailsView
         },
         {
-          path: '/vehiculos',
+          path: 'vehiculos',
           name: 'vehicle-management',
           component: VehicleManagementView
         },
         {
-          path: '/ware-house-management-view',
+          path: 'ware-house-management-view',
           name: 'ware-house-management-view',
           component: WareHouseManagementView
         },
         {
-          path: '/route-planing-view',
+          path: 'route-planing-view',
           name: 'route-planing-view',
           component: routePlanningView
         },

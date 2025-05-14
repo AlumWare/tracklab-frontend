@@ -41,15 +41,15 @@ const { t } = useI18n()
     <div class="quick-actions">
       <h2>Acciones Rápidas</h2>
       <div class="actions-grid">
-        <button class="action-button" @click="$router.push('/vehiculos')">
+        <button class="action-button" @click="$router.push('/tracklab/vehiculos')">
           <i class="pi pi-truck"></i>
           Gestionar Vehículos
         </button>
-        <button class="action-button" @click="$router.push('/ware-house-management-view')">
+        <button class="action-button" @click="$router.push('/tracklab/ware-house-management-view')">
           <i class="pi pi-building"></i>
           Gestionar Almacén
         </button>
-        <button class="action-button" @click="$router.push('/route-planing-view')">
+        <button class="action-button" @click="$router.push('/tracklab/route-planing-view')">
           <i class="pi pi-map"></i>
           Planificar Ruta
         </button>
@@ -178,4 +178,4 @@ h1 {
     grid-template-columns: 1fr;
   }
 }
-</style> 
+</style>
