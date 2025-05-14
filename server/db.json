@@ -134,15 +134,6 @@
       "updatedAt": "2025-05-13T10:00:00Z"
     },
     {
-      "id": 1017,
-      "name": "Ricardo Palma",
-      "email": "ricardo.palma@example.com",
-      "role": "OPERATOR",
-      "status": "ACTIVE",
-      "createdAt": "2025-01-30T11:10:00Z",
-      "updatedAt": "2025-04-10T08:00:00Z"
-    },
-    {
       "id": 1018,
       "name": "Natalia Silva",
       "email": "natalia.silva@example.com",
@@ -573,27 +564,6 @@
     },
     {
       "logisticsCompany": {
-        "id": 2,
-        "name": "Transportes Rápidos"
-      },
-      "deliveryAddress": "Dirección 7",
-      "deliveryDate": "2025-05-16",
-      "status": "pending",
-      "items": [
-        {
-          "description": "madera",
-          "quantity": 532,
-          "weight": 8,
-          "delivered": 50
-        }
-      ],
-      "totalItems": 532,
-      "totalWeight": 4256,
-      "deliveredItems": 50,
-      "id": 7
-    },
-    {
-      "logisticsCompany": {
         "id": 1,
         "name": "Logística Express"
       },
@@ -690,45 +660,524 @@
     },
     {
       "logisticsCompany": {
-        "id": 3,
-        "name": "Envíos Seguros"
+        "id": 4,
+        "name": "Delivery Plus"
       },
-      "deliveryAddress": "wakanda",
-      "deliveryDate": "2025-05-30",
+      "deliveryAddress": "sanmi",
+      "deliveryDate": "2025-09-25",
       "status": "pending",
       "items": [
         {
-          "description": "tableros",
-          "quantity": 9090,
-          "weight": 31,
+          "description": "cemento",
+          "quantity": 800,
+          "weight": 40,
+          "delivered": 0
+        },
+        {
+          "description": "drywall",
+          "quantity": 200,
+          "weight": 3,
+          "delivered": 0
+        },
+        {
+          "description": "pintura",
+          "quantity": 12,
+          "weight": 5,
           "delivered": 0
         }
       ],
-      "totalItems": 9090,
-      "totalWeight": 281790,
+      "totalItems": 1012,
+      "totalWeight": 32660,
       "deliveredItems": 0,
-      "id": 12
+      "id": 13
     },
     {
       "logisticsCompany": {
-        "id": 2,
-        "name": "Transportes Rápidos"
+        "id": 5,
+        "name": "Mensajería Nacional"
       },
-      "deliveryAddress": "MI CASA",
-      "deliveryDate": "2025-10-10",
+      "deliveryAddress": "sani",
+      "deliveryDate": "2025-06-08",
       "status": "pending",
       "items": [
         {
-          "description": "wiwi",
-          "quantity": 1,
-          "weight": 1,
+          "description": "Palancas",
+          "quantity": 1000,
+          "weight": 6,
+          "delivered": 0
+        },
+        {
+          "description": "cajas",
+          "quantity": 555,
+          "weight": 7,
           "delivered": 0
         }
       ],
-      "totalItems": 1,
-      "totalWeight": 1,
+      "totalItems": 1555,
+      "totalWeight": 9885,
       "deliveredItems": 0,
-      "id": 13
+      "id": 14
+    },
+    {
+      "logisticsCompany": {
+        "id": 1,
+        "name": "Logística Express"
+      },
+      "deliveryAddress": "ayudenme",
+      "deliveryDate": "2025-05-29",
+      "status": "pending",
+      "items": [
+        {
+          "description": "cintas",
+          "quantity": 234,
+          "weight": 4,
+          "delivered": 0
+        }
+      ],
+      "totalItems": 234,
+      "totalWeight": 936,
+      "deliveredItems": 0,
+      "id": 15
+    }
+  ],
+  "operation": [
+    {
+      "id": 1,
+      "type": "pickup",
+      "date": "2025-06-01",
+      "node": "Almacén Central",
+      "container": "CNT-001",
+      "order": {
+        "id": 1,
+        "logisticsCompany": {
+          "id": 3,
+          "name": "Envíos Seguros"
+        },
+        "deliveryAddress": "Dirección 1",
+        "deliveryDate": "2025-05-30",
+        "status": "inprocess",
+        "items": [
+          {
+            "description": "madera",
+            "quantity": 369,
+            "weight": 9,
+            "delivered": 278
+          },
+          {
+            "description": "cemento",
+            "quantity": 631,
+            "weight": 9,
+            "delivered": 500
+          }
+        ],
+        "totalItems": 1000,
+        "totalWeight": 10572,
+        "deliveredItems": 778
+      },
+      "photos": [
+        "/assets/mock/photo1.jpg",
+        "/assets/mock/photo2.jpg"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "traslado",
+      "date": "2025-06-02",
+      "node": "Nodo Norte",
+      "container": "CNT-002",
+      "order": {
+        "id": 2,
+        "logisticsCompany": {
+          "id": 1,
+          "name": "Envíos Seguros"
+        },
+        "deliveryAddress": "Dirección 2",
+        "deliveryDate": "2025-05-10",
+        "status": "inprocess",
+        "items": [
+          {
+            "description": "lana",
+            "quantity": 828,
+            "weight": 7,
+            "delivered": 55
+          },
+          {
+            "description": "ladrillos",
+            "quantity": 188,
+            "weight": 16,
+            "delivered": 966
+          }
+        ],
+        "totalItems": 1016,
+        "totalWeight": 14240,
+        "deliveredItems": 1021
+      },
+      "photos": [
+        "/assets/mock/photo3.jpg"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "pickup",
+      "date": "2025-06-03",
+      "node": "Nodo Sur",
+      "container": "CNT-003",
+      "order": {
+        "id": 3,
+        "logisticsCompany": {
+          "id": 5,
+          "name": "Envíos Seguros"
+        },
+        "deliveryAddress": "Dirección 3",
+        "deliveryDate": "2025-05-27",
+        "status": "inprocess",
+        "items": [
+          {
+            "description": "lana",
+            "quantity": 739,
+            "weight": 8,
+            "delivered": 533
+          },
+          {
+            "description": "herramientas",
+            "quantity": 839,
+            "weight": 6,
+            "delivered": 775
+          }
+        ],
+        "totalItems": 1578,
+        "totalWeight": 12774,
+        "deliveredItems": 1308
+      },
+      "photos": []
+    },
+    {
+      "id": 4,
+      "type": "traslado",
+      "date": "2025-06-04",
+      "node": "Almacén Central",
+      "container": "CNT-004",
+      "order": {
+        "id": 4,
+        "logisticsCompany": {
+          "id": 4,
+          "name": "Delivery Plus"
+        },
+        "deliveryAddress": "Dirección 4",
+        "deliveryDate": "2025-05-20",
+        "status": "delivered",
+        "items": [
+          {
+            "description": "cemento",
+            "quantity": 537,
+            "weight": 16,
+            "delivered": 537
+          }
+        ],
+        "totalItems": 537,
+        "totalWeight": 8592,
+        "deliveredItems": 537
+      },
+      "photos": [
+        "/assets/mock/photo4.jpg"
+      ]
+    },
+    {
+      "id": 5,
+      "type": "pickup",
+      "date": "2025-06-05",
+      "node": "Nodo Este",
+      "container": "CNT-005",
+      "order": {
+        "id": 5,
+        "logisticsCompany": {
+          "id": 4,
+          "name": "Mensajería Nacional"
+        },
+        "deliveryAddress": "Dirección 5",
+        "deliveryDate": "2025-05-18",
+        "status": "inprocess",
+        "items": [
+          {
+            "description": "cemento",
+            "quantity": 654,
+            "weight": 5,
+            "delivered": 456
+          },
+          {
+            "description": "plástico",
+            "quantity": 463,
+            "weight": 12,
+            "delivered": 357
+          },
+          {
+            "description": "lana",
+            "quantity": 100,
+            "weight": 10,
+            "delivered": 45
+          }
+        ],
+        "totalItems": 1217,
+        "totalWeight": 12347,
+        "deliveredItems": 858
+      },
+      "photos": []
+    },
+    {
+      "id": 6,
+      "type": "traslado",
+      "date": "2025-06-06",
+      "node": "Nodo Oeste",
+      "container": "CNT-006",
+      "order": {
+        "id": 6,
+        "logisticsCompany": {
+          "id": 3,
+          "name": "Envíos Seguros"
+        },
+        "deliveryAddress": "Dirección 6",
+        "deliveryDate": "2025-05-25",
+        "status": "delivered",
+        "items": [
+          {
+            "description": "plástico",
+            "quantity": 576,
+            "weight": 11,
+            "delivered": 576
+          },
+          {
+            "description": "madera",
+            "quantity": 203,
+            "weight": 8,
+            "delivered": 203
+          }
+        ],
+        "totalItems": 779,
+        "totalWeight": 12877,
+        "deliveredItems": 779
+      },
+      "photos": []
+    },
+    {
+      "id": 8,
+      "type": "traslado",
+      "date": "2025-06-08",
+      "node": "Nodo Sur",
+      "container": "CNT-008",
+      "order": {
+        "id": 8,
+        "logisticsCompany": {
+          "id": 4,
+          "name": "Mensajería Nacional"
+        },
+        "deliveryAddress": "Dirección 9",
+        "deliveryDate": "2025-05-12",
+        "status": "inprocess",
+        "items": [
+          {
+            "description": "lana",
+            "quantity": 739,
+            "weight": 12,
+            "delivered": 500
+          },
+          {
+            "description": "plástico",
+            "quantity": 204,
+            "weight": 10,
+            "delivered": 145
+          }
+        ],
+        "totalItems": 943,
+        "totalWeight": 11858,
+        "deliveredItems": 645
+      },
+      "photos": []
+    },
+    {
+      "id": 9,
+      "type": "pickup",
+      "date": "2025-06-09",
+      "node": "Almacén Central",
+      "container": "CNT-009",
+      "order": {
+        "id": 9,
+        "logisticsCompany": {
+          "id": 5,
+          "name": "Logística Express"
+        },
+        "deliveryAddress": "Dirección 10",
+        "deliveryDate": "2025-05-17",
+        "status": "pending",
+        "items": [
+          {
+            "description": "madera",
+            "quantity": 210,
+            "weight": 14,
+            "delivered": 0
+          },
+          {
+            "description": "cemento",
+            "quantity": 456,
+            "weight": 8,
+            "delivered": 0
+          }
+        ],
+        "totalItems": 666,
+        "totalWeight": 9444,
+        "deliveredItems": 0
+      },
+      "photos": []
+    },
+    {
+      "id": 10,
+      "type": "traslado",
+      "date": "2025-06-10",
+      "node": "Nodo Este",
+      "container": "CNT-010",
+      "order": {
+        "id": 10,
+        "logisticsCompany": {
+          "id": 4,
+          "name": "Delivery Plus"
+        },
+        "deliveryAddress": "wakanda",
+        "deliveryDate": "2025-06-01",
+        "status": "pending",
+        "items": [
+          {
+            "description": "rubies",
+            "quantity": 1000,
+            "weight": 8,
+            "delivered": 0
+          }
+        ],
+        "totalItems": 1000,
+        "totalWeight": 8000,
+        "deliveredItems": 0
+      },
+      "photos": []
+    },
+    {
+      "id": 11,
+      "type": "pickup",
+      "date": "2025-06-11",
+      "node": "Sanmi",
+      "container": "CNT-011",
+      "order": {
+        "id": 11,
+        "logisticsCompany": {
+          "id": 3,
+          "name": "Envíos Seguros"
+        },
+        "deliveryAddress": "wakanda",
+        "deliveryDate": "2025-05-30",
+        "status": "pending",
+        "items": [
+          {
+            "description": "tableros",
+            "quantity": 9090,
+            "weight": 31,
+            "delivered": 0
+          }
+        ],
+        "totalItems": 9090,
+        "totalWeight": 281790,
+        "deliveredItems": 0
+      },
+      "photos": []
+    },
+    {
+      "id": 13,
+      "type": "pickup",
+      "date": "2025-06-13",
+      "node": "Almacén Central",
+      "container": "CNT-013",
+      "order": {
+        "id": 13,
+        "logisticsCompany": {
+          "id": 4,
+          "name": "Delivery Plus"
+        },
+        "deliveryAddress": "Dirección 10",
+        "deliveryDate": "2025-05-17",
+        "status": "pending",
+        "items": [
+          {
+            "description": "materiales",
+            "quantity": 1000,
+            "weight": 8,
+            "delivered": 0
+          }
+        ],
+        "totalItems": 1000,
+        "totalWeight": 8000,
+        "deliveredItems": 0
+      },
+      "photos": []
+    },
+    {
+      "type": "pickup",
+      "date": "2025-05-14",
+      "node": "Almacén Central",
+      "container": "CNT-013",
+      "order": {
+        "logisticsCompany": {
+          "id": 5,
+          "name": "Mensajería Nacional"
+        },
+        "deliveryAddress": "sani",
+        "deliveryDate": "2025-06-08",
+        "status": "pending",
+        "items": [
+          {
+            "description": "Palancas",
+            "quantity": 1000,
+            "weight": 6,
+            "delivered": 0
+          },
+          {
+            "description": "cajas",
+            "quantity": 555,
+            "weight": 7,
+            "delivered": 0
+          }
+        ],
+        "totalItems": 1555,
+        "totalWeight": 9885,
+        "deliveredItems": 0,
+        "id": 14
+      },
+      "photos": [],
+      "id": 14
+    },
+    {
+      "type": "pickup",
+      "date": "2025-05-14",
+      "node": "Almacén Central",
+      "container": "CNT-013",
+      "order": {
+        "logisticsCompany": {
+          "id": 1,
+          "name": "Logística Express"
+        },
+        "deliveryAddress": "ayudenme",
+        "deliveryDate": "2025-05-29",
+        "status": "pending",
+        "items": [
+          {
+            "description": "cintas",
+            "quantity": 234,
+            "weight": 4,
+            "delivered": 0
+          }
+        ],
+        "totalItems": 234,
+        "totalWeight": 936,
+        "deliveredItems": 0,
+        "id": 15
+      },
+      "photos": [],
+      "id": 15
     }
   ]
 }

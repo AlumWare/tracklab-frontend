@@ -7,7 +7,6 @@
         <option value="pickup">Pickup</option>
         <option value="traslado">Traslado</option>
       </select>
-      <input v-model="filters.date" type="date" class="filter-input" />
       <select v-model="filters.node" class="filter-select">
         <option value="">Todos los nodos</option>
         <option v-for="node in uniqueNodes" :key="node" :value="node">{{ node }}</option>
@@ -34,7 +33,6 @@
                 <span class="event-date">{{ formatDate(op.date) }}</span>
               </div>
               <div class="event-node">Nodo: {{ op.node }}</div>
-              <div class="event-summary">{{ op.summary }}</div>
             </div>
           </div>
         </transition-group>
@@ -59,16 +57,16 @@
         <p><b>Nodo:</b> {{ selectedEvent.node }}</p>
         <p><b>Contenedor asociado:</b> {{ selectedEvent.container }}</p>
         <p><b>ID de Orden:</b> {{ selectedEvent.order?.id }}</p>
-        <p><b>Destino:</b> {{ selectedEvent.order?.destination }}</p>
+        <p><b>Destino:</b> {{ selectedEvent.order?.deliveryAddress }}</p>
         <p><b>Estado:</b> {{ capitalize(selectedEvent.order?.status) }}</p>
         <p><b>Fecha de orden:</b> {{ formatDate(selectedEvent.order?.date) }}</p>
         <p><b>Total de ítems:</b> {{ selectedEvent.order?.totalItems }}</p>
         <p><b>Ítems entregados:</b> {{ selectedEvent.order?.deliveredItems }}</p>
-        <div v-if="selectedEvent.order?.materials">
+        <div v-if="selectedEvent.order?.items">
           <b>Materiales:</b>
           <ul>
-            <li v-for="(mat, i) in selectedEvent.order.materials" :key="i">
-              {{ mat.name }} - {{ mat.quantity }} {{ mat.unit }} (Entregados: {{ mat.delivered }})
+            <li v-for="(mat, i) in selectedEvent.order.items" :key="i">
+              {{ mat.description }} - {{ mat.quantity }} kg (Entregados: {{ mat.delivered }})
             </li>
           </ul>
         </div>
@@ -85,7 +83,7 @@
 </template>
 
 <script>
-import { useOrderStore } from '@/stores/order.store'
+import axios from 'axios'
 
 export default {
   name: 'OperationHistoryView',
@@ -98,117 +96,17 @@ export default {
       },
       selectedEvent: null,
       timelineIndex: 0,
-      operations: [
-        {
-          id: 1,
-          type: 'pickup',
-          date: '2024-06-01',
-          node: 'Almacén Central',
-          summary: 'Recogida de paquete en almacén',
-          container: 'CNT-001',
-          orderId: 1,
-          photos: ['/assets/mock/photo1.jpg', '/assets/mock/photo2.jpg']
-        },
-        {
-          id: 2,
-          type: 'traslado',
-          date: '2024-06-02',
-          node: 'Nodo Norte',
-          summary: 'Traslado a Nodo Norte',
-          container: 'CNT-002',
-          orderId: 2,
-          photos: ['/assets/mock/photo3.jpg']
-        },
-        {
-          id: 3,
-          type: 'pickup',
-          date: '2024-06-03',
-          node: 'Nodo Sur',
-          summary: 'Recogida en Nodo Sur',
-          container: 'CNT-003',
-          orderId: 3,
-          photos: []
-        },
-        {
-          id: 4,
-          type: 'traslado',
-          date: '2024-06-04',
-          node: 'Almacén Central',
-          summary: 'Traslado de regreso a almacén',
-          container: 'CNT-004',
-          orderId: 4,
-          photos: ['/assets/mock/photo4.jpg']
-        },
-        {
-          id: 5,
-          type: 'pickup',
-          date: '2024-06-05',
-          node: 'Nodo Este',
-          summary: 'Recogida en Nodo Este',
-          container: 'CNT-005',
-          orderId: 5,
-          photos: []
-        },
-        {
-          id: 6,
-          type: 'traslado',
-          date: '2024-06-06',
-          node: 'Nodo Oeste',
-          summary: 'Traslado a Nodo Oeste',
-          container: 'CNT-006',
-          orderId: 6,
-          photos: []
-        },
-        {
-          id: 7,
-          type: 'pickup',
-          date: '2024-06-07',
-          node: 'Nodo Norte',
-          summary: 'Recogida en Nodo Norte',
-          container: 'CNT-007',
-          orderId: 7,
-          photos: []
-        },
-        {
-          id: 8,
-          type: 'traslado',
-          date: '2024-06-08',
-          node: 'Nodo Sur',
-          summary: 'Traslado a Nodo Sur',
-          container: 'CNT-008',
-          orderId: 8,
-          photos: []
-        },
-        {
-          id: 9,
-          type: 'pickup',
-          date: '2024-06-09',
-          node: 'Almacén Central',
-          summary: 'Recogida en Almacén Central',
-          container: 'CNT-009',
-          orderId: 9,
-          photos: []
-        },
-        {
-          id: 10,
-          type: 'traslado',
-          date: '2024-06-10',
-          node: 'Nodo Este',
-          summary: 'Traslado a Nodo Este',
-          container: 'CNT-010',
-          orderId: 10,
-          photos: []
-        }
-      ]
+      operations: []
     }
   },
   computed: {
     filteredOperations() {
+      console.log(this.filters.date);
       return this.operations.filter(op => {
         const matchType = !this.filters.type || op.type === this.filters.type
-        const matchDate = !this.filters.date || op.date === this.filters.date
+        //const matchDate = !this.filters.date || op.date === this.filters.date
         const matchNode = !this.filters.node || op.node === this.filters.node
-        return matchType && matchDate && matchNode
+        return matchType && matchNode
       })
     },
     uniqueNodes() {
@@ -230,14 +128,21 @@ export default {
       return Math.floor(this.timelineIndex / 4)
     }
   },
+  mounted() {
+    this.InvocaOperation();
+  },
   methods: {
+    InvocaOperation() {
+      axios.get('http://localhost:3000/operation')
+        .then(res => {
+          this.operations = res.data
+        })
+    },
     formatDate(date) {
       return new Date(date).toLocaleDateString()
     },
     showDetails(op) {
-      const orderStore = useOrderStore()
-      const order = orderStore.orders.find(o => o.id === op.orderId)
-      this.selectedEvent = { ...op, order }
+      this.selectedEvent = op
     },
     resetFilters() {
       this.filters = { type: '', date: '', node: '' }

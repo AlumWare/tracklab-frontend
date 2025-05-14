@@ -256,6 +256,17 @@ export default {
         // await this.$store.dispatch('orders/createOrder', orderData)
         this.orderSent = true
         await axios.post('http://localhost:3000/order', orderData)
+        const response = await axios.get('http://localhost:3000/order');
+        const lastOrder = response.data[response.data.length - 1];
+        const newOperation = {
+          type: "pickup",
+          date: "2025-05-14",
+          node: "Almacén Central",
+          container: "CNT-013",
+          order: lastOrder,
+          photos: []
+        }
+        await axios.post('http://localhost:3000/operation', newOperation)
       } catch (error) {
         console.error('Error al crear la orden:', error)
       }
