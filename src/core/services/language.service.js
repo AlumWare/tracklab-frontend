@@ -1,9 +1,18 @@
 import { LocalStorageService } from './local-storage.service';
 
+const STORAGE_KEY = 'preferredLanguage';
+const DEFAULT_LANGUAGE = 'en';
+const AVAILABLE_LANGUAGES = ['en', 'es'];
+
 export class LanguageService {
-  static STORAGE_KEY = 'preferredLanguage';
-  static DEFAULT_LANGUAGE = 'en';
-  static AVAILABLE_LANGUAGES = ['en', 'es'];
+  static STORAGE_KEY = STORAGE_KEY;
+  static DEFAULT_LANGUAGE = DEFAULT_LANGUAGE;
+  static AVAILABLE_LANGUAGES = AVAILABLE_LANGUAGES;
+  static i18n = null;
+
+  static initialize(i18nInstance) {
+    this.i18n = i18nInstance;
+  }
 
   static getCurrentLanguage() {
     return LocalStorageService.getItem(this.STORAGE_KEY) || this.DEFAULT_LANGUAGE;
@@ -12,6 +21,9 @@ export class LanguageService {
   static setLanguage(language) {
     if (this.AVAILABLE_LANGUAGES.includes(language)) {
       LocalStorageService.setItem(this.STORAGE_KEY, language);
+      if (this.i18n) {
+        this.i18n.global.locale.value = language;
+      }
       return true;
     }
     return false;

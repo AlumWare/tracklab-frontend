@@ -1,14 +1,14 @@
 <template>
   <div class="register-company-container">
     <div class="register-company-header">
-      <h1>Registro de Empresa</h1>
-      <p class="subtitle">Complete los datos de su empresa para comenzar</p>
+      <h1>{{ t('registerCompany.title') }}</h1>
+      <p class="subtitle">{{ t('registerCompany.subtitle') }}</p>
     </div>
 
     <form @submit.prevent="handleSubmit" class="register-company-form">
       <!-- Tipo de Empresa -->
       <div class="form-group">
-        <label for="companyType">Tipo de Empresa</label>
+        <label for="companyType">{{ t('registerCompany.companyType') }}</label>
         <div class="company-type-selector">
           <button
             type="button"
@@ -16,7 +16,7 @@
             @click="formData.companyType = 'client'"
           >
             <i class="pi pi-building"></i>
-            <span>Cliente</span>
+            <span>{{ t('registerCompany.client') }}</span>
           </button>
           <button
             type="button"
@@ -24,15 +24,15 @@
             @click="formData.companyType = 'logistics'"
           >
             <i class="pi pi-truck"></i>
-            <span>Logística</span>
+            <span>{{ t('registerCompany.logistics') }}</span>
           </button>
         </div>
-        <small class="help-text">Seleccione el tipo de empresa que desea registrar</small>
+        <small class="help-text">{{ t('registerCompany.companyTypeHelp') }}</small>
       </div>
 
       <!-- Nombre de la Empresa -->
       <div class="form-group">
-        <label for="companyName">Nombre de la Empresa</label>
+        <label for="companyName">{{ t('registerCompany.companyName') }}</label>
         <div class="input-wrapper">
           <i class="pi pi-building input-icon"></i>
           <input
@@ -40,17 +40,17 @@
             v-model="formData.companyName"
             type="text"
             :class="{ 'error': errors.companyName }"
-            placeholder="Ingrese el nombre de su empresa"
+            :placeholder="t('registerCompany.companyNamePlaceholder')"
             @input="validateCompanyName"
           />
         </div>
         <small v-if="errors.companyName" class="error-text">{{ errors.companyName }}</small>
-        <small v-else class="help-text">Ingrese el nombre legal de su empresa</small>
+        <small v-else class="help-text">{{ t('registerCompany.companyNameHelp') }}</small>
       </div>
 
       <!-- RUC -->
       <div class="form-group">
-        <label for="ruc">RUC</label>
+        <label for="ruc">{{ t('registerCompany.ruc') }}</label>
         <div class="input-wrapper">
           <i class="pi pi-id-card input-icon"></i>
           <input
@@ -58,7 +58,7 @@
             v-model="formData.ruc"
             type="text"
             :class="{ 'error': errors.ruc }"
-            placeholder="Ingrese el RUC de su empresa"
+            :placeholder="t('registerCompany.rucPlaceholder')"
             @input="validateRUC"
           />
           <i v-if="rucStatus === 'checking'" class="pi pi-spin pi-spinner status-icon"></i>
@@ -66,12 +66,12 @@
           <i v-else-if="rucStatus === 'invalid'" class="pi pi-times status-icon invalid"></i>
         </div>
         <small v-if="errors.ruc" class="error-text">{{ errors.ruc }}</small>
-        <small v-else class="help-text">Ingrese el número de RUC de su empresa (11 dígitos)</small>
+        <small v-else class="help-text">{{ t('registerCompany.rucHelp') }}</small>
       </div>
 
       <!-- Email -->
       <div class="form-group">
-        <label for="email">Correo Electrónico</label>
+        <label for="email">{{ t('registerCompany.email') }}</label>
         <div class="input-wrapper">
           <i class="pi pi-envelope input-icon"></i>
           <input
@@ -79,7 +79,7 @@
             v-model="formData.email"
             type="email"
             :class="{ 'error': errors.email }"
-            placeholder="Ingrese el correo electrónico"
+            :placeholder="t('registerCompany.emailPlaceholder')"
             @input="validateEmail"
           />
           <i v-if="emailStatus === 'checking'" class="pi pi-spin pi-spinner status-icon"></i>
@@ -87,12 +87,12 @@
           <i v-else-if="emailStatus === 'invalid'" class="pi pi-times status-icon invalid"></i>
         </div>
         <small v-if="errors.email" class="error-text">{{ errors.email }}</small>
-        <small v-else class="help-text">Ingrese el correo electrónico corporativo</small>
+        <small v-else class="help-text">{{ t('registerCompany.emailHelp') }}</small>
       </div>
 
       <!-- Teléfono -->
       <div class="form-group">
-        <label for="phone">Teléfono</label>
+        <label for="phone">{{ t('registerCompany.phone') }}</label>
         <div class="input-wrapper">
           <i class="pi pi-phone input-icon"></i>
           <input
@@ -100,17 +100,17 @@
             v-model="formData.phone"
             type="tel"
             :class="{ 'error': errors.phone }"
-            placeholder="Ingrese el número de teléfono"
+            :placeholder="t('registerCompany.phonePlaceholder')"
             @input="validatePhone"
           />
         </div>
         <small v-if="errors.phone" class="error-text">{{ errors.phone }}</small>
-        <small v-else class="help-text">Ingrese el número de teléfono de contacto</small>
+        <small v-else class="help-text">{{ t('registerCompany.phoneHelp') }}</small>
       </div>
 
       <!-- Dirección -->
       <div class="form-group">
-        <label for="address">Dirección</label>
+        <label for="address">{{ t('registerCompany.address') }}</label>
         <div class="input-wrapper">
           <i class="pi pi-map-marker input-icon"></i>
           <input
@@ -118,12 +118,12 @@
             v-model="formData.address"
             type="text"
             :class="{ 'error': errors.address }"
-            placeholder="Ingrese la dirección de su empresa"
+            :placeholder="t('registerCompany.addressPlaceholder')"
             @input="validateAddress"
           />
         </div>
         <small v-if="errors.address" class="error-text">{{ errors.address }}</small>
-        <small v-else class="help-text">Ingrese la dirección legal de su empresa</small>
+        <small v-else class="help-text">{{ t('registerCompany.addressHelp') }}</small>
       </div>
 
       <!-- Botón de Registro -->
@@ -133,24 +133,27 @@
         :disabled="!isFormValid || isSubmitting"
       >
         <i v-if="isSubmitting" class="pi pi-spin pi-spinner"></i>
-        <span v-else>Registrar Empresa</span>
+        <span v-else>{{ t('registerCompany.submitButton') }}</span>
       </button>
 
       <div class="form-footer">
-        <p>¿Ya tiene una cuenta? <a href="#" @click.prevent="$router.push('/auth/login')">Iniciar Sesión</a></p>
+        <p>{{ t('registerCompany.alreadyHaveAccount') }} <a href="#" @click.prevent="$router.push('/auth/login')">{{ t('registerCompany.login') }}</a></p>
       </div>
     </form>
   </div>
 </template>
 
 <script setup>
+import { ref, reactive, computed } from 'vue'
+import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+
 defineOptions({
   name: 'RegisterCompanyView'
 })
-import { ref, reactive, computed } from 'vue'
-import { useRouter } from 'vue-router'
 
 const router = useRouter()
+const { t } = useI18n()
 
 // Estado del formulario
 const formData = reactive({
@@ -180,9 +183,9 @@ const isSubmitting = ref(false)
 // Validaciones
 const validateCompanyName = () => {
   if (!formData.companyName) {
-    errors.companyName = 'El nombre de la empresa es requerido'
+    errors.companyName = t('registerCompany.validation.companyNameRequired')
   } else if (formData.companyName.length < 3) {
-    errors.companyName = 'El nombre debe tener al menos 3 caracteres'
+    errors.companyName = t('registerCompany.validation.companyNameMinLength')
   } else {
     errors.companyName = ''
   }
@@ -190,10 +193,10 @@ const validateCompanyName = () => {
 
 const validateRUC = async () => {
   if (!formData.ruc) {
-    errors.ruc = 'El RUC es requerido'
+    errors.ruc = t('registerCompany.validation.rucRequired')
     rucStatus.value = ''
   } else if (!/^\d{11}$/.test(formData.ruc)) {
-    errors.ruc = 'El RUC debe tener 11 dígitos'
+    errors.ruc = t('registerCompany.validation.rucInvalid')
     rucStatus.value = 'invalid'
   } else {
     rucStatus.value = 'checking'
@@ -205,12 +208,12 @@ const validateRUC = async () => {
         errors.ruc = ''
         rucStatus.value = 'valid'
       } else {
-        errors.ruc = 'Este RUC ya está registrado'
+        errors.ruc = t('registerCompany.validation.rucExists')
         rucStatus.value = 'invalid'
       }
     } catch (error) {
       console.error(error)
-      errors.ruc = 'Error al validar el RUC'
+      errors.ruc = t('registerCompany.validation.rucError')
       rucStatus.value = 'invalid'
     }
   }
@@ -218,10 +221,10 @@ const validateRUC = async () => {
 
 const validateEmail = async () => {
   if (!formData.email) {
-    errors.email = 'El correo electrónico es requerido'
+    errors.email = t('registerCompany.validation.emailRequired')
     emailStatus.value = ''
   } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-    errors.email = 'Ingrese un correo electrónico válido'
+    errors.email = t('registerCompany.validation.emailInvalid')
     emailStatus.value = 'invalid'
   } else {
     emailStatus.value = 'checking'
@@ -233,12 +236,12 @@ const validateEmail = async () => {
         errors.email = ''
         emailStatus.value = 'valid'
       } else {
-        errors.email = 'Este correo ya está registrado'
+        errors.email = t('registerCompany.validation.emailExists')
         emailStatus.value = 'invalid'
       }
     } catch (error) {
       console.error(error)
-      errors.email = 'Error al validar el correo'
+      errors.email = t('registerCompany.validation.emailError')
       emailStatus.value = 'invalid'
     }
   }
@@ -246,9 +249,9 @@ const validateEmail = async () => {
 
 const validatePhone = () => {
   if (!formData.phone) {
-    errors.phone = 'El teléfono es requerido'
+    errors.phone = t('registerCompany.validation.phoneRequired')
   } else if (!/^\d{9}$/.test(formData.phone)) {
-    errors.phone = 'Ingrese un número de teléfono válido (9 dígitos)'
+    errors.phone = t('registerCompany.validation.phoneInvalid')
   } else {
     errors.phone = ''
   }
@@ -256,9 +259,9 @@ const validatePhone = () => {
 
 const validateAddress = () => {
   if (!formData.address) {
-    errors.address = 'La dirección es requerida'
+    errors.address = t('registerCompany.validation.addressRequired')
   } else if (formData.address.length < 10) {
-    errors.address = 'La dirección debe tener al menos 10 caracteres'
+    errors.address = t('registerCompany.validation.addressMinLength')
   } else {
     errors.address = ''
   }
