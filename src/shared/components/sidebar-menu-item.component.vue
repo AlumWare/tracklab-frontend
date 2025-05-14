@@ -73,28 +73,29 @@ export default {
     display: flex;
     align-items: center;
     padding: var(--spacing-sm, 8px) var(--spacing-md, 16px);
-    color: var(--text-primary, #333);
+    color: var(--text-inverted);
     text-decoration: none;
     cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
+    transition: background 0.2s, color 0.2s;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    border-radius: var(--border-radius-sm);
 }
 
 .sidebar__menu-link:hover,
-.sidebar__menu-parent-header:hover,
-.sidebar__menu-link.active {
-    background-color: var(--surface, #f5f5f5);
-    color: var(--primary, #3098ed);
+.sidebar__menu-parent-header:hover {
+    background: rgba(255,255,255,0.10);
 }
 
 .sidebar__menu-link.active {
-    border-left: 3px solid var(--primary, #3098ed);
+    border-left: 3px solid var(--primary);
+    background: rgba(255,255,255,0.18);
+    color: var(--text-inverted);
 }
 
 .sidebar__menu-parent.expanded {
-    background-color: var(--surface, #f5f5f5);
+    background: rgba(255,255,255,0.06);
 }
 
 .sidebar__menu-icon {
