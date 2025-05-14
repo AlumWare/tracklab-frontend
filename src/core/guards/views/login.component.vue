@@ -61,6 +61,7 @@ export default {
           />
           <button type="submit" class="login-btn" @click="handleSubmit">Sign In</button>
           <button type="submit" class="login-btn" @click="$router.push('/subscription-plan')">Register company</button>
+          <button type="submit" class="login-btn" @click="$router.push('/register-user')">Register user</button>
         </form>
       </div>
     </div>

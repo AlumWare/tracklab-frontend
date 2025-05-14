@@ -42,6 +42,11 @@ const router = createRouter({
       component: LogisticsHomeView
     },
     {
+      path: '/subscription-plan',
+      name: 'subscription-plan',
+      component: SubscriptionPlanComponent
+    },
+    {
       path: '/aa',
       name: 'mainLayout',
       component: MainLayout,
@@ -123,11 +128,6 @@ const router = createRouter({
       path: '/container-detail-view',
       name: 'container-detail-view',
       component: ContainerDetailView
-    },
-    {
-      path: '/subscription-plan',
-      name: 'subscription-plan',
-      component: SubscriptionPlanComponent
     }
   ]
 })

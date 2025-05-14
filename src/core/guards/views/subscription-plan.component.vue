@@ -7,7 +7,6 @@
     methods: {
       handleTypeSaved(title) {
         console.log(`El título del tipo seleccionado es: ${title}`);
-        this.$router.push('/register-company');
       }
     }
   }
@@ -36,7 +35,7 @@
         @typeSaved="handleTypeSaved"
       ></payment-card>
     </div>
-    <button type="submit" class="login-btn" @click="$router.push('/register-company')">Ninguno, soy cliente</button>
+    <button type="submit" class="login-btn" @click="$router.push('/register-user')">Ninguno, soy cliente</button>
   </div>
 </template>
 

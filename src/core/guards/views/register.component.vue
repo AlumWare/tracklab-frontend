@@ -90,7 +90,7 @@ export default {
           color="info"
           :disabled="false"
           :loading="loading"
-          @click="validateForm"
+          @click="$router.push('/login')"
         />
       </div>
     </div>
