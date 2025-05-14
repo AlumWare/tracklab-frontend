@@ -16,12 +16,23 @@ import LogisticsHomeView from '@/features/home/views/logistics-home.view.vue'
 import ContainerDetailView from '@/features/orders/views/ContainerDetailView.vue'
 import RegisterCompanyView from '@/features/security/components/register-company-view.component.vue'
 import RegisterUser from '@/core/guards/views/register.component.vue'
+import SubscriptionPlanComponent from '@/core/guards/views/subscription-plan.component.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/a',
+      path: '/',
+      name: 'login',
+      component: LoginView,
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: LoginView,
+    },
+    {
+      path: '/client-home',
       name: 'client-home',
       component: ClientHomeView
     },
@@ -31,7 +42,7 @@ const router = createRouter({
       component: LogisticsHomeView
     },
     {
-      path: '/',
+      path: '/aa',
       name: 'mainLayout',
       component: MainLayout,
       children: [
@@ -54,19 +65,14 @@ const router = createRouter({
       component: StyleGuide,
     },
     {
-      path: '/register',
-      name: 'register',
+      path: '/register-company',
+      name: 'register-company',
       component: RegisterCompanyView,
     },
     {
       path: '/register-user',
       name: 'register-user',
       component: RegisterUser,
-    },
-    {
-      path: '/login',
-      name: 'login',
-      component: LoginView,
     },
     {
       path: '/orders',
@@ -117,6 +123,11 @@ const router = createRouter({
       path: '/container-detail-view',
       name: 'container-detail-view',
       component: ContainerDetailView
+    },
+    {
+      path: '/subscription-plan',
+      name: 'subscription-plan',
+      component: SubscriptionPlanComponent
     }
   ]
 })

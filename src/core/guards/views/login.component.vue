@@ -16,6 +16,13 @@ export default {
         email: this.email,
         password: this.password
       })
+    },
+    handleSubmit() {
+      if (this.password.length > 3) {
+        this.$router.push('/logistics-home');
+      } else {
+        this.$router.push('/client-home');
+      }
     }
   }
 }
@@ -52,7 +59,8 @@ export default {
             autocomplete="current-password"
             required
           />
-          <button type="submit" class="login-btn">Sign In</button>
+          <button type="submit" class="login-btn" @click="handleSubmit">Sign In</button>
+          <button type="submit" class="login-btn" @click="$router.push('/subscription-plan')">Register company</button>
         </form>
       </div>
     </div>
