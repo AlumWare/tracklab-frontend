@@ -23,9 +23,7 @@
         {{ statusLabel(order.status) }}
       </div>
       <div class="order-info" @click="viewOrder(order)">
-        <div class="order-id">
-          <strong>ID:</strong> #{{ order.id }}
-        </div>
+        <div class="order-id"><strong>ID:</strong> #{{ order.id }}</div>
         <div>
           <strong>Cantidad:</strong> {{ order.totalItems }} ({{ order.deliveredItems }} entregados)
         </div>
@@ -59,7 +57,10 @@
     <!-- Modal de confirmación de cancelación -->
     <div v-if="showCancelModal" class="modal-overlay">
       <div class="modal">
-        <p>¿Estás seguro de que deseas cancelar la orden <b>#{{ orderToCancel?.id }}</b>?</p>
+        <p>
+          ¿Estás seguro de que deseas cancelar la orden <b>#{{ orderToCancel?.id }}</b
+          >?
+        </p>
         <div class="modal-actions">
           <button @click="showCancelModal = false">No</button>
           <button class="cancel-btn" @click="cancelOrder">Sí, cancelar</button>
@@ -70,33 +71,61 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { Order } from '../models/order.entity'
-import { useOrderStore } from '@/stores/order.store'
+import axios from 'axios'
 
 const router = useRouter()
-const orderStore = useOrderStore()
+
+const orderStore = ref([])
+
 const search = ref('')
 const filterStatus = ref('')
 const showCancelModal = ref(false)
 const orderToCancel = ref(null)
 
-const filteredOrders = computed(() => {
-  return orderStore.filterOrders(search.value, filterStatus.value)
+onMounted(() => {
+  InvocaOrder()
 })
+
+const filteredOrders = computed(() => {
+  return orderStore.value.filter(order => {
+    const matchesStatus = filterStatus.value ? order.status === filterStatus.value : true;
+
+    const searchText = search.value.toLowerCase();
+    const matchesSearch =
+      order.deliveryAddress.toLowerCase().includes(searchText) ||
+      order.logisticsCompany.name.toLowerCase().includes(searchText) ||
+      order.id.toString().includes(searchText);
+
+    return matchesStatus && matchesSearch;
+  });
+});
+
+
+function InvocaOrder() {
+  axios.get('http://localhost:3000/order')
+    .then(res => {
+      orderStore.value = res.data
+    })
+}
 
 function statusLabel(status) {
   switch (status) {
-    case Order.STATUS.PENDING: return 'Pendiente'
-    case Order.STATUS.IN_PROCESS: return 'En Proceso'
-    case Order.STATUS.DELIVERED: return 'Entregado'
-    default: return status
+    case Order.STATUS.PENDING:
+      return 'Pendiente'
+    case Order.STATUS.IN_PROCESS:
+      return 'En Proceso'
+    case Order.STATUS.DELIVERED:
+      return 'Entregado'
+    default:
+      return status
   }
 }
 
 function progress(order) {
-  if (!order.totalItems || order.totalItems === 0) return 0
+  if (!order.totalItems || order.totalItems.length === 0) return 0
   let percent = Math.ceil((order.deliveredItems / order.totalItems) * 100)
   if (percent > 100) percent = 100
   if (percent < 0) percent = 0
@@ -138,7 +167,7 @@ function cancelOrder() {
   width: 98vw;
   max-width: 1800px;
   margin: 32px auto 32px auto;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 .order-list-title {
   text-align: center;
@@ -153,7 +182,8 @@ function cancelOrder() {
   gap: 16px;
   margin-bottom: 24px;
 }
-.filter-input, .filter-select {
+.filter-input,
+.filter-select {
   padding: 10px 14px;
   border-radius: 8px;
   border: 1px solid #b0c4d6;
@@ -174,13 +204,13 @@ function cancelOrder() {
   border-radius: 16px;
   margin-bottom: 24px;
   padding: 20px 28px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
   gap: 32px;
   cursor: pointer;
   transition: box-shadow 0.2s;
 }
 .order-card:hover {
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 .order-status-circle {
   width: 60px;
@@ -194,7 +224,7 @@ function cancelOrder() {
   color: #333;
   background: #ffe97a;
   flex-shrink: 0;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 .order-status-circle.pending,
 .order-state-btn.pending {
@@ -232,7 +262,7 @@ function cancelOrder() {
   font-size: 1rem;
   background: #1976d2;
   color: #fff;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 .order-state-btn.pending {
   background: #ffe97a;
@@ -304,8 +334,11 @@ function cancelOrder() {
 }
 .modal-overlay {
   position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.3);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -316,7 +349,7 @@ function cancelOrder() {
   border-radius: 12px;
   padding: 32px 24px;
   min-width: 320px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
   text-align: center;
 }
 .modal-actions {

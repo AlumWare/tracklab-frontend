@@ -158,6 +158,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'ClientOrderCreationView',
   data() {
@@ -189,6 +191,9 @@ export default {
     totalWeight() {
       return this.orderItems.reduce((sum, item) => sum + (item.weight * item.quantity), 0)
     },
+    deliveredItems() {
+      return this.orderItems.reduce((sum, item) => sum + item.delivered, 0)
+    },
     canProceed() {
       if (this.currentStep === 0) {
         return this.selectedCompany !== null
@@ -218,7 +223,8 @@ export default {
       this.orderItems.push({
         description: '',
         quantity: 1,
-        weight: 0
+        weight: 0,
+        delivered: 0
       })
     },
     removeItem(index) {
@@ -240,13 +246,16 @@ export default {
           logisticsCompany: this.selectedCompany,
           deliveryAddress: this.deliveryAddress,
           deliveryDate: this.deliveryDate,
+          status: 'pending',
           items: this.orderItems,
           totalItems: this.totalItems,
-          totalWeight: this.totalWeight
+          totalWeight: this.totalWeight,
+          deliveredItems: this.deliveredItems,
         }
         console.log('Enviando orden:', orderData)
         // await this.$store.dispatch('orders/createOrder', orderData)
         this.orderSent = true
+        await axios.post('http://localhost:3000/order', orderData)
       } catch (error) {
         console.error('Error al crear la orden:', error)
       }
