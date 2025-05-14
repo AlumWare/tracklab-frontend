@@ -18,56 +18,59 @@ export default {
     data() {
         return {
             menuItems: [
-                { 
+                {
                     id: 1,
-                    icon: 'pi pi-home', 
-                    label: 'Dashboard', 
-                    route: '/',
-                    children: null
+                    icon: 'pi pi-home',
+                    label: 'Home',
+                    route: null,
+                    expanded: false,
+                    children: [
+                      { id: 11, icon: 'pi pi-home', label: 'Client', route: '/tracklab/client-home' },
+                      { id: 12, icon: 'pi pi-home', label: 'Company', route: '/tracklab/logistics-home' },
+                    ]
                 },
-                { 
+                {
                     id: 2,
-                    icon: 'pi pi-truck', 
-                    label: 'Shipments', 
+                    icon: 'pi pi-box',
+                    label: 'Orders',
                     route: null,
                     expanded: false,
                     children: [
-                        { id: 21, icon: 'pi pi-box', label: 'Active Shipments', route: '/shipments/active' },
-                        { id: 22, icon: 'pi pi-check-circle', label: 'Completed', route: '/shipments/completed' },
-                        { id: 23, icon: 'pi pi-sync', label: 'Pending', route: '/shipments/pending' }
+                        { id: 21, icon: 'pi pi-box', label: 'Create Order', route: '/tracklab/orders/create' },
+                        { id: 22, icon: 'pi pi-check-circle', label: 'Orders History', route: '/tracklab/orders/history' },
+                        { id: 23, icon: 'pi pi-sync', label: 'Orders List', route: '/tracklab/orders' }
                     ]
                 },
-                { 
+                {
                     id: 3,
-                    icon: 'pi pi-car', 
-                    label: 'Fleet', 
+                    icon: 'pi pi-list',
+                    label: 'Users',
+                    route: '/tracklab/admin-usuarios',
+                    children: null
+                },
+                {
+                    id: 4,
+                    icon: 'pi pi-file',
+                    label: 'Containers',
                     route: null,
-                    expanded: false,
                     children: [
-                        { id: 31, icon: 'pi pi-car', label: 'Vehicles', route: '/fleet/vehicles' },
-                        { id: 32, icon: 'pi pi-user', label: 'Drivers', route: '/fleet/drivers' },
-                        { id: 33, icon: 'pi pi-wrench', label: 'Maintenance', route: '/fleet/maintenance' }
+                      { id: 41, icon: 'pi pi-box', label: 'Container Details View', route: '/tracklab/container-detail-view' },
+                      { id: 42, icon: 'pi pi-check-circle', label: 'Manage container', route: '/tracklab/operation-execution-view' },
+                      { id: 43, icon: 'pi pi-sync', label: 'Containers List', route: '/tracklab/ware-house-management-view' }
                     ]
                 },
-                { 
-                    id: 4,
-                    icon: 'pi pi-file', 
-                    label: 'Reports', 
-                    route: '/reports',
-                    children: null
-                },
-                { 
+                {
                     id: 5,
-                    icon: 'pi pi-cog', 
-                    label: 'Settings', 
-                    route: '/settings',
+                    icon: 'pi pi-car',
+                    label: 'Vehicles',
+                    route: '/tracklab/vehiculos',
                     children: null
                 },
-                { 
+                {
                     id: 6,
-                    icon: 'pi pi-palette', 
-                    label: 'Style Guide', 
-                    route: '/styles',
+                    icon: 'pi pi-palette',
+                    label: 'Route Planning',
+                    route: '/tracklab/route-planing-view',
                     children: null
                 }
             ]
@@ -98,19 +101,19 @@ export default {
                 </template>
             </div>
         </div>
-        
+
         <div class="sidebar__content">
             <ul class="sidebar__menu">
-                <sidebar-menu-item 
-                    v-for="item in menuItems" 
-                    :key="item.id" 
-                    :item="item" 
+                <sidebar-menu-item
+                    v-for="item in menuItems"
+                    :key="item.id"
+                    :item="item"
                     :is-open="isOpen"
                     @toggle-submenu="toggleSubmenu"
                 />
             </ul>
         </div>
-        
+
         <div class="sidebar__footer">
             <div class="sidebar__collapse-btn" @click="toggleSidebar">
                 <i class="pi" :class="isOpen ? 'pi-chevron-left' : 'pi-chevron-right'"></i>
@@ -205,7 +208,7 @@ export default {
         transform: translateX(0);
         transition: transform 0.3s ease, width 0.3s ease;
     }
-    
+
     .sidebar--collapsed {
         transform: translateX(-100%);
     }

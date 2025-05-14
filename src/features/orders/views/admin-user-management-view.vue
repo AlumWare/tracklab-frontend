@@ -12,9 +12,9 @@
       />
       <select v-model="roleFilter" class="role-select">
         <option value="">Todos los roles</option>
-        <option value="admin">Administrador</option>
-        <option value="user">Usuario</option>
-        <option value="client">Cliente</option>
+        <option value="OPERATOR">OPERATOR</option>
+        <option value="ADMIN">ADMIN</option>
+        <option value="MANAGER">MANAGER</option>
       </select>
       <button class="add-user-btn" @click="showAddUserModal = true">
         Agregar Usuario
@@ -82,16 +82,16 @@
           <div class="form-group">
             <label>Rol</label>
             <select v-model="userForm.role" required>
-              <option value="admin">Administrador</option>
-              <option value="user">Usuario</option>
-              <option value="client">Cliente</option>
+              <option value="ADMIN">Administrador</option>
+              <option value="OPERATOR">Operator</option>
+              <option value="MANAGER">Manager</option>
             </select>
           </div>
           <div class="form-group">
             <label>Estado</label>
             <select v-model="userForm.status" required>
-              <option value="active">Activo</option>
-              <option value="inactive">Inactivo</option>
+              <option value="ACTIVE">Activo</option>
+              <option value="INACTIVE">Inactivo</option>
             </select>
           </div>
           <div class="modal-actions">
@@ -121,32 +121,10 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+import axios from 'axios'
 
-// Estado
-const users = ref([
-  {
-    id: 1,
-    name: 'Juan Pérez',
-    email: 'juan@example.com',
-    role: 'admin',
-    status: 'active'
-  },
-  {
-    id: 2,
-    name: 'María García',
-    email: 'maria@example.com',
-    role: 'user',
-    status: 'active'
-  },
-  {
-    id: 3,
-    name: 'Carlos López',
-    email: 'carlos@example.com',
-    role: 'client',
-    status: 'inactive'
-  }
-])
+const users = ref([])
 
 const search = ref('')
 const roleFilter = ref('')
@@ -158,11 +136,15 @@ const userToDelete = ref(null)
 const userForm = ref({
   name: '',
   email: '',
-  role: 'user',
-  status: 'active'
+  role: 'admin',
+  status: 'ACTIVE'
 })
 
-// Computed
+onMounted(() => {
+  InvocaEmployee()
+})
+
+// Computed: Filtra los usuarios según búsqueda y rol
 const filteredUsers = computed(() => {
   return users.value.filter(user => {
     const matchesRole = roleFilter.value ? user.role === roleFilter.value : true
@@ -176,6 +158,14 @@ const filteredUsers = computed(() => {
 })
 
 // Métodos
+
+function InvocaEmployee() {
+  axios.get('http://localhost:3000/employee')
+    .then(res => {
+      users.value = res.data
+    })
+}
+
 function editUser(user) {
   editingUser.value = user
   userForm.value = { ...user }
@@ -188,16 +178,28 @@ function confirmDelete(user) {
 }
 
 function saveUser() {
-  if (editingUser.value) {
-    const index = users.value.findIndex(u => u.id === editingUser.value.id)
-    users.value[index] = { ...editingUser.value, ...userForm.value }
-  } else {
-    const newUser = {
-      id: users.value.length + 1,
-      ...userForm.value
-    }
-    users.value.push(newUser)
+  const userData = {
+    name: userForm.value.name,
+    email: userForm.value.email,
+    role: userForm.value.role,
+    status: userForm.value.status
   }
+
+  if (editingUser.value) {
+    axios.put(`http://localhost:3000/employee/${editingUser.value.id}`, userData)
+      .then(res => {
+        users.value = res.data;
+      })
+    InvocaEmployee();
+  } else {
+    axios.post('http://localhost:3000/employee', userData)
+      .then(res => {
+        // Agregamos el nuevo usuario a la lista de users
+        users.value.push(res.data) // Usamos res.data ya que es el usuario creado
+      })
+  }
+
+  // Cerramos el modal y reseteamos el formulario
   showAddUserModal.value = false
   editingUser.value = null
   userForm.value = {
@@ -210,9 +212,13 @@ function saveUser() {
 
 function deleteUser() {
   if (userToDelete.value) {
-    users.value = users.value.filter(u => u.id !== userToDelete.value.id)
-    showDeleteModal.value = false
-    userToDelete.value = null
+    axios.delete(`http://localhost:3000/employee/${userToDelete.value.id}`)
+      .then(() => {
+        // Eliminamos el usuario de la lista
+        users.value = users.value.filter(u => u.id !== userToDelete.value.id)
+        showDeleteModal.value = false
+        userToDelete.value = null
+      })
   }
 }
 </script>

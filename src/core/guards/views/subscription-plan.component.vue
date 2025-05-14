@@ -35,6 +35,7 @@
         @typeSaved="handleTypeSaved"
       ></payment-card>
     </div>
+    <button type="submit" class="login-btn" @click="$router.push('/register-user')">Ninguno, soy cliente</button>
   </div>
 </template>
 
@@ -61,5 +62,24 @@
   align-items: center;
   gap: 20px;
   margin-bottom: 50px;
+}
+
+.login-btn {
+  width: 50%;
+  padding: 10px 0;
+  background: #4bb0fa;
+  color: #111;
+  font-weight: 600;
+  border: 1.5px solid #222;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background 0.2s, color 0.2s;
+}
+
+.login-btn:hover {
+  background: #2196f3;
+  color: #fff;
 }
 </style>

@@ -1,22 +1,11 @@
 {
   "employee": [
     {
-      "id": 1001,
-      "name": "Juan Pérez",
+      "name": "Marcos Aguilar",
       "email": "juan.perez@example.com",
-      "role": "OPERATOR",
-      "status": "ACTIVE",
-      "createdAt": "2025-05-13T10:00:00Z",
-      "updatedAt": "2025-05-13T10:00:00Z"
-    },
-    {
-      "id": 1002,
-      "name": "Ana Torres",
-      "email": "ana.torres@example.com",
       "role": "ADMIN",
       "status": "ACTIVE",
-      "createdAt": "2025-04-20T12:00:00Z",
-      "updatedAt": "2025-05-01T15:00:00Z"
+      "id": 1001
     },
     {
       "id": 1003,
@@ -179,6 +168,20 @@
       "status": "ACTIVE",
       "createdAt": "2025-05-01T10:00:00Z",
       "updatedAt": "2025-05-13T10:00:00Z"
+    },
+    {
+      "name": "jean",
+      "email": "u202310148@upc.edu.pe",
+      "role": "MANAGER",
+      "status": "ACTIVE",
+      "id": 1021
+    },
+    {
+      "name": "Alex",
+      "email": "alex.sanchez@upc.edu.pe",
+      "role": "ADMIN",
+      "status": "ACTIVE",
+      "id": 1022
     }
   ],
   "vehicle": [
@@ -418,5 +421,8 @@
       "type": "Minimouse",
       "id": "nn_Uv3p"
     }
+  ],
+  "order": [
+
   ]
 }

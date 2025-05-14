@@ -28,7 +28,7 @@
     <template #footer>
       <div class="card-footer">
         <span class="price">{{ 'Precio: ' + price }}</span>
-        <div class="button">
+        <div class="button" @click="this.$router.push('/register-company')">
           <a :href="''" target="_blank">Seleccionar</a>
         </div>
       </div>
