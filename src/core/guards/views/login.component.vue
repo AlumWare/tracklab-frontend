@@ -19,9 +19,9 @@ export default {
     },
     handleSubmit() {
       if (this.password.length > 3) {
-        this.$router.push('/logistics-home');
+        this.$router.push('/tracklab/logistics-home');
       } else {
-        this.$router.push('/client-home');
+        this.$router.push('/tracklab/client-home');
       }
     }
   }

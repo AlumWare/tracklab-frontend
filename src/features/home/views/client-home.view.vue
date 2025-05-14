@@ -41,15 +41,15 @@ const { t } = useI18n()
     <div class="quick-actions">
       <h2>Acciones Rápidas</h2>
       <div class="actions-grid">
-        <button class="action-button" @click="$router.push('/orders/create')">
+        <button class="action-button" @click="$router.push('/tracklab/orders/create')">
           <i class="pi pi-plus"></i>
           Nueva Orden
         </button>
-        <button class="action-button" @click="$router.push('/orders')">
+        <button class="action-button" @click="$router.push('/tracklab/orders')">
           <i class="pi pi-search"></i>
           Rastrear Orden
         </button>
-        <button class="action-button" @click="$router.push('/orders/history')">
+        <button class="action-button" @click="$router.push('/tracklab/orders/history')">
           <i class="pi pi-history"></i>
           Ver Historial
         </button>
@@ -178,4 +178,4 @@ h1 {
     grid-template-columns: 1fr;
   }
 }
-</style> 
+</style>
