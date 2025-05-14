@@ -8,8 +8,8 @@ const { t } = useI18n()
 <template>
   <div class="home-view">
     <div class="welcome-section">
-      <h1>Bienvenido a TrackLab</h1>
-      <p class="subtitle">Rastrea tus envíos en tiempo real y gestiona tus operaciones logísticas de manera eficiente</p>
+      <h1>{{ t('home.welcome') }}</h1>
+      <p class="subtitle">{{ t('home.client.subtitle') }}</p>
     </div>
 
     <div class="features-grid">
@@ -17,41 +17,41 @@ const { t } = useI18n()
         <div class="icon-container">
           <i class="pi pi-box"></i>
         </div>
-        <h3>Gestión de Pedidos</h3>
-        <p>Crea y gestiona tus órdenes de envío fácilmente</p>
+        <h3>{{ t('home.client.features.orderManagement.title') }}</h3>
+        <p>{{ t('home.client.features.orderManagement.description') }}</p>
       </div>
 
       <div class="feature-card">
         <div class="icon-container">
           <i class="pi pi-map-marker"></i>
         </div>
-        <h3>Seguimiento en Tiempo Real</h3>
-        <p>Rastrea tus envíos con actualizaciones detalladas de estado</p>
+        <h3>{{ t('home.client.features.realTimeTracking.title') }}</h3>
+        <p>{{ t('home.client.features.realTimeTracking.description') }}</p>
       </div>
 
       <div class="feature-card">
         <div class="icon-container">
           <i class="pi pi-chart-line"></i>
         </div>
-        <h3>Análisis y Reportes</h3>
-        <p>Obtén información sobre tus operaciones de envío</p>
+        <h3>{{ t('home.client.features.analytics.title') }}</h3>
+        <p>{{ t('home.client.features.analytics.description') }}</p>
       </div>
     </div>
 
     <div class="quick-actions">
-      <h2>Acciones Rápidas</h2>
+      <h2>{{ t('home.client.quickActions.title') }}</h2>
       <div class="actions-grid">
         <button class="action-button" @click="$router.push('/tracklab/orders/create')">
           <i class="pi pi-plus"></i>
-          Nueva Orden
+          {{ t('home.client.quickActions.newOrder') }}
         </button>
         <button class="action-button" @click="$router.push('/tracklab/orders')">
           <i class="pi pi-search"></i>
-          Rastrear Orden
+          {{ t('home.client.quickActions.trackOrder') }}
         </button>
         <button class="action-button" @click="$router.push('/tracklab/orders/history')">
           <i class="pi pi-history"></i>
-          Ver Historial
+          {{ t('home.client.quickActions.viewHistory') }}
         </button>
       </div>
     </div>

@@ -8,13 +8,17 @@ import '@fortawesome/fontawesome-free/css/all.css'
 
 import App from './App.vue'
 import router from './router'
+import i18n from "./i18n.js"
+import { LanguageService } from '@/core/services/language.service'
 
 import PrimeVue from 'primevue/config'
 import {Card, Image, SelectButton} from 'primevue'
 import Aura from '@primevue/themes/aura'
-import i18n from "./i18n.js";
 import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
+
+// Initialize language service with i18n instance
+LanguageService.initialize(i18n);
 
 const app = createApp(App)
 const pinia = createPinia()

@@ -1,22 +1,20 @@
-<script>
-import { LanguageService } from '@/core/services/language.service';
-import { UxService } from '@/core/services/ux.service.js';
+<script setup>
+import { ref, onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { LanguageService } from '@/core/services/language.service'
+import { UxService } from '@/core/services/ux.service'
 
-export default {
-  name: "language-switcher",
-  data() {
-    return {
-      languages: LanguageService.getAvailableLanguages(),
-      currentLanguage: LanguageService.getCurrentLanguage()
-    }
-  },
-  methods: {
-    setLanguage(lang) {
-      if (LanguageService.setLanguage(lang)) {
-        this.currentLanguage = lang;
-        UxService.showSnackbar({ message: `Idioma cambiado a ${lang.toUpperCase()}`, type: 'success' });
-      }
-    }
+const { t } = useI18n()
+const languages = ref(LanguageService.getAvailableLanguages())
+const currentLanguage = ref(LanguageService.getCurrentLanguage())
+
+const setLanguage = (lang) => {
+  if (LanguageService.setLanguage(lang)) {
+    currentLanguage.value = lang
+    UxService.showSnackbar({ 
+      message: t('languageChanged', { lang: lang.toUpperCase() }), 
+      type: 'success' 
+    })
   }
 }
 </script>

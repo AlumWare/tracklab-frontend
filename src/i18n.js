@@ -1,12 +1,15 @@
 import en from "./locales/en.json";
 import es from "./locales/es.json";
 import { createI18n } from "vue-i18n";
-import { LanguageService } from '@/core/services/language.service';
+import { LocalStorageService } from '@/core/services/local-storage.service';
+
+const STORAGE_KEY = 'preferredLanguage';
+const DEFAULT_LANGUAGE = 'en';
 
 const i18n = createI18n({
   legacy: false,
-  locale: LanguageService.getCurrentLanguage(),
-  fallbackLocale: 'en',
+  locale: LocalStorageService.getItem(STORAGE_KEY) || DEFAULT_LANGUAGE,
+  fallbackLocale: DEFAULT_LANGUAGE,
   globalInjection: true,
   messages: { en, es }
 });
