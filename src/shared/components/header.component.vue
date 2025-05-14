@@ -1,6 +1,11 @@
 <script>
+import LanguageSwitcher from './language-switcher.component.vue';
+
 export default {
     name: 'HeaderComponent',
+    components: {
+        LanguageSwitcher
+    },
     props: {
         title: {
             type: String,
@@ -26,7 +31,7 @@ export default {
         </div>
         
         <div class="header__right">
-            <!-- Puedes agregar componentes adicionales aquí, como perfil de usuario, notificaciones, etc. -->
+            <LanguageSwitcher class="header__language-switcher" />
         </div>
     </header>
 </template>
@@ -43,6 +48,9 @@ export default {
     padding: 0 var(--spacing-md);
     width: 100%;
     box-shadow: var(--box-shadow);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .header__left {
@@ -111,6 +119,10 @@ export default {
     display: flex;
     align-items: center;
     gap: var(--spacing-md);
+}
+
+.header__language-switcher {
+    margin-left: auto;
 }
 
 @media (min-width: 1024px) {
