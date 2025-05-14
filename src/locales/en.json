@@ -1,3 +1,56 @@
 {
-  "title": "Title"
+  "title": "Title",
+  "login": {
+    "title": "TrackLab",
+    "slogan": "Real-time logistics traceability",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "loginButton": "Sign In",
+    "registerCompany": "Register Company",
+    "registerUser": "Register User"
+  },
+  "registerCompany": {
+    "title": "Company Registration",
+    "subtitle": "Complete your company information to get started",
+    "companyType": "Company Type",
+    "companyTypeHelp": "Select the type of company you want to register",
+    "client": "Client",
+    "logistics": "Logistics",
+    "companyName": "Company Name",
+    "companyNamePlaceholder": "Enter your company name",
+    "companyNameHelp": "Enter your company's legal name",
+    "ruc": "RUC",
+    "rucPlaceholder": "Enter your company's RUC",
+    "rucHelp": "Enter your company's RUC number (11 digits)",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "emailHelp": "Enter your corporate email",
+    "phone": "Phone",
+    "phonePlaceholder": "Enter your phone number",
+    "phoneHelp": "Enter your contact phone number",
+    "address": "Address",
+    "addressPlaceholder": "Enter your company's address",
+    "addressHelp": "Enter your company's legal address",
+    "submitButton": "Register Company",
+    "alreadyHaveAccount": "Already have an account?",
+    "login": "Sign In",
+    "validation": {
+      "companyNameRequired": "Company name is required",
+      "companyNameMinLength": "Name must be at least 3 characters long",
+      "rucRequired": "RUC is required",
+      "rucInvalid": "RUC must have 11 digits",
+      "rucExists": "This RUC is already registered",
+      "rucError": "Error validating RUC",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Please enter a valid email",
+      "emailExists": "This email is already registered",
+      "emailError": "Error validating email",
+      "phoneRequired": "Phone number is required",
+      "phoneInvalid": "Please enter a valid phone number (9 digits)",
+      "addressRequired": "Address is required",
+      "addressMinLength": "Address must be at least 10 characters long"
+    }
+  }
 }

@@ -14,13 +14,9 @@ export default {
     setLanguage(lang) {
       if (LanguageService.setLanguage(lang)) {
         this.currentLanguage = lang;
-        this.$i18n.locale = lang;
         UxService.showSnackbar({ message: `Idioma cambiado a ${lang.toUpperCase()}`, type: 'success' });
       }
     }
-  },
-  created() {
-    this.$i18n.locale = this.currentLanguage;
   }
 }
 </script>

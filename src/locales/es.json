@@ -1,3 +1,56 @@
 {
-  "title": "Titulo"
+  "title": "Titulo",
+  "login": {
+    "title": "TrackLab",
+    "slogan": "Trazabilidad logística en tiempo real",
+    "email": "Email",
+    "emailPlaceholder": "Ingresa tu email",
+    "password": "Contraseña",
+    "passwordPlaceholder": "Ingresa tu contraseña",
+    "loginButton": "Iniciar Sesión",
+    "registerCompany": "Registrar Empresa",
+    "registerUser": "Registrar Usuario"
+  },
+  "registerCompany": {
+    "title": "Registro de Empresa",
+    "subtitle": "Complete los datos de su empresa para comenzar",
+    "companyType": "Tipo de Empresa",
+    "companyTypeHelp": "Seleccione el tipo de empresa que desea registrar",
+    "client": "Cliente",
+    "logistics": "Logística",
+    "companyName": "Nombre de la Empresa",
+    "companyNamePlaceholder": "Ingrese el nombre de su empresa",
+    "companyNameHelp": "Ingrese el nombre legal de su empresa",
+    "ruc": "RUC",
+    "rucPlaceholder": "Ingrese el RUC de su empresa",
+    "rucHelp": "Ingrese el número de RUC de su empresa (11 dígitos)",
+    "email": "Correo Electrónico",
+    "emailPlaceholder": "Ingrese el correo electrónico",
+    "emailHelp": "Ingrese el correo electrónico corporativo",
+    "phone": "Teléfono",
+    "phonePlaceholder": "Ingrese el número de teléfono",
+    "phoneHelp": "Ingrese el número de teléfono de contacto",
+    "address": "Dirección",
+    "addressPlaceholder": "Ingrese la dirección de su empresa",
+    "addressHelp": "Ingrese la dirección legal de su empresa",
+    "submitButton": "Registrar Empresa",
+    "alreadyHaveAccount": "¿Ya tiene una cuenta?",
+    "login": "Iniciar Sesión",
+    "validation": {
+      "companyNameRequired": "El nombre de la empresa es requerido",
+      "companyNameMinLength": "El nombre debe tener al menos 3 caracteres",
+      "rucRequired": "El RUC es requerido",
+      "rucInvalid": "El RUC debe tener 11 dígitos",
+      "rucExists": "Este RUC ya está registrado",
+      "rucError": "Error al validar el RUC",
+      "emailRequired": "El correo electrónico es requerido",
+      "emailInvalid": "Ingrese un correo electrónico válido",
+      "emailExists": "Este correo ya está registrado",
+      "emailError": "Error al validar el correo",
+      "phoneRequired": "El teléfono es requerido",
+      "phoneInvalid": "Ingrese un número de teléfono válido (9 dígitos)",
+      "addressRequired": "La dirección es requerida",
+      "addressMinLength": "La dirección debe tener al menos 10 caracteres"
+    }
+  }
 }

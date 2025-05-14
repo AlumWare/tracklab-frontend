@@ -1,7 +1,13 @@
 <script>
 import logo from '@/assets/logo.svg'
+import { useI18n } from 'vue-i18n'
+
 export default {
   name: 'LoginView',
+  setup() {
+    const { t } = useI18n()
+    return { t }
+  },
   data() {
     return {
       email: '',
@@ -32,20 +38,20 @@ export default {
   <div class="login-container">
     <div class="login-header">
       <img :src="logo" alt="TrackLab Logo" class="login-logo" />
-      <h1 class="login-brand">TrackLab</h1>
-      <p class="login-slogan">Trazabilidad logística en tiempo real</p>
+      <h1 class="login-brand">{{ t('login.title') }}</h1>
+      <p class="login-slogan">{{ t('login.slogan') }}</p>
     </div>
 
     <form @submit.prevent="handleLogin" class="login-form">
       <div class="form-group">
-        <label class="form-label" for="email">Email</label>
+        <label class="form-label" for="email">{{ t('login.email') }}</label>
         <div class="input-wrapper">
           <input
             id="email"
             v-model="email"
             type="email"
             class="form-input"
-            placeholder="Ingresa tu email"
+            :placeholder="t('login.emailPlaceholder')"
             autocomplete="username"
             required
           />
@@ -53,14 +59,14 @@ export default {
       </div>
 
       <div class="form-group">
-        <label class="form-label" for="password">Contraseña</label>
+        <label class="form-label" for="password">{{ t('login.password') }}</label>
         <div class="input-wrapper">
           <input
             id="password"
             v-model="password"
             type="password"
             class="form-input"
-            placeholder="Ingresa tu contraseña"
+            :placeholder="t('login.passwordPlaceholder')"
             autocomplete="current-password"
             required
           />
@@ -69,16 +75,16 @@ export default {
 
       <div class="form-actions">
         <button type="submit" class="btn btn-primary" @click="handleSubmit">
-          Iniciar Sesión
+          {{ t('login.loginButton') }}
         </button>
       </div>
 
       <div class="form-links">
         <button type="button" class="btn btn-secondary" @click="$router.push('/auth/register-company')">
-          Registrar Empresa
+          {{ t('login.registerCompany') }}
         </button>
         <button type="button" class="btn btn-secondary" @click="$router.push('/auth/register-user')">
-          Registrar Usuario
+          {{ t('login.registerUser') }}
         </button>
       </div>
     </form>
