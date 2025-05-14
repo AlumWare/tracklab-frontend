@@ -9,22 +9,22 @@
         "company": "Empresa"
       },
       "orders": {
-        "label": "Pedidos",
-        "create": "Crear Pedido",
-        "history": "Historial de Pedidos",
-        "list": "Lista de Pedidos"
+        "label": "Órdenes",
+        "create": "Crear Orden",
+        "history": "Historial",
+        "list": "Lista de Órdenes"
       },
-      "users": {
-        "label": "Usuarios"
+      "admin": {
+        "label": "Administración",
+        "users": "Usuarios",
+        "vehicles": "Vehículos",
+        "warehouses": "Almacenes"
       },
       "containers": {
         "label": "Contenedores",
-        "details": "Detalles del Contenedor",
-        "manage": "Gestionar Contenedor",
+        "details": "Detalles",
+        "manage": "Gestionar",
         "list": "Lista de Contenedores"
-      },
-      "vehicles": {
-        "label": "Vehículos"
       },
       "routePlanning": {
         "label": "Planificación de Rutas"
@@ -131,6 +131,160 @@
         "manageWarehouse": "Gestionar Almacén",
         "planRoute": "Planificar Ruta"
       }
+    }
+  },
+  "warehouse": {
+    "types": {
+      "own": "Propio",
+      "provider": "Proveedor",
+      "client": "Cliente"
+    },
+    "management": {
+      "title": "Gestión de Almacenes",
+      "create": "Crear Almacén",
+      "filters": {
+        "zone": {
+          "label": "Zona:",
+          "all": "Todas las zonas",
+          "north": "Norte",
+          "south": "Sur",
+          "east": "Este",
+          "west": "Oeste"
+        },
+        "type": {
+          "label": "Tipo:",
+          "all": "Todos los tipos"
+        }
+      },
+      "table": {
+        "name": "Nombre",
+        "type": "Tipo",
+        "zone": "Zona",
+        "occupation": "Ocupación",
+        "actions": "Acciones"
+      },
+      "actions": {
+        "edit": "Editar",
+        "delete": "Eliminar"
+      },
+      "messages": {
+        "deleteWarning": "No se puede eliminar un almacén con ocupación",
+        "deleteSuccess": "Almacén eliminado correctamente",
+        "deleteError": "Error al eliminar el almacén",
+        "saveSuccess": "Almacén guardado correctamente",
+        "saveError": "Error al guardar el almacén",
+        "loadError": "Error al cargar los datos iniciales",
+        "warehousesLoadError": "Error al cargar los almacenes",
+        "zonesLoadError": "Error al cargar las zonas",
+        "mapsLoadError": "Error al cargar Google Maps"
+      }
+    }
+  },
+  "routePlanning": {
+    "tabs": {
+      "plan": "Planificar Ruta",
+      "saved": "Rutas Guardadas"
+    },
+    "sequence": {
+      "title": "Secuencia de Paradas",
+      "estimatedDistance": "Distancia estimada: {distance} km",
+      "reorder": "🔀 Reorganizar secuencia",
+      "finishReorder": "✅ Finalizar reorganización",
+      "addNode": "➕ Añadir nodo",
+      "saveRoute": "💾 Guardar ruta"
+    },
+    "saved": {
+      "title": "Rutas Guardadas",
+      "empty": "No hay rutas guardadas.",
+      "routeNumber": "Ruta #{number}",
+      "stops": "({count} paradas)",
+      "modify": "✏️ Modificar",
+      "delete": "��️ Eliminar"
+    }
+  },
+  "vehicle": {
+    "management": {
+      "title": "Gestión de Vehículos",
+      "add": "Agregar Vehículo",
+      "edit": "Editar Vehículo",
+      "filters": {
+        "status": {
+          "label": "Estado",
+          "all": "Todos",
+          "available": "Disponible",
+          "maintenance": "Mantenimiento"
+        }
+      },
+      "table": {
+        "image": "Imagen",
+        "plate": "Placa",
+        "model": "Modelo",
+        "status": "Estado",
+        "actions": "Acciones"
+      },
+      "form": {
+        "plate": "Placa",
+        "model": "Modelo",
+        "status": "Estado",
+        "cancel": "Cancelar",
+        "save": "Guardar"
+      },
+      "actions": {
+        "edit": "Editar",
+        "uploadPhoto": "Subir Foto",
+        "status": "Estado"
+      },
+      "status": {
+        "available": "Disponible",
+        "maintenance": "Mantenimiento"
+      }
+    }
+  },
+  "orderCreation": {
+    "title": "Crear Orden",
+    "steps": {
+      "logistics": "Empresa Logística",
+      "items": "Agregar Ítems",
+      "summary": "Resumen"
+    },
+    "logistics": {
+      "title": "Selecciona tu empresa logística",
+      "selectPlaceholder": "Selecciona una empresa"
+    },
+    "items": {
+      "title": "Agregar ítems a la orden",
+      "delivery": {
+        "address": "Dirección de entrega",
+        "addressPlaceholder": "Ingresa la dirección de entrega",
+        "date": "Fecha de entrega"
+      },
+      "table": {
+        "description": "Descripción",
+        "quantity": "Cantidad",
+        "weight": "Peso (kg)",
+        "actions": "Acciones"
+      },
+      "descriptionPlaceholder": "Descripción del ítem",
+      "addItem": "Agregar ítem",
+      "removeItem": "Eliminar"
+    },
+    "summary": {
+      "title": "Resumen de la orden",
+      "logisticsCompany": "Empresa Logística",
+      "totalItems": "Total de ítems",
+      "totalWeight": "Peso total",
+      "includedItems": "Ítems incluidos"
+    },
+    "navigation": {
+      "previous": "Anterior",
+      "next": "Siguiente",
+      "submit": "Enviar Orden"
+    },
+    "success": {
+      "title": "¡Orden enviada con éxito!",
+      "message": "¿Qué deseas hacer ahora?",
+      "createAnother": "Crear otra orden",
+      "viewOrders": "Ir a la lista de órdenes"
     }
   }
 }

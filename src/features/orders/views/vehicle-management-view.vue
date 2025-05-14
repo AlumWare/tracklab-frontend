@@ -1,16 +1,16 @@
 <template>
   <div class="vehicle-management">
     <div class="header">
-      <h1>Gestión de Vehículos</h1>
+      <h1>{{ t('vehicle.management.title') }}</h1>
       <div class="actions">
         <button class="btn-primary" @click="showAddVehicleModal = true">
-          <i class="fas fa-plus"></i> Agregar Vehículo
+          <i class="fas fa-plus"></i> {{ t('vehicle.management.add') }}
         </button>
         <div class="filters">
           <select v-model="statusFilter" class="filter-select">
-            <option value="all">Todos</option>
-            <option value="AVAILABLE">Disponible</option>
-            <option value="MAINTENANCE">Mantenimiento</option>
+            <option value="all">{{ t('vehicle.management.filters.status.all') }}</option>
+            <option value="AVAILABLE">{{ t('vehicle.management.filters.status.available') }}</option>
+            <option value="MAINTENANCE">{{ t('vehicle.management.filters.status.maintenance') }}</option>
           </select>
         </div>
       </div>
@@ -36,20 +36,20 @@
       <div v-for="vehicle in filteredVehicles" :key="vehicle.id" class="vehicle-card">
         <div class="vehicle-image">
           <img :src="vehicle.thumbnail" :alt="vehicle.plateNumber">
-          <span :class="['status-badge', vehicle.status]">{{ vehicle.status }}</span>
+          <span :class="['status-badge', vehicle.status]">{{ t(`vehicle.management.status.${vehicle.status.toLowerCase()}`) }}</span>
         </div>
         <div class="vehicle-info">
           <h3>{{ vehicle.plateNumber }}</h3>
           <p>{{ vehicle.type }}</p>
           <div class="vehicle-actions">
-            <button @click="editVehicle(vehicle)" class="btn-icon">
-              <i class="fas fa-edit"></i>Editar
+            <button @click="editVehicle(vehicle)" class="btn-icon" :title="t('vehicle.management.actions.edit')">
+              <i class="fas fa-edit"></i>{{ t('vehicle.management.actions.edit') }}
             </button>
-            <button @click="uploadPhotos(vehicle)" class="btn-icon">
-              <i class="fas fa-camera"></i>Subir Foto
+            <button @click="uploadPhotos(vehicle)" class="btn-icon" :title="t('vehicle.management.actions.uploadPhoto')">
+              <i class="fas fa-camera"></i>{{ t('vehicle.management.actions.uploadPhoto') }}
             </button>
-            <button @click="toggleStatus(vehicle)" class="btn-icon">
-              <i :class="vehicle.status === 'available' ? 'fas fa-tools' : 'fas fa-check'"></i>Estado
+            <button @click="toggleStatus(vehicle)" class="btn-icon" :title="t('vehicle.management.actions.status')">
+              <i :class="vehicle.status === 'available' ? 'fas fa-tools' : 'fas fa-check'"></i>{{ t('vehicle.management.actions.status') }}
             </button>
           </div>
         </div>
@@ -61,11 +61,11 @@
       <table>
         <thead>
           <tr>
-            <th>Imagen</th>
-            <th>Placa</th>
-            <th>Modelo</th>
-            <th>Estado</th>
-            <th>Acciones</th>
+            <th>{{ t('vehicle.management.table.image') }}</th>
+            <th>{{ t('vehicle.management.table.plate') }}</th>
+            <th>{{ t('vehicle.management.table.model') }}</th>
+            <th>{{ t('vehicle.management.table.status') }}</th>
+            <th>{{ t('vehicle.management.table.actions') }}</th>
           </tr>
         </thead>
         <tbody>
@@ -76,17 +76,17 @@
             <td>{{ vehicle.plate }}</td>
             <td>{{ vehicle.model }}</td>
             <td>
-              <span :class="['status-badge', vehicle.status]">{{ vehicle.status }}</span>
+              <span :class="['status-badge', vehicle.status]">{{ t(`vehicle.management.status.${vehicle.status.toLowerCase()}`) }}</span>
             </td>
             <td class="actions">
-              <button @click="editVehicle(vehicle)" class="btn-icon">
-                <i class="fas fa-edit"></i> Editar
+              <button @click="editVehicle(vehicle)" class="btn-icon" :title="t('vehicle.management.actions.edit')">
+                <i class="fas fa-edit"></i> {{ t('vehicle.management.actions.edit') }}
               </button>
-              <button @click="uploadPhotos(vehicle)" class="btn-icon">
-                <i class="fas fa-camera"></i> Subir Foto
+              <button @click="uploadPhotos(vehicle)" class="btn-icon" :title="t('vehicle.management.actions.uploadPhoto')">
+                <i class="fas fa-camera"></i> {{ t('vehicle.management.actions.uploadPhoto') }}
               </button>
-              <button @click="toggleStatus(vehicle)" class="btn-icon">
-                <i :class="vehicle.status === 'available' ? 'fas fa-tools' : 'fas fa-check'"></i>Estado
+              <button @click="toggleStatus(vehicle)" class="btn-icon" :title="t('vehicle.management.actions.status')">
+                <i :class="vehicle.status === 'available' ? 'fas fa-tools' : 'fas fa-check'"></i> {{ t('vehicle.management.actions.status') }}
               </button>
             </td>
           </tr>
@@ -97,26 +97,26 @@
     <!-- Modal para Agregar/Editar Vehículo -->
     <div v-if="showAddVehicleModal" class="modal">
       <div class="modal-content">
-        <h2>{{ editingVehicle ? 'Editar Vehículo' : 'Agregar Vehículo' }}</h2>
+        <h2>{{ editingVehicle ? t('vehicle.management.edit') : t('vehicle.management.add') }}</h2>
         <form @submit.prevent="UpdateVehicle">
           <div class="form-group">
-            <label>Placa</label>
+            <label>{{ t('vehicle.management.form.plate') }}</label>
             <input v-model="vehicleForm.plateNumber" type="text" required>
           </div>
           <div class="form-group">
-            <label>Modelo</label>
+            <label>{{ t('vehicle.management.form.model') }}</label>
             <input v-model="vehicleForm.type" type="text" required>
           </div>
           <div class="form-group">
-            <label>Estado</label>
+            <label>{{ t('vehicle.management.form.status') }}</label>
             <select v-model="vehicleForm.status">
-              <option value="AVAILABLE">Disponible</option>
-              <option value="MAINTENANCE">Mantenimiento</option>
+              <option value="AVAILABLE">{{ t('vehicle.management.status.available') }}</option>
+              <option value="MAINTENANCE">{{ t('vehicle.management.status.maintenance') }}</option>
             </select>
           </div>
           <div class="form-actions">
-            <button type="button" @click="showAddVehicleModal = false" class="btn-secondary">Cancelar</button>
-            <button type="submit" class="btn-primary">Guardar</button>
+            <button type="button" @click="showAddVehicleModal = false" class="btn-secondary">{{ t('vehicle.management.form.cancel') }}</button>
+            <button type="submit" class="btn-primary">{{ t('vehicle.management.form.save') }}</button>
           </div>
         </form>
       </div>
@@ -126,9 +126,14 @@
 
 <script>
 import axios from 'axios'
+import { useI18n } from 'vue-i18n'
 
 export default {
   name: 'VehicleManagementView',
+  setup() {
+    const { t } = useI18n()
+    return { t }
+  },
   data() {
     return {
       viewMode: 'grid',
@@ -140,9 +145,7 @@ export default {
         model: '',
         status: 'available'
       },
-      vehicles: [
-
-      ]
+      vehicles: []
     }
   },
   computed: {
@@ -157,12 +160,9 @@ export default {
         .then(res=>{this.vehicles = res.data})
     },
     editVehicle(vehicle) {
-
       this.editingVehicle = vehicle
       this.vehicleForm = { ...vehicle }
       this.showAddVehicleModal = true
-      console.log(vehicle)
-      console.log(this.editingVehicle)
     },
     UpdateVehicle() {
       if (this.editingVehicle) {
@@ -177,36 +177,14 @@ export default {
       }
     },
     uploadPhotos(vehicle) {
-  console.log('Subiendo fotos del vehículo:', vehicle.plate)
-  // Aquí se implementará la lógica para subir fotos
-  },
+      console.log('Subiendo fotos del vehículo:', vehicle.plate)
+    },
     toggleStatus(vehicle) {
       vehicle.status = vehicle.status === 'AVAILABLE' ? 'maintenance' : 'available'
-    },
-    saveVehicle() {
-      if (this.editingVehicle) {
-        // Actualizar vehículo existente
-        const index = this.vehicles.findIndex(v => v.id === this.editingVehicle.id)
-        this.vehicles[index] = { ...this.editingVehicle, ...this.vehicleForm }
-      } else {
-        // Agregar nuevo vehículo
-        this.vehicles.push({
-          id: Date.now(),
-          ...this.vehicleForm,
-          thumbnail: '/path/to/default-thumbnail.jpg'
-        })
-      }
-      this.showAddVehicleModal = false
-      this.editingVehicle = null
-      this.vehicleForm = {
-        plate: '',
-        model: '',
-        status: 'available'
-      }
     }
   },
   mounted() {
-    this.InvocaVehicle();
+    this.InvocaVehicle()
   }
 }
 </script>

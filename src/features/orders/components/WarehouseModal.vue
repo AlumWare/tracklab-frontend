@@ -69,27 +69,36 @@
         </div>
 
         <div class="form-group">
-          <label for="latitude">Latitud</label>
-          <input
-            id="latitude"
-            v-model.number="formData.latitude"
-            type="number"
-            step="any"
-            required
-            class="form-input"
-          >
-        </div>
-
-        <div class="form-group">
-          <label for="longitude">Longitud</label>
-          <input
-            id="longitude"
-            v-model.number="formData.longitude"
-            type="number"
-            step="any"
-            required
-            class="form-input"
-          >
+          <label>Ubicación</label>
+          <div class="map-container">
+            <div id="location-map" class="map"></div>
+          </div>
+          <div class="coordinates">
+            <div class="form-group">
+              <label for="latitude">Latitud</label>
+              <input
+                id="latitude"
+                v-model.number="formData.latitude"
+                type="number"
+                step="any"
+                required
+                class="form-input"
+                readonly
+              >
+            </div>
+            <div class="form-group">
+              <label for="longitude">Longitud</label>
+              <input
+                id="longitude"
+                v-model.number="formData.longitude"
+                type="number"
+                step="any"
+                required
+                class="form-input"
+                readonly
+              >
+            </div>
+          </div>
         </div>
 
         <div class="form-actions">
@@ -106,7 +115,8 @@
 </template>
 
 <script>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
+import { useTheme } from '@/shared/composables/useTheme'
 
 export default {
   name: 'WarehouseModal',
@@ -118,6 +128,7 @@ export default {
   },
   emits: ['close', 'save'],
   setup(props, { emit }) {
+    const { theme } = useTheme()
     const formData = ref({
       name: '',
       type: 'own',
@@ -129,10 +140,81 @@ export default {
     })
 
     const isEditing = computed(() => !!props.warehouse)
+    const map = ref(null)
+    const marker = ref(null)
+
+    const initializeMap = () => {
+      if (typeof window.google === 'undefined') {
+        console.error('Google Maps no está disponible')
+        return
+      }
+
+      const mapElement = document.getElementById('location-map')
+      if (!mapElement) return
+
+      const initialPosition = {
+        lat: formData.value.latitude || -12.0464,
+        lng: formData.value.longitude || -77.0428
+      }
+
+      map.value = new window.google.maps.Map(mapElement, {
+        center: initialPosition,
+        zoom: 12
+      })
+
+      // Add click listener to map
+      map.value.addListener('click', (event) => {
+        const position = event.latLng
+        formData.value.latitude = position.lat()
+        formData.value.longitude = position.lng()
+        updateMarker(position)
+      })
+
+      // Add initial marker if editing
+      if (props.warehouse) {
+        const position = new window.google.maps.LatLng(
+          formData.value.latitude,
+          formData.value.longitude
+        )
+        updateMarker(position)
+      }
+    }
+
+    const updateMarker = (position) => {
+      if (marker.value) {
+        marker.value.setMap(null)
+      }
+
+      marker.value = new window.google.maps.Marker({
+        position: position,
+        map: map.value,
+        draggable: true
+      })
+
+      // Add drag listener to marker
+      marker.value.addListener('dragend', (event) => {
+        const position = event.latLng
+        formData.value.latitude = position.lat()
+        formData.value.longitude = position.lng()
+      })
+    }
 
     onMounted(() => {
       if (props.warehouse) {
         formData.value = { ...props.warehouse }
+      }
+
+      // Initialize map after component is mounted
+      if (typeof window.google !== 'undefined') {
+        initializeMap()
+      } else {
+        // If Google Maps is not loaded yet, wait for it
+        const checkGoogleMaps = setInterval(() => {
+          if (typeof window.google !== 'undefined') {
+            clearInterval(checkGoogleMaps)
+            initializeMap()
+          }
+        }, 100)
       }
     })
 
@@ -143,7 +225,8 @@ export default {
     return {
       formData,
       isEditing,
-      handleSubmit
+      handleSubmit,
+      theme
     }
   }
 }
@@ -156,7 +239,7 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: v-bind('theme.colors.overlay');
   display: flex;
   justify-content: center;
   align-items: center;
@@ -164,74 +247,167 @@ export default {
 }
 
 .modal-content {
-  background-color: white;
-  padding: 24px;
-  border-radius: 8px;
+  background-color: v-bind('theme.colors.surface');
+  padding: v-bind('theme.spacing.lg');
+  border-radius: v-bind('theme.borderRadius.base');
   width: 100%;
   max-width: 500px;
+  box-shadow: v-bind('theme.boxShadow');
 }
 
 .modal-title {
-  color: #000000;
-  margin-bottom: 20px;
-  font-size: 24px;
+  color: v-bind('theme.textColors.primary');
+  margin-bottom: v-bind('theme.spacing.md');
+  font-size: v-bind('theme.fontSize.lg');
+  font-weight: v-bind('theme.fontWeight.bold');
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: v-bind('theme.spacing.md');
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: v-bind('theme.spacing.xs');
 }
 
 .form-group label {
-  color: #000000;
-  font-weight: 500;
+  color: v-bind('theme.textColors.primary');
+  font-weight: v-bind('theme.fontWeight.bold');
+  font-size: v-bind('theme.fontSize.sm');
 }
 
 .form-input {
-  padding: 8px;
-  border: 1px solid #8E8E8E;
-  border-radius: 4px;
-  color: #000000;
-  background-color: white;
-}
+  padding: v-bind('theme.spacing.sm');
+  border: 1px solid v-bind('theme.borderColor');
+  border-radius: v-bind('theme.borderRadius.sm');
+  color: v-bind('theme.textColors.primary');
+  background-color: v-bind('theme.colors.surface');
+  transition: v-bind('theme.transition');
 
-.form-input::placeholder {
-  color: #8E8E8E;
+  &:focus {
+    outline: none;
+    border-color: v-bind('theme.colors.primary');
+    box-shadow: 0 0 0 2px v-bind('theme.colors.primaryLight');
+  }
+
+  &::placeholder {
+    color: v-bind('theme.textColors.secondary');
+  }
 }
 
 .form-actions {
   display: flex;
   justify-content: flex-end;
-  gap: 12px;
-  margin-top: 16px;
+  gap: v-bind('theme.spacing.sm');
+  margin-top: v-bind('theme.spacing.md');
 }
 
 .cancel-button {
-  padding: 8px 16px;
-  border: 1px solid #8E8E8E;
-  border-radius: 4px;
-  background-color: white;
-  color: #000000;
+  padding: v-bind('theme.spacing.sm') v-bind('theme.spacing.md');
+  border: 1px solid v-bind('theme.borderColor');
+  border-radius: v-bind('theme.borderRadius.sm');
+  background-color: v-bind('theme.colors.surface');
+  color: v-bind('theme.textColors.primary');
   cursor: pointer;
+  transition: v-bind('theme.transition');
+
+  &:hover {
+    background-color: v-bind('theme.colors.backgroundSecondary');
+  }
 }
 
 .save-button {
-  padding: 8px 16px;
+  padding: v-bind('theme.spacing.sm') v-bind('theme.spacing.md');
   border: none;
-  border-radius: 4px;
-  background-color: #42A5F5;
-  color: #000000;
+  border-radius: v-bind('theme.borderRadius.sm');
+  background-color: v-bind('theme.colors.primary');
+  color: v-bind('theme.textColors.inverted');
   cursor: pointer;
+  transition: v-bind('theme.transition');
+
+  &:hover {
+    background-color: v-bind('theme.colors.primaryDark');
+  }
 }
 
-.save-button:hover {
-  background-color: #1E88E5;
+.map-container {
+  width: 100%;
+  height: 300px;
+  margin-bottom: v-bind('theme.spacing.md');
+  border: 1px solid v-bind('theme.borderColor');
+  border-radius: v-bind('theme.borderRadius.sm');
+  overflow: hidden;
+  box-shadow: v-bind('theme.boxShadow');
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+}
+
+.coordinates {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: v-bind('theme.spacing.md');
+}
+
+:deep(.marker-info) {
+  padding: v-bind('theme.spacing.sm');
+  max-width: 200px;
+
+  h3 {
+    margin: 0 0 v-bind('theme.spacing.xs') 0;
+    color: v-bind('theme.colors.primary');
+    font-size: v-bind('theme.fontSize.sm');
+    font-weight: v-bind('theme.fontWeight.bold');
+  }
+
+  p {
+    margin: v-bind('theme.spacing.xs') 0;
+    color: v-bind('theme.textColors.secondary');
+    font-size: v-bind('theme.fontSize.sm');
+  }
+
+  .marker-actions {
+    display: flex;
+    gap: v-bind('theme.spacing.xs');
+    margin-top: v-bind('theme.spacing.xs');
+
+    button {
+      padding: v-bind('theme.spacing.xs') v-bind('theme.spacing.sm');
+      border: none;
+      border-radius: v-bind('theme.borderRadius.sm');
+      cursor: pointer;
+      font-size: v-bind('theme.fontSize.sm');
+      transition: v-bind('theme.transition');
+
+      &:first-child {
+        background-color: v-bind('theme.colors.primary');
+        color: v-bind('theme.textColors.inverted');
+
+        &:hover {
+          background-color: v-bind('theme.colors.primaryDark');
+        }
+      }
+
+      &:last-child {
+        background-color: v-bind('theme.colors.error');
+        color: v-bind('theme.textColors.inverted');
+
+        &:hover {
+          background-color: darken(v-bind('theme.colors.error'), 10%);
+        }
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
 }
 </style>
