@@ -134,15 +134,6 @@
       "updatedAt": "2025-05-13T10:00:00Z"
     },
     {
-      "id": 1017,
-      "name": "Ricardo Palma",
-      "email": "ricardo.palma@example.com",
-      "role": "OPERATOR",
-      "status": "ACTIVE",
-      "createdAt": "2025-01-30T11:10:00Z",
-      "updatedAt": "2025-04-10T08:00:00Z"
-    },
-    {
       "id": 1018,
       "name": "Natalia Silva",
       "email": "natalia.silva@example.com",
@@ -587,27 +578,6 @@
     },
     {
       "logisticsCompany": {
-        "id": 2,
-        "name": "Transportes Rápidos"
-      },
-      "deliveryAddress": "Dirección 7",
-      "deliveryDate": "2025-05-16",
-      "status": "pending",
-      "items": [
-        {
-          "description": "madera",
-          "quantity": 532,
-          "weight": 8,
-          "delivered": 50
-        }
-      ],
-      "totalItems": 532,
-      "totalWeight": 4256,
-      "deliveredItems": 50,
-      "id": 7
-    },
-    {
-      "logisticsCompany": {
         "id": 1,
         "name": "Logística Express"
       },
@@ -722,6 +692,39 @@
       "totalWeight": 281790,
       "deliveredItems": 0,
       "id": 12
+    },
+    {
+      "logisticsCompany": {
+        "id": 4,
+        "name": "Delivery Plus"
+      },
+      "deliveryAddress": "sanmi",
+      "deliveryDate": "2025-09-25",
+      "status": "pending",
+      "items": [
+        {
+          "description": "cemento",
+          "quantity": 800,
+          "weight": 40,
+          "delivered": 0
+        },
+        {
+          "description": "drywall",
+          "quantity": 200,
+          "weight": 3,
+          "delivered": 0
+        },
+        {
+          "description": "pintura",
+          "quantity": 12,
+          "weight": 5,
+          "delivered": 0
+        }
+      ],
+      "totalItems": 1012,
+      "totalWeight": 32660,
+      "deliveredItems": 0,
+      "id": 13
     }
   ]
 }

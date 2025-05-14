@@ -151,11 +151,12 @@ function confirmCancel(order) {
 }
 
 function cancelOrder() {
-  if (orderToCancel.value) {
-    orderStore.deleteOrder(orderToCancel.value.id)
-    showCancelModal.value = false
-    orderToCancel.value = null
-  }
+  axios.delete(`http://localhost:3000/order/${orderToCancel.value.id}`)
+    .then(res => {
+      console.log('Order deleted:', res.data);
+      orderStore.value = orderStore.value.filter(order => order.id !== orderToCancel.value.id);
+      showCancelModal.value = false;
+    })
 }
 </script>
 
