@@ -20,8 +20,9 @@ export default {
   },
   computed: {
     formIsValid() {
+      console.log(this.name)
       return (
-        this.name.trim() &&
+        this.name.trim().length > 0 &&
         this.email.includes('@') &&
         this.password.length >= 6 &&
         this.password === this.password_confirmation
@@ -36,6 +37,11 @@ export default {
       if (!this.email.includes('@')) this.errors.email = 'Correo inválido'
       if (this.password.length < 6) this.errors.password = 'Mínimo 6 caracteres'
       if (this.password !== this.password_confirmation) this.errors.password_confirmation = 'Las contraseñas no coinciden'
+
+      console.log(this.name);
+      console.log(this.email);
+      console.log(this.password);
+      console.log(this.password_confirmation);
 
       if (Object.keys(this.errors).length === 0) {
         this.loading = true
@@ -82,7 +88,7 @@ export default {
         <BaseButton
           label="Enviar"
           color="info"
-          :disabled="!formIsValid"
+          :disabled="false"
           :loading="loading"
           @click="validateForm"
         />
@@ -90,6 +96,7 @@ export default {
     </div>
   </div>
 </template>
+
 <style scoped>
 .register-container {
   display: flex;

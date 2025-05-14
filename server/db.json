@@ -185,8 +185,8 @@
     {
       "id": "VH1001",
       "accountId": "AC5001",
-      "plateNumber": "ABC-123",
-      "type": "Truck",
+      "plateNumber": "ABC-333",
+      "type": "aaaa",
       "capacityTons": 10,
       "capacityPassengers": 2,
       "status": "AVAILABLE",
@@ -401,6 +401,22 @@
       "status": "MAINTENANCE",
       "createdAt": "2025-02-25T10:30:00Z",
       "updatedAt": "2025-04-15T08:45:00Z"
+    },
+    {
+      "plate": "",
+      "model": "",
+      "status": "AVAILABLE",
+      "plateNumber": "AAA-666",
+      "type": "Casio",
+      "id": "s8TPX0c"
+    },
+    {
+      "plate": "",
+      "model": "",
+      "status": "MAINTENANCE",
+      "plateNumber": "NRC-909",
+      "type": "Minimouse",
+      "id": "nn_Uv3p"
     }
   ]
 }

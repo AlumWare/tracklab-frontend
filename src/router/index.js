@@ -14,13 +14,14 @@ import routePlanningView from '@/features/orders/views/route-planning-view.vue'
 import ClientHomeView from '@/features/home/views/client-home.view.vue'
 import LogisticsHomeView from '@/features/home/views/logistics-home.view.vue'
 import ContainerDetailView from '@/features/orders/views/ContainerDetailView.vue'
-
+import RegisterCompanyView from '@/features/security/components/register-company-view.component.vue'
+import RegisterUser from '@/core/guards/views/register.component.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
+      path: '/a',
       name: 'client-home',
       component: ClientHomeView
     },
@@ -31,7 +32,7 @@ const router = createRouter({
     },
     {
       path: '/',
-      name: 'home',
+      name: 'mainLayout',
       component: MainLayout,
       children: [
         {
@@ -51,6 +52,16 @@ const router = createRouter({
       path: '/style',
       name: 'style',
       component: StyleGuide,
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: RegisterCompanyView,
+    },
+    {
+      path: '/register-user',
+      name: 'register-user',
+      component: RegisterUser,
     },
     {
       path: '/login',

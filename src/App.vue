@@ -16,19 +16,6 @@ onMounted(() => {
 
 <template>
     <RouterView />
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <language-switcher></language-switcher>
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/style">Style Guide</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <vehicle-management-view></vehicle-management-view>
 
 </template>
 

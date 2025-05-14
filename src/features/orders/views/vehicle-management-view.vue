@@ -98,7 +98,7 @@
     <div v-if="showAddVehicleModal" class="modal">
       <div class="modal-content">
         <h2>{{ editingVehicle ? 'Editar Vehículo' : 'Agregar Vehículo' }}</h2>
-        <form @submit.prevent="saveVehicle">
+        <form @submit.prevent="UpdateVehicle">
           <div class="form-group">
             <label>Placa</label>
             <input v-model="vehicleForm.plateNumber" type="text" required>
@@ -165,15 +165,23 @@ export default {
       console.log(this.editingVehicle)
     },
     UpdateVehicle() {
-      axios.put(`http://localhost:3000/vehicle/${this.editingVehicle.id}`)
-        .then(res=>{this.vehicles = res.data})
+      if (this.editingVehicle) {
+        axios.put(`http://localhost:3000/vehicle/${this.editingVehicle.id}`, this.vehicleForm)
+          .then(res=>{this.vehicles = res.data})
+        this.InvocaVehicle()
+      }
+      else {
+        axios.post('http://localhost:3000/vehicle', this.vehicleForm)
+          .then(res=>{this.vehicles = res.data})
+        this.InvocaVehicle()
+      }
     },
     uploadPhotos(vehicle) {
   console.log('Subiendo fotos del vehículo:', vehicle.plate)
   // Aquí se implementará la lógica para subir fotos
   },
     toggleStatus(vehicle) {
-      vehicle.status = vehicle.status === 'available' ? 'maintenance' : 'available'
+      vehicle.status = vehicle.status === 'AVAILABLE' ? 'maintenance' : 'available'
     },
     saveVehicle() {
       if (this.editingVehicle) {
