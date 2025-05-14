@@ -147,7 +147,7 @@ export default {
   bottom: 0;
   height: 4px;
   border-radius: 0 0 10px 10px;
-  background: red;
+  background: #fff;
   opacity: 0.7;
   transition: width 0.1s linear;
 }
