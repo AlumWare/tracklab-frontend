@@ -27,7 +27,7 @@
         <div>
           <strong>Cantidad:</strong> {{ order.totalItems }} ({{ order.deliveredItems }} entregados)
         </div>
-        <div><strong>Destino:</strong> {{ order.destination }}</div>
+        <div><strong>Destino:</strong> {{ order.deliveryAddress }}</div>
         <!-- Barra de progreso -->
         <div class="progress-bar-container">
           <div class="progress-bar-bg">
@@ -157,6 +157,7 @@ function cancelOrder() {
       orderStore.value = orderStore.value.filter(order => order.id !== orderToCancel.value.id);
       showCancelModal.value = false;
     })
+  axios.delete(`http://localhost:3000/operation/${orderToCancel.value.id}`)
 }
 </script>
 

@@ -1,12 +1,11 @@
 export class Operation {
-  constructor(id, type, date, node, summary, container, orderId, photos) {
+  constructor(id, type, date, node, container, order, photos) {
     this.id = id;
     this.type = type;
     this.date = date;
     this.node = node;
-    this.summary = summary;
     this.container = container;
-    this.orderId = orderId;
+    this.order = order;
     this.photos = photos || [];
   }
 
