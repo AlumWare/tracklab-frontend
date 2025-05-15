@@ -59,7 +59,7 @@
         <p><b>ID de Orden:</b> {{ selectedEvent.order?.id }}</p>
         <p><b>Destino:</b> {{ selectedEvent.order?.deliveryAddress }}</p>
         <p><b>Estado:</b> {{ capitalize(selectedEvent.order?.status) }}</p>
-        <p><b>Fecha de orden:</b> {{ formatDate(selectedEvent.order?.date) }}</p>
+        <p><b>Fecha de orden:</b> {{ formatDate(selectedEvent.date) }}</p>
         <p><b>Total de ítems:</b> {{ selectedEvent.order?.totalItems }}</p>
         <p><b>Ítems entregados:</b> {{ selectedEvent.order?.deliveredItems }}</p>
         <div v-if="selectedEvent.order?.items">

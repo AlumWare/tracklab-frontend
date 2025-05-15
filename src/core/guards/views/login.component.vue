@@ -17,7 +17,6 @@ export default {
   },
   methods: {
     handleLogin() {
-      // Aquí irá la lógica de autenticación
       console.log('Intentando login con:', {
         email: this.email,
         password: this.password
