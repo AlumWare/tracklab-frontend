@@ -8,15 +8,6 @@
       "id": 1001
     },
     {
-      "id": 1003,
-      "name": "Luis Gómez",
-      "email": "luis.gomez@example.com",
-      "role": "OPERATOR",
-      "status": "INACTIVE",
-      "createdAt": "2025-03-10T09:00:00Z",
-      "updatedAt": "2025-03-15T10:30:00Z"
-    },
-    {
       "id": 1004,
       "name": "Carla Ruiz",
       "email": "carla.ruiz@example.com",
@@ -53,13 +44,11 @@
       "updatedAt": "2025-05-13T10:00:00Z"
     },
     {
-      "id": 1008,
-      "name": "Andrea León",
+      "name": "Andrea Torres",
       "email": "andrea.leon@example.com",
-      "role": "OPERATOR",
+      "role": "ADMIN",
       "status": "INACTIVE",
-      "createdAt": "2025-02-10T14:20:00Z",
-      "updatedAt": "2025-03-01T11:45:00Z"
+      "id": 1008
     },
     {
       "id": 1009,
@@ -78,15 +67,6 @@
       "status": "ACTIVE",
       "createdAt": "2025-05-10T10:00:00Z",
       "updatedAt": "2025-05-13T10:00:00Z"
-    },
-    {
-      "id": 1011,
-      "name": "Pedro López",
-      "email": "pedro.lopez@example.com",
-      "role": "OPERATOR",
-      "status": "ACTIVE",
-      "createdAt": "2025-01-25T09:00:00Z",
-      "updatedAt": "2025-04-01T12:00:00Z"
     },
     {
       "id": 1012,
@@ -159,6 +139,13 @@
       "status": "ACTIVE",
       "createdAt": "2025-05-01T10:00:00Z",
       "updatedAt": "2025-05-13T10:00:00Z"
+    },
+    {
+      "name": "monito",
+      "email": "monito@gmail.com",
+      "role": "OPERATOR",
+      "status": "ACTIVE",
+      "id": 1021
     }
   ],
   "vehicle": [
@@ -383,20 +370,26 @@
       "updatedAt": "2025-04-15T08:45:00Z"
     },
     {
-      "plate": "",
-      "model": "",
+      "accountId": "AC5020",
+      "plateNumber": "ABC-345",
+      "type": "carretilla",
+      "capacityTons": 0,
+      "capacityPassengers": 48,
       "status": "AVAILABLE",
-      "plateNumber": "AAA-666",
-      "type": "Casio",
-      "id": "s8TPX0c"
+      "createdAt": "2025-02-25T10:30:00Z",
+      "updatedAt": "2025-04-15T08:45:00Z",
+      "id": "TmVvMal"
     },
     {
-      "plate": "",
-      "model": "",
-      "status": "MAINTENANCE",
-      "plateNumber": "NRC-909",
-      "type": "Minimouse",
-      "id": "nn_Uv3p"
+      "accountId": "AC5020",
+      "plateNumber": "HOTTOGO",
+      "type": "Chappel",
+      "capacityTons": 0,
+      "capacityPassengers": 48,
+      "status": "AVAILABLE",
+      "createdAt": "2025-02-25T10:30:00Z",
+      "updatedAt": "2025-04-15T08:45:00Z",
+      "id": "Z4P_9SH"
     }
   ],
   "order": [

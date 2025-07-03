@@ -73,11 +73,9 @@
             <td>
               <img :src="vehicle.thumbnail" :alt="vehicle.plate" class="table-thumbnail">
             </td>
-            <td>{{ vehicle.plate }}</td>
-            <td>{{ vehicle.model }}</td>
-            <td>
-              <span :class="['status-badge', vehicle.status]">{{ t(`vehicle.management.status.${vehicle.status.toLowerCase()}`) }}</span>
-            </td>
+            <td>{{ vehicle.plateNumber }}</td>
+            <td>{{ vehicle.type }}</td>
+            <td>{{ vehicle.status }}</td>
             <td class="actions">
               <button @click="editVehicle(vehicle)" class="btn-icon" :title="t('vehicle.management.actions.edit')">
                 <i class="fas fa-edit"></i> {{ t('vehicle.management.actions.edit') }}
@@ -141,9 +139,14 @@ export default {
       showAddVehicleModal: false,
       editingVehicle: null,
       vehicleForm: {
-        plate: '',
-        model: '',
-        status: 'available'
+        accountId: "AC5020",
+        plateNumber: "",
+        type: "",
+        capacityTons: 0,
+        capacityPassengers: 48,
+        status: "",
+        createdAt: "2025-02-25T10:30:00Z",
+        updatedAt: "2025-04-15T08:45:00Z"
       },
       vehicles: []
     }
@@ -156,6 +159,7 @@ export default {
   },
   methods: {
     InvocaVehicle(){
+      axios.get('https://68218ecc259dad2655af94e7.mockapi.io/api/v1/vehicle')
       axios.get('http://localhost:3000/vehicle')
         .then(res=>{this.vehicles = res.data})
     },
@@ -170,14 +174,18 @@ export default {
           .then(res=>{this.vehicles = res.data})
         this.InvocaVehicle()
       }
+
+      // AQUI ESTAMOS USANDO MOCK API
+
       else {
+        axios.post('https://68218ecc259dad2655af94e7.mockapi.io/api/v1/vehicle', this.vehicleForm)
         axios.post('http://localhost:3000/vehicle', this.vehicleForm)
           .then(res=>{this.vehicles = res.data})
         this.InvocaVehicle()
       }
     },
     uploadPhotos(vehicle) {
-      console.log('Subiendo fotos del vehículo:', vehicle.plate)
+      console.log('Subiendo fotos del vehículo:', vehicle.plateNumber)
     },
     toggleStatus(vehicle) {
       vehicle.status = vehicle.status === 'AVAILABLE' ? 'maintenance' : 'available'

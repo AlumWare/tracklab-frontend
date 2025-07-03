@@ -159,7 +159,10 @@ const filteredUsers = computed(() => {
 
 // Métodos
 
+// AQUI SE USA MOCK API
+
 function InvocaEmployee() {
+  axios.get('https://68218ecc259dad2655af94e7.mockapi.io/api/v1/employee')
   axios.get('http://localhost:3000/employee')
     .then(res => {
       users.value = res.data
@@ -192,6 +195,7 @@ function saveUser() {
       })
     InvocaEmployee();
   } else {
+    axios.post('https://68218ecc259dad2655af94e7.mockapi.io/api/v1/employee', userData)
     axios.post('http://localhost:3000/employee', userData)
       .then(res => {
         // Agregamos el nuevo usuario a la lista de users
