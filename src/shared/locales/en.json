@@ -1,0 +1,43 @@
+{
+  "common": {
+    "title": "Title",
+    "languageChanged": "Language changed to {lang}",
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "search": "Search",
+    "close": "Close"
+  },
+  "sidebar": {
+    "menu": {
+      "home": {
+        "label": "Home",
+        "client": "Client",
+        "company": "Company"
+      },
+      "orders": {
+        "label": "Orders",
+        "create": "Create Order",
+        "history": "History",
+        "list": "Order List"
+      },
+      "admin": {
+        "label": "Administration",
+        "users": "Users",
+        "vehicles": "Vehicles",
+        "warehouses": "Warehouses"
+      },
+      "containers": {
+        "label": "Containers",
+        "details": "Details",
+        "manage": "Manage"
+      },
+      "routePlanning": {
+        "label": "Route Planning"
+      }
+    }
+  }
+} 

@@ -1,5 +1,6 @@
 <script>
 import LanguageSwitcher from './language-switcher.component.vue';
+import { useAuthStore } from '@/stores/auth.store';
 
 export default {
     name: 'HeaderComponent',
@@ -13,9 +14,16 @@ export default {
             default: 'TrackLab'
         }
     },
+    setup() {
+        const authStore = useAuthStore();
+        return { authStore };
+    },
     methods: {
         toggleSidebar() {
             this.$emit('toggle-sidebar')
+        },
+        async handleLogout() {
+            await this.authStore.logout();
         }
     }
 }
@@ -32,6 +40,13 @@ export default {
         
         <div class="header__right">
             <LanguageSwitcher class="header__language-switcher" />
+            <button 
+                class="header__logout-btn" 
+                @click="handleLogout"
+                title="Cerrar sesión"
+            >
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
         </div>
     </header>
 </template>
@@ -123,6 +138,30 @@ export default {
 
 .header__language-switcher {
     margin-left: auto;
+}
+
+.header__logout-btn {
+    background: rgba(231, 76, 60, 0.1);
+    border: none;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: var(--border-radius-sm);
+    transition: var(--transition-fast);
+    color: #e74c3c;
+    font-size: 1rem;
+}
+
+.header__logout-btn:hover {
+    background: rgba(231, 76, 60, 0.2);
+    transform: scale(1.05);
+}
+
+.header__logout-btn:active {
+    transform: scale(0.95);
 }
 
 @media (min-width: 1024px) {

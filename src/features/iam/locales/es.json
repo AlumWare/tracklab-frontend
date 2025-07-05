@@ -1,36 +1,4 @@
 {
-  "title": "Título",
-  "languageChanged": "Idioma cambiado a {lang}",
-  "sidebar": {
-    "menu": {
-      "home": {
-        "label": "Inicio",
-        "client": "Cliente",
-        "company": "Empresa"
-      },
-      "orders": {
-        "label": "Órdenes",
-        "create": "Crear Orden",
-        "history": "Historial",
-        "list": "Lista de Órdenes"
-      },
-      "admin": {
-        "label": "Administración",
-        "users": "Usuarios",
-        "vehicles": "Vehículos",
-        "warehouses": "Almacenes"
-      },
-      "containers": {
-        "label": "Contenedores",
-        "details": "Detalles",
-        "manage": "Gestionar",
-        "list": "Lista de Contenedores"
-      },
-      "routePlanning": {
-        "label": "Planificación de Rutas"
-      }
-    }
-  },
   "login": {
     "title": "TrackLab",
     "slogan": "Seguimiento logístico en tiempo real",
@@ -198,215 +166,94 @@
       "rucError": "Error al validar el RUC",
       "emailRequired": "El correo electrónico es requerido",
       "emailInvalid": "Por favor ingresa un correo electrónico válido",
-      "emailExists": "Este correo electrónico ya está registrado",
-      "emailError": "Error al validar el correo electrónico",
-      "phoneRequired": "El número de teléfono es requerido",
-      "phoneInvalid": "Por favor ingresa un número de teléfono válido (9 dígitos)",
+      "phoneRequired": "El teléfono es requerido",
+      "phoneInvalid": "Por favor ingresa un número de teléfono válido",
       "addressRequired": "La dirección es requerida",
       "addressMinLength": "La dirección debe tener al menos 10 caracteres"
     }
   },
-  "home": {
-    "welcome": "Bienvenido a TrackLab",
-    "client": {
-      "subtitle": "Rastrea tus envíos en tiempo real y gestiona tus operaciones logísticas de manera eficiente",
-      "features": {
-        "orderManagement": {
-          "title": "Gestión de Pedidos",
-          "description": "Crea y gestiona tus órdenes de envío fácilmente"
-        },
-        "realTimeTracking": {
-          "title": "Seguimiento en Tiempo Real",
-          "description": "Rastrea tus envíos con actualizaciones detalladas de estado"
-        },
-        "analytics": {
-          "title": "Análisis y Reportes",
-          "description": "Obtén información sobre tus operaciones de envío"
-        }
-      },
-      "quickActions": {
-        "title": "Acciones Rápidas",
-        "newOrder": "Nuevo Pedido",
-        "trackOrder": "Rastrear Pedido",
-        "viewHistory": "Ver Historial"
-      }
+  "userManagement": {
+    "title": "Gestión de Usuarios",
+    "subtitle": "Administra los usuarios del sistema",
+    "search": "Buscar usuarios",
+    "searchPlaceholder": "Buscar por nombre, email o rol",
+    "addUser": "Agregar Usuario",
+    "editUser": "Editar Usuario",
+    "deleteUser": "Eliminar Usuario",
+    "confirmDelete": "Confirmar Eliminación",
+    "confirmDeleteMessage": "¿Estás seguro de que deseas eliminar al usuario {{name}}?",
+    "confirmStatusChange": "Confirmar Cambio de Estado",
+    "confirmStatusChangeMessage": "¿Estás seguro de que deseas {{action}} al usuario {{name}}?",
+    "confirm": "Confirmar",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "saveChanges": "Guardar Cambios",
+    "loading": "Cargando...",
+    "noUsers": "No se encontraron usuarios",
+    "table": {
+      "id": "ID",
+      "username": "Usuario",
+      "email": "Correo Electrónico",
+      "firstName": "Nombre",
+      "lastName": "Apellido",
+      "fullName": "Nombre Completo",
+      "roles": "Roles",
+      "status": "Estado",
+      "actions": "Acciones",
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "activate": "Activar",
+      "deactivate": "Desactivar"
     },
-    "logistics": {
-      "subtitle": "Gestiona tu flota, almacenes y operaciones de entrega en un solo lugar",
-      "features": {
-        "fleetManagement": {
-          "title": "Gestión de Flota",
-          "description": "Administra tus vehículos y conductores eficientemente"
-        },
-        "warehouseOperations": {
-          "title": "Operaciones de Almacén",
-          "description": "Controla el inventario y gestiona espacios de almacenamiento"
-        },
-        "routePlanning": {
-          "title": "Planificación de Rutas",
-          "description": "Optimiza rutas y horarios de entrega"
-        }
-      },
-      "quickActions": {
-        "title": "Acciones Rápidas",
-        "manageVehicles": "Gestionar Vehículos",
-        "manageWarehouse": "Gestionar Almacén",
-        "planRoute": "Planificar Ruta"
-      }
-    }
-  },
-  "warehouse": {
-    "types": {
-      "own": "Propio",
-      "provider": "Proveedor",
-      "client": "Cliente"
+    "form": {
+      "username": "Usuario",
+      "usernamePlaceholder": "Ingresa el nombre de usuario",
+      "password": "Contraseña",
+      "passwordPlaceholder": "Ingresa la contraseña",
+      "email": "Correo Electrónico",
+      "emailPlaceholder": "Ingresa el correo electrónico",
+      "firstName": "Nombre",
+      "firstNamePlaceholder": "Ingresa el nombre",
+      "lastName": "Apellido",
+      "lastNamePlaceholder": "Ingresa el apellido",
+      "roles": "Roles",
+      "rolesPlaceholder": "Selecciona los roles",
+      "status": "Estado",
+      "active": "Activo",
+      "inactive": "Inactivo"
     },
-    "management": {
-      "title": "Gestión de Almacenes",
-      "create": "Crear Almacén",
-      "filters": {
-        "zone": {
-          "label": "Zona:",
-          "all": "Todas las zonas",
-          "north": "Norte",
-          "south": "Sur",
-          "east": "Este",
-          "west": "Oeste"
-        },
-        "type": {
-          "label": "Tipo:",
-          "all": "Todos los tipos"
-        }
-      },
-      "table": {
-        "name": "Nombre",
-        "type": "Tipo",
-        "zone": "Zona",
-        "occupation": "Ocupación",
-        "actions": "Acciones"
-      },
-      "actions": {
-        "edit": "Editar",
-        "delete": "Eliminar"
-      },
-      "messages": {
-        "deleteWarning": "No se puede eliminar un almacén con ocupación",
-        "deleteSuccess": "Almacén eliminado correctamente",
-        "deleteError": "Error al eliminar el almacén",
-        "saveSuccess": "Almacén guardado correctamente",
-        "saveError": "Error al guardar el almacén",
-        "loadError": "Error al cargar los datos iniciales",
-        "warehousesLoadError": "Error al cargar los almacenes",
-        "zonesLoadError": "Error al cargar las zonas",
-        "mapsLoadError": "Error al cargar Google Maps"
-      }
-    }
-  },
-  "routePlanning": {
-    "tabs": {
-      "plan": "Planificar Ruta",
-      "saved": "Rutas Guardadas"
+    "roles": {
+      "ROLE_ADMIN": "Administrador",
+      "ROLE_OPERATOR": "Operador",
+      "ROLE_SUPERVISOR": "Supervisor",
+      "ROLE_CLIENT": "Cliente",
+      "ROLE_PROVIDER": "Proveedor"
     },
-    "sequence": {
-      "title": "Secuencia de Paradas",
-      "estimatedDistance": "Distancia estimada: {distance} km",
-      "reorder": "🔀 Reorganizar secuencia",
-      "finishReorder": "✅ Finalizar reorganización",
-      "addNode": "➕ Añadir nodo",
-      "saveRoute": "💾 Guardar ruta"
+    "status": {
+      "active": "Activo",
+      "inactive": "Inactivo"
     },
-    "saved": {
-      "title": "Rutas Guardadas",
-      "empty": "No hay rutas guardadas.",
-      "routeNumber": "Ruta #{number}",
-      "stops": "({count} paradas)",
-      "modify": "✏️ Modificar",
-      "delete": "��️ Eliminar"
-    }
-  },
-  "vehicle": {
-    "management": {
-      "title": "Gestión de Vehículos",
-      "add": "Agregar Vehículo",
-      "edit": "Editar Vehículo",
-      "filters": {
-        "status": {
-          "label": "Estado",
-          "all": "Todos",
-          "available": "Disponible",
-          "maintenance": "Mantenimiento"
-        }
-      },
-      "table": {
-        "image": "Imagen",
-        "plate": "Placa",
-        "model": "Modelo",
-        "status": "Estado",
-        "actions": "Acciones"
-      },
-      "form": {
-        "plate": "Placa",
-        "model": "Modelo",
-        "status": "Estado",
-        "cancel": "Cancelar",
-        "save": "Guardar"
-      },
-      "actions": {
-        "edit": "Editar",
-        "uploadPhoto": "Subir Foto",
-        "status": "Estado"
-      },
-      "status": {
-        "available": "Disponible",
-        "maintenance": "Mantenimiento"
-      }
-    }
-  },
-  "orderCreation": {
-    "title": "Crear Orden",
-    "steps": {
-      "logistics": "Empresa Logística",
-      "items": "Agregar Ítems",
-      "summary": "Resumen"
+    "messages": {
+      "userCreated": "Usuario creado exitosamente",
+      "userUpdated": "Usuario actualizado exitosamente",
+      "userDeleted": "Usuario eliminado exitosamente",
+      "userActivated": "Usuario activado exitosamente",
+      "userDeactivated": "Usuario desactivado exitosamente",
+      "errorCreating": "Error al crear el usuario",
+      "errorUpdating": "Error al actualizar el usuario",
+      "errorDeleting": "Error al eliminar el usuario",
+      "errorLoading": "Error al cargar los usuarios"
     },
-    "logistics": {
-      "title": "Selecciona tu empresa logística",
-      "selectPlaceholder": "Selecciona una empresa"
-    },
-    "items": {
-      "title": "Agregar ítems a la orden",
-      "delivery": {
-        "address": "Dirección de entrega",
-        "addressPlaceholder": "Ingresa la dirección de entrega",
-        "date": "Fecha de entrega"
-      },
-      "table": {
-        "description": "Descripción",
-        "quantity": "Cantidad",
-        "weight": "Peso (kg)",
-        "actions": "Acciones"
-      },
-      "descriptionPlaceholder": "Descripción del ítem",
-      "addItem": "Agregar ítem",
-      "removeItem": "Eliminar"
-    },
-    "summary": {
-      "title": "Resumen de la orden",
-      "logisticsCompany": "Empresa Logística",
-      "totalItems": "Total de ítems",
-      "totalWeight": "Peso total",
-      "includedItems": "Ítems incluidos"
-    },
-    "navigation": {
-      "previous": "Anterior",
-      "next": "Siguiente",
-      "submit": "Enviar Orden"
-    },
-    "success": {
-      "title": "¡Orden enviada con éxito!",
-      "message": "¿Qué deseas hacer ahora?",
-      "createAnother": "Crear otra orden",
-      "viewOrders": "Ir a la lista de órdenes"
+    "validation": {
+      "usernameRequired": "El nombre de usuario es requerido",
+      "usernameMinLength": "El nombre de usuario debe tener al menos 3 caracteres",
+      "passwordRequired": "La contraseña es requerida",
+      "passwordMinLength": "La contraseña debe tener al menos 6 caracteres",
+      "emailRequired": "El correo electrónico es requerido",
+      "emailInvalid": "El correo electrónico no es válido",
+      "firstNameRequired": "El nombre es requerido",
+      "lastNameRequired": "El apellido es requerido",
+      "rolesRequired": "Al menos un rol debe ser seleccionado"
     }
   }
-}
+} 
