@@ -87,7 +87,7 @@ const handleSubmit = () => {
   background: white;
   border-radius: 12px;
   min-width: 500px;
-  max-width: 600px;
+  max-width: 700px;
   max-height: 90vh;
   overflow-y: auto;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
