@@ -10,6 +10,7 @@ import App from './App.vue'
 import router from './router'
 import i18n from "./i18n.js"
 import { LanguageService } from '@/core/services/language.service'
+import { useAuthStore } from '@/stores/auth.store'
 
 import PrimeVue from 'primevue/config'
 import {Card, Image, SelectButton} from 'primevue'
@@ -25,6 +26,10 @@ const pinia = createPinia()
 
 app.use(pinia)
 app.use(router)
+
+// Initialize auth store after pinia is set up
+const authStore = useAuthStore()
+authStore.initializeAuth()
 app.use(Toast, {
   position: 'top-right',
   timeout: 3000,
