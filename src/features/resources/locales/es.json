@@ -1,0 +1,67 @@
+{
+  "warehouse": {
+    "management": {
+      "title": "Gestión de Almacenes",
+      "create": "Crear Almacén",
+      "edit": "Editar Almacén",
+      "filters": {
+        "type": {
+          "label": "Tipo",
+          "all": "Todos los Tipos"
+        }
+      },
+      "table": {
+        "name": "Nombre",
+        "type": "Tipo",
+        "address": "Dirección",
+        "coordinates": "Coordenadas",
+        "actions": "Acciones"
+      },
+      "actions": {
+        "edit": "Editar",
+        "delete": "Eliminar",
+        "view": "Ver"
+      },
+      "messages": {
+        "createSuccess": "Almacén creado exitosamente",
+        "updateSuccess": "Almacén actualizado exitosamente",
+        "deleteSuccess": "Almacén eliminado exitosamente",
+        "loadError": "Error al cargar almacenes",
+        "saveError": "Error al guardar almacén",
+        "deleteError": "Error al eliminar almacén",
+        "deleteConfirm": "¿Estás seguro de que quieres eliminar este almacén?"
+      }
+    },
+    "form": {
+      "title": "Información del Almacén",
+      "name": "Nombre",
+      "namePlaceholder": "Ingrese el nombre del almacén",
+      "type": "Tipo",
+      "typePlaceholder": "Seleccione el tipo de almacén",
+      "address": "Dirección",
+      "addressPlaceholder": "Ingrese la dirección del almacén",
+      "latitude": "Latitud",
+      "latitudePlaceholder": "Ingrese la latitud",
+      "longitude": "Longitud",
+      "longitudePlaceholder": "Ingrese la longitud",
+      "selectLocation": "Seleccionar ubicación",
+      "mapHelp": "Haz clic en el mapa para seleccionar la ubicación o arrastra el marcador para ajustarla",
+      "save": "Guardar",
+      "cancel": "Cancelar",
+      "validation": {
+        "nameRequired": "El nombre es requerido",
+        "typeRequired": "El tipo es requerido",
+        "addressRequired": "La dirección es requerida",
+        "latitudeRequired": "La latitud es requerida",
+        "longitudeRequired": "La longitud es requerida",
+        "latitudeInvalid": "La latitud debe ser un número válido",
+        "longitudeInvalid": "La longitud debe ser un número válido"
+      }
+    },
+    "types": {
+      "Client": "Cliente",
+      "Provider": "Proveedor",
+      "Logistics": "Logística"
+    }
+  }
+}

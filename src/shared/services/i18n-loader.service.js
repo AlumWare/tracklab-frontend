@@ -10,6 +10,7 @@ export class I18nLoaderService {
       
       // Load feature translations
       await this.loadFeatureTranslation(i18n, 'iam', locale);
+      await this.loadFeatureTranslation(i18n, 'resources', locale);
       
       // Add features as needed
       

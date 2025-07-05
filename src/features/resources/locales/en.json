@@ -1,0 +1,67 @@
+{
+  "warehouse": {
+    "management": {
+      "title": "Warehouse Management",
+      "create": "Create Warehouse",
+      "edit": "Edit Warehouse",
+      "filters": {
+        "type": {
+          "label": "Type",
+          "all": "All Types"
+        }
+      },
+      "table": {
+        "name": "Name",
+        "type": "Type",
+        "address": "Address",
+        "coordinates": "Coordinates",
+        "actions": "Actions"
+      },
+      "actions": {
+        "edit": "Edit",
+        "delete": "Delete",
+        "view": "View"
+      },
+      "messages": {
+        "createSuccess": "Warehouse created successfully",
+        "updateSuccess": "Warehouse updated successfully",
+        "deleteSuccess": "Warehouse deleted successfully",
+        "loadError": "Error loading warehouses",
+        "saveError": "Error saving warehouse",
+        "deleteError": "Error deleting warehouse",
+        "deleteConfirm": "Are you sure you want to delete this warehouse?"
+      }
+    },
+    "form": {
+      "title": "Warehouse Information",
+      "name": "Name",
+      "namePlaceholder": "Enter warehouse name",
+      "type": "Type",
+      "typePlaceholder": "Select warehouse type",
+      "address": "Address",
+      "addressPlaceholder": "Enter warehouse address",
+      "latitude": "Latitude",
+      "latitudePlaceholder": "Enter latitude",
+      "longitude": "Longitude",
+      "longitudePlaceholder": "Enter longitude",
+      "selectLocation": "Select location",
+      "mapHelp": "Click on the map to select location or drag the marker to adjust it",
+      "save": "Save",
+      "cancel": "Cancel",
+      "validation": {
+        "nameRequired": "Name is required",
+        "typeRequired": "Type is required",
+        "addressRequired": "Address is required",
+        "latitudeRequired": "Latitude is required",
+        "longitudeRequired": "Longitude is required",
+        "latitudeInvalid": "Latitude must be a valid number",
+        "longitudeInvalid": "Longitude must be a valid number"
+      }
+    },
+    "types": {
+      "Client": "Client",
+      "Provider": "Provider",
+      "Logistics": "Logistics"
+    }
+  }
+}
