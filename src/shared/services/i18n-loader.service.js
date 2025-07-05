@@ -11,6 +11,9 @@ export class I18nLoaderService {
       // Load feature translations
       await this.loadFeatureTranslation(i18n, 'iam', locale);
       await this.loadFeatureTranslation(i18n, 'resources', locale);
+      await this.loadFeatureTranslation(i18n, 'orders', locale);
+      await this.loadFeatureTranslation(i18n, 'tracking', locale);
+      await this.loadFeatureTranslation(i18n, 'billing', locale);
       
       // Add features as needed
       
