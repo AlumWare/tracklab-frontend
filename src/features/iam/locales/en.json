@@ -171,5 +171,89 @@
       "addressRequired": "Address is required",
       "addressMinLength": "Address must be at least 10 characters"
     }
+  },
+  "userManagement": {
+    "title": "User Management",
+    "subtitle": "Manage system users",
+    "search": "Search users",
+    "searchPlaceholder": "Search by name, email or role",
+    "addUser": "Add User",
+    "editUser": "Edit User",
+    "deleteUser": "Delete User",
+    "confirmDelete": "Confirm Deletion",
+    "confirmDeleteMessage": "Are you sure you want to delete user {{name}}?",
+    "confirmStatusChange": "Confirm Status Change",
+    "confirmStatusChangeMessage": "Are you sure you want to {{action}} user {{name}}?",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "save": "Save",
+    "saveChanges": "Save Changes",
+    "loading": "Loading...",
+    "noUsers": "No users found",
+    "table": {
+      "id": "ID",
+      "username": "Username",
+      "email": "Email",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "fullName": "Full Name",
+      "roles": "Roles",
+      "status": "Status",
+      "actions": "Actions",
+      "edit": "Edit",
+      "delete": "Delete",
+      "activate": "Activate",
+      "deactivate": "Deactivate"
+    },
+    "form": {
+      "username": "Username",
+      "usernamePlaceholder": "Enter username",
+      "password": "Password",
+      "passwordPlaceholder": "Enter password",
+      "email": "Email",
+      "emailPlaceholder": "Enter email address",
+      "firstName": "First Name",
+      "firstNamePlaceholder": "Enter first name",
+      "lastName": "Last Name",
+      "lastNamePlaceholder": "Enter last name",
+      "roles": "Roles",
+      "rolesPlaceholder": "Select roles",
+      "status": "Status",
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "roles": {
+      "ROLE_ADMIN": "Administrator",
+      "ROLE_OPERATOR": "Operator",
+      "ROLE_SUPERVISOR": "Supervisor",
+      "ROLE_CLIENT": "Client",
+      "ROLE_PROVIDER": "Provider"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "messages": {
+      "userCreated": "User created successfully",
+      "userUpdated": "User updated successfully",
+      "userDeleted": "User deleted successfully",
+      "userActivated": "User activated successfully",
+      "userDeactivated": "User deactivated successfully",
+      "errorCreating": "Error creating user",
+      "errorUpdating": "Error updating user",
+      "errorDeleting": "Error deleting user",
+      "errorLoading": "Error loading users"
+    },
+    "validation": {
+      "usernameRequired": "Username is required",
+      "usernameMinLength": "Username must be at least 3 characters",
+      "passwordRequired": "Password is required",
+      "passwordMinLength": "Password must be at least 6 characters",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Email is not valid",
+      "firstNameRequired": "First name is required",
+      "lastNameRequired": "Last name is required",
+      "rolesRequired": "At least one role must be selected"
+    }
   }
 } 

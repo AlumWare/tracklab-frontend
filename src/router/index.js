@@ -10,6 +10,7 @@ const LoginView = () => import('../features/iam/views/login.component.vue')
 const RegisterView = () => import('../features/iam/views/register.component.vue')
 const VehicleManagementView = () => import('@/features/orders/views/vehicle-management-view.vue')
 const AdminUserManagementView = () => import('@/features/orders/views/admin-user-management-view.vue')
+const UserManagementView = () => import('../features/iam/views/user-management.component.vue')
 const OrderDetailsView = () => import('@/features/orders/views/OrderDetailsView.vue')
 const ClientOrderCreationView = () => import('@/features/orders/views/ClientOrderCreationView.vue')
 const OperationHistoryView = () => import('@/features/orders/views/OperationHistoryView.vue')
@@ -115,7 +116,7 @@ const router = createRouter({
         {
           path: 'admin-usuarios',
           name: 'admin-user-management',
-          component: AdminUserManagementView
+          component: UserManagementView
         },
         {
           path: 'container-detail-view',

@@ -171,5 +171,89 @@
       "addressRequired": "La dirección es requerida",
       "addressMinLength": "La dirección debe tener al menos 10 caracteres"
     }
+  },
+  "userManagement": {
+    "title": "Gestión de Usuarios",
+    "subtitle": "Administra los usuarios del sistema",
+    "search": "Buscar usuarios",
+    "searchPlaceholder": "Buscar por nombre, email o rol",
+    "addUser": "Agregar Usuario",
+    "editUser": "Editar Usuario",
+    "deleteUser": "Eliminar Usuario",
+    "confirmDelete": "Confirmar Eliminación",
+    "confirmDeleteMessage": "¿Estás seguro de que deseas eliminar al usuario {{name}}?",
+    "confirmStatusChange": "Confirmar Cambio de Estado",
+    "confirmStatusChangeMessage": "¿Estás seguro de que deseas {{action}} al usuario {{name}}?",
+    "confirm": "Confirmar",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "saveChanges": "Guardar Cambios",
+    "loading": "Cargando...",
+    "noUsers": "No se encontraron usuarios",
+    "table": {
+      "id": "ID",
+      "username": "Usuario",
+      "email": "Correo Electrónico",
+      "firstName": "Nombre",
+      "lastName": "Apellido",
+      "fullName": "Nombre Completo",
+      "roles": "Roles",
+      "status": "Estado",
+      "actions": "Acciones",
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "activate": "Activar",
+      "deactivate": "Desactivar"
+    },
+    "form": {
+      "username": "Usuario",
+      "usernamePlaceholder": "Ingresa el nombre de usuario",
+      "password": "Contraseña",
+      "passwordPlaceholder": "Ingresa la contraseña",
+      "email": "Correo Electrónico",
+      "emailPlaceholder": "Ingresa el correo electrónico",
+      "firstName": "Nombre",
+      "firstNamePlaceholder": "Ingresa el nombre",
+      "lastName": "Apellido",
+      "lastNamePlaceholder": "Ingresa el apellido",
+      "roles": "Roles",
+      "rolesPlaceholder": "Selecciona los roles",
+      "status": "Estado",
+      "active": "Activo",
+      "inactive": "Inactivo"
+    },
+    "roles": {
+      "ROLE_ADMIN": "Administrador",
+      "ROLE_OPERATOR": "Operador",
+      "ROLE_SUPERVISOR": "Supervisor",
+      "ROLE_CLIENT": "Cliente",
+      "ROLE_PROVIDER": "Proveedor"
+    },
+    "status": {
+      "active": "Activo",
+      "inactive": "Inactivo"
+    },
+    "messages": {
+      "userCreated": "Usuario creado exitosamente",
+      "userUpdated": "Usuario actualizado exitosamente",
+      "userDeleted": "Usuario eliminado exitosamente",
+      "userActivated": "Usuario activado exitosamente",
+      "userDeactivated": "Usuario desactivado exitosamente",
+      "errorCreating": "Error al crear el usuario",
+      "errorUpdating": "Error al actualizar el usuario",
+      "errorDeleting": "Error al eliminar el usuario",
+      "errorLoading": "Error al cargar los usuarios"
+    },
+    "validation": {
+      "usernameRequired": "El nombre de usuario es requerido",
+      "usernameMinLength": "El nombre de usuario debe tener al menos 3 caracteres",
+      "passwordRequired": "La contraseña es requerida",
+      "passwordMinLength": "La contraseña debe tener al menos 6 caracteres",
+      "emailRequired": "El correo electrónico es requerido",
+      "emailInvalid": "El correo electrónico no es válido",
+      "firstNameRequired": "El nombre es requerido",
+      "lastNameRequired": "El apellido es requerido",
+      "rolesRequired": "Al menos un rol debe ser seleccionado"
+    }
   }
 } 
