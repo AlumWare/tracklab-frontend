@@ -11,9 +11,7 @@ export class I18nLoaderService {
       // Load feature translations
       await this.loadFeatureTranslation(i18n, 'iam', locale);
       
-      // Add more features as needed
-      // await this.loadFeatureTranslation(i18n, 'orders', locale)
-      // await this.loadFeatureTranslation(i18n, 'home', locale)
+      // Add features as needed
       
     } catch (error) {
       console.error('Error loading translations:', error)
