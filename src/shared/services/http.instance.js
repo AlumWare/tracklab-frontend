@@ -2,8 +2,8 @@ import axios from 'axios';
 
 // Base configuration for axios instance
 const httpInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000/api',
-  timeout: 5000,
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api/v1',
+  timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
@@ -43,7 +43,7 @@ httpInstance.interceptors.response.use(
     console.log('✅ Response:', response.status, response.config.url, response.data);
     return response;
   },
-  (error) => {
+  async (error) => {
     console.error('❌ Response Error:', error.response?.status, error.config?.url, error.response?.data);
     
     // Specific error handling
@@ -52,10 +52,17 @@ httpInstance.interceptors.response.use(
       
       switch (status) {
         case 401:
-          // Expired or invalid token
+          // Expired or invalid token - clear auth and redirect to login
           localStorage.removeItem('accessToken');
           localStorage.removeItem('user');
-          window.location.href = '/login';
+          
+          // Use dynamic import to avoid circular dependency
+          const { useAuthStore } = await import('@/stores/auth.store');
+          const authStore = useAuthStore();
+          authStore.clearAuth();
+          
+          // Redirect to login
+          window.location.href = '/auth/login';
           break;
           
         case 403:

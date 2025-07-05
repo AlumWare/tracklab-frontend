@@ -1,0 +1,43 @@
+{
+  "common": {
+    "title": "Título",
+    "languageChanged": "Idioma cambiado a {lang}",
+    "loading": "Cargando...",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "create": "Crear",
+    "search": "Buscar",
+    "close": "Cerrar"
+  },
+  "sidebar": {
+    "menu": {
+      "home": {
+        "label": "Inicio",
+        "client": "Cliente",
+        "company": "Empresa"
+      },
+      "orders": {
+        "label": "Órdenes",
+        "create": "Crear Orden",
+        "history": "Historial",
+        "list": "Lista de Órdenes"
+      },
+      "admin": {
+        "label": "Administración",
+        "users": "Usuarios",
+        "vehicles": "Vehículos",
+        "warehouses": "Almacenes"
+      },
+      "containers": {
+        "label": "Contenedores",
+        "details": "Detalles",
+        "manage": "Gestionar"
+      },
+      "routePlanning": {
+        "label": "Planificación de Rutas"
+      }
+    }
+  }
+} 

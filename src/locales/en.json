@@ -34,54 +34,134 @@
   "login": {
     "title": "TrackLab",
     "slogan": "Real-time logistics tracking",
+    "username": "Username",
+    "usernamePlaceholder": "Enter your username",
     "email": "Email",
     "emailPlaceholder": "Enter your email",
     "password": "Password",
     "passwordPlaceholder": "Enter your password",
+    "rememberMe": "Remember me",
     "loginButton": "Login",
-    "registerCompany": "Register Company",
-    "registerUser": "Register User"
+    "registerButton": "Register",
+    "noAccount": "Don't have an account?",
+    "success": "Login successful",
+    "errors": {
+      "usernameRequired": "Username is required",
+      "usernameMinLength": "Username must be at least 3 characters",
+      "passwordRequired": "Password is required",
+      "passwordMinLength": "Password must be at least 6 characters",
+      "invalidCredentials": "Invalid credentials",
+      "accountBlocked": "Account blocked",
+      "tooManyAttempts": "Too many login attempts",
+      "serverError": "Server error",
+      "networkError": "Network error",
+      "generic": "Login error"
+    }
   },
-  "registerCompany": {
-    "title": "Company Registration",
-    "subtitle": "Complete your company information to get started",
-    "companyType": "Company Type",
-    "companyTypeHelp": "Select the type of company you want to register",
-    "client": "Client",
-    "logistics": "Logistics",
-    "companyName": "Company Name",
-    "companyNamePlaceholder": "Enter your company name",
-    "companyNameHelp": "Enter your company's legal name",
-    "ruc": "RUC",
-    "rucPlaceholder": "Enter your company's RUC",
-    "rucHelp": "Enter your company's RUC number (11 digits)",
-    "email": "Email",
-    "emailPlaceholder": "Enter email address",
-    "emailHelp": "Enter corporate email address",
-    "phone": "Phone",
-    "phonePlaceholder": "Enter phone number",
-    "phoneHelp": "Enter contact phone number",
-    "address": "Address",
-    "addressPlaceholder": "Enter your company address",
-    "addressHelp": "Enter your company's legal address",
-    "submitButton": "Register Company",
-    "alreadyHaveAccount": "Already have an account?",
-    "login": "Login",
-    "validation": {
-      "companyNameRequired": "Company name is required",
-      "companyNameMinLength": "Name must be at least 3 characters long",
+  "register": {
+    "subtitle": "Join TrackLab and start managing your logistics",
+    "back": "Back",
+    "next": "Next",
+    "submit": "Create Account",
+    "hasAccount": "Already have an account?",
+    "loginLink": "Login",
+    "acceptTerms": "I accept the terms and conditions",
+    "success": "Registration successful. You will be redirected to login.",
+    "steps": {
+      "selectType": "Company Type",
+      "companyInfo": "Company Information",
+      "userInfo": "User Information"
+    },
+    "step1": {
+      "title": "Select Company Type",
+      "description": "Choose the type of company that best describes your business to customize your experience."
+    },
+    "step2": {
+      "title": "Company Information",
+      "description": "Provide your company's basic details to complete the registration."
+    },
+    "step3": {
+      "title": "User Information",
+      "description": "Create your user account to access TrackLab."
+    },
+    "tenantTypes": {
+      "client": {
+        "title": "Client",
+        "description": "For companies that need to ship and track their products"
+      },
+      "provider": {
+        "title": "Provider",
+        "description": "For companies that supply products and services"
+      },
+      "logistic": {
+        "title": "Logistics",
+        "description": "For companies specialized in transportation and logistics"
+      }
+    },
+    "features": {
+      "orderTracking": "Order tracking",
+      "realTimeUpdates": "Real-time updates",
+      "reportGeneration": "Report generation",
+      "inventoryManagement": "Inventory management",
+      "orderFulfillment": "Order fulfillment",
+      "clientCommunication": "Client communication",
+      "routeOptimization": "Route optimization",
+      "fleetManagement": "Fleet management",
+      "operationMonitoring": "Operation monitoring"
+    },
+    "company": {
+      "ruc": "RUC",
+      "rucPlaceholder": "Enter your company's RUC",
+      "legalName": "Legal Name",
+      "legalNamePlaceholder": "Enter your company's legal name",
+      "commercialName": "Commercial Name",
+      "commercialNamePlaceholder": "Enter commercial name (optional)",
+      "email": "Company Email",
+      "emailPlaceholder": "Enter company email",
+      "phone": "Phone",
+      "phonePlaceholder": "Enter contact phone",
+      "website": "Website",
+      "websitePlaceholder": "Enter website (optional)",
+      "address": "Address",
+      "addressPlaceholder": "Enter company address",
+      "city": "City",
+      "cityPlaceholder": "Enter city",
+      "country": "Country",
+      "countryPlaceholder": "Enter country"
+    },
+    "user": {
+      "firstName": "First Name",
+      "firstNamePlaceholder": "Enter your first name",
+      "lastName": "Last Name",
+      "lastNamePlaceholder": "Enter your last name",
+      "email": "Email",
+      "emailPlaceholder": "Enter your email",
+      "username": "Username",
+      "usernamePlaceholder": "Enter your username",
+      "password": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "passwordConfirmation": "Confirm Password",
+      "passwordConfirmationPlaceholder": "Confirm your password"
+    },
+    "errors": {
       "rucRequired": "RUC is required",
-      "rucInvalid": "RUC must be 11 digits",
-      "rucExists": "This RUC is already registered",
-      "rucError": "Error validating RUC",
+      "rucInvalid": "RUC must be at least 8 characters",
+      "legalNameRequired": "Legal name is required",
+      "usernameRequired": "Username is required",
+      "usernameMinLength": "Username must be at least 3 characters",
       "emailRequired": "Email is required",
-      "emailInvalid": "Please enter a valid email address",
-      "emailExists": "This email is already registered",
-      "emailError": "Error validating email",
-      "phoneRequired": "Phone number is required",
-      "phoneInvalid": "Please enter a valid phone number (9 digits)",
-      "addressRequired": "Address is required",
-      "addressMinLength": "Address must be at least 10 characters long"
+      "emailInvalid": "Enter a valid email address",
+      "passwordRequired": "Password is required",
+      "passwordMinLength": "Password must be at least 6 characters",
+      "passwordConfirmationRequired": "Password confirmation is required",
+      "passwordMismatch": "Passwords do not match",
+      "acceptTermsRequired": "You must accept the terms and conditions",
+      "invalidData": "Invalid data",
+      "userExists": "User already exists",
+      "validationFailed": "Validation failed",
+      "serverError": "Server error",
+      "networkError": "Network error",
+      "generic": "Error creating account"
     }
   },
   "home": {
