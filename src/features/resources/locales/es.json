@@ -63,5 +63,95 @@
       "Provider": "Proveedor",
       "Logistics": "Logística"
     }
+  },
+  "vehicle": {
+    "management": {
+      "title": "Gestión de Vehículos",
+      "create": "Crear Vehículo",
+      "edit": "Editar Vehículo",
+      "viewModes": {
+        "table": "Vista de tabla",
+        "grid": "Vista de cuadrícula"
+      },
+      "filters": {
+        "status": {
+          "label": "Estado",
+          "all": "Todos los Estados"
+        }
+      },
+      "table": {
+        "image": "Imagen",
+        "licensePlate": "Placa",
+        "loadCapacity": "Capacidad de Carga",
+        "paxCapacity": "Capacidad de Pasajeros",
+        "status": "Estado",
+        "location": "Ubicación",
+        "actions": "Acciones"
+      },
+      "actions": {
+        "edit": "Editar",
+        "delete": "Eliminar",
+        "view": "Ver",
+        "uploadImages": "Gestionar Imágenes",
+        "viewImages": "Ver Imágenes"
+      },
+      "messages": {
+        "createSuccess": "Vehículo creado exitosamente",
+        "updateSuccess": "Vehículo actualizado exitosamente",
+        "deleteSuccess": "Vehículo eliminado exitosamente",
+        "imagesUploadSuccess": "Imágenes subidas exitosamente",
+        "loadError": "Error al cargar vehículos",
+        "saveError": "Error al guardar vehículo",
+        "deleteError": "Error al eliminar vehículo",
+        "uploadError": "Error al subir imágenes",
+        "deleteConfirm": "¿Estás seguro de que quieres eliminar este vehículo?",
+        "noVehicles": "No hay vehículos registrados",
+        "loading": "Cargando vehículos..."
+      }
+    },
+    "form": {
+      "title": "Información del Vehículo",
+      "licensePlate": "Placa",
+      "licensePlatePlaceholder": "Ingrese la placa del vehículo",
+      "loadCapacity": "Capacidad de Carga (Toneladas)",
+      "loadCapacityPlaceholder": "Ingrese la capacidad de carga",
+      "paxCapacity": "Capacidad de Pasajeros",
+      "paxCapacityPlaceholder": "Ingrese la capacidad de pasajeros",
+      "tonnage": "Tonelaje",
+      "tonnagePlaceholder": "Ingrese el tonelaje",
+      "status": "Estado",
+      "statusPlaceholder": "Seleccione el estado del vehículo",
+      "latitude": "Latitud",
+      "latitudePlaceholder": "Coordenadas GPS automáticas",
+      "longitude": "Longitud",
+      "longitudePlaceholder": "Coordenadas GPS automáticas",
+      "images": "Imágenes",
+      "gpsNote": "Las coordenadas GPS se actualizan automáticamente para el seguimiento del vehículo",
+      "selectLocation": "Seleccionar ubicación",
+      "mapHelp": "Haz clic en el mapa para seleccionar la ubicación o arrastra el marcador para ajustarla",
+      "save": "Guardar",
+      "cancel": "Cancelar",
+      "validation": {
+        "licensePlateRequired": "La placa es requerida",
+        "loadCapacityRequired": "La capacidad de carga es requerida",
+        "paxCapacityRequired": "La capacidad de pasajeros es requerida",
+        "tonnageRequired": "El tonelaje es requerido",
+        "statusRequired": "El estado es requerido",
+        "latitudeRequired": "La latitud es requerida",
+        "longitudeRequired": "La longitud es requerida",
+        "loadCapacityInvalid": "La capacidad de carga debe ser un número válido",
+        "paxCapacityInvalid": "La capacidad de pasajeros debe ser un número válido",
+        "tonnageInvalid": "El tonelaje debe ser un número válido",
+        "latitudeInvalid": "La latitud debe ser un número válido",
+        "longitudeInvalid": "La longitud debe ser un número válido"
+      }
+    },
+    "status": {
+      "Available": "Disponible",
+      "NotAvailable": "No Disponible",
+      "InUse": "En Uso",
+      "Maintenance": "Mantenimiento",
+      "OutOfService": "Fuera de Servicio"
+    }
   }
 }
