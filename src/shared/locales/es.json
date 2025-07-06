@@ -39,5 +39,27 @@
         "label": "Planificación de Rutas"
       }
     }
+  },
+  "fileUploader": {
+    "dragAndDrop": "Arrastra y suelta archivos aquí o",
+    "browse": "selecciona archivos",
+    "remove": "Eliminar imagen",
+    "errors": {
+      "singleFile": "Solo puedes subir un archivo",
+      "tooManyFiles": "No puedes subir más de {max} archivos",
+      "fileTooBig": "El archivo excede el tamaño máximo permitido de {maxSize}"
+    }
+  },
+  "camera": {
+    "capture": "Capturar",
+    "cancel": "Cancelar",
+    "switchCamera": "Cambiar cámara",
+    "errors": {
+      "notSupported": "La cámara no está soportada en este navegador",
+      "noCamera": "No se encontró ninguna cámara",
+      "permissionDenied": "Permiso denegado para acceder a la cámara",
+      "accessDenied": "No se pudo acceder a la cámara",
+      "captureError": "Error al capturar la foto"
+    }
   }
 } 

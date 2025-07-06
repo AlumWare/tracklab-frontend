@@ -10,17 +10,30 @@ $light-colors: (
   secondary-dark: #b3b8c5,
 
   success: #4caf50,
+  success-dark: #388e3c,
+  success-soft: #e8f5e8,
   error: #f44336,
+  error-soft: #ffebee,
   warning: #ff9800,
+  warning-soft: #fff3e0,
   info: #2196f3,
+  info-soft: #e3f2fd,
+  danger: #f44336,
+  danger-soft: #ffebee,
 
   background: #f4f7fa,
   background-secondary: #e9effc,
+  background-soft: #f8f9fa,
   surface: #fff,
   surface-dark: #f5f7fa,
   overlay: rgba(79, 140, 255, 0.08),
   glass: rgba(255,255,255,0.7),
-  shadow: 0 4px 24px rgba(79, 140, 255, 0.08)
+  shadow: 0 4px 24px rgba(79, 140, 255, 0.08),
+  
+  border: #e0e7ef,
+  text: #222b45,
+  text-soft: #6b6b6b,
+  heading: #222b45
 );
 
 $dark-colors: (
@@ -33,17 +46,30 @@ $dark-colors: (
   secondary-dark: #151a2e,
 
   success: #66bb6a,
+  success-dark: #4caf50,
+  success-soft: #2e7d32,
   error: #ef5350,
+  error-soft: #c62828,
   warning: #ffa726,
+  warning-soft: #f57c00,
   info: #29b6f6,
+  info-soft: #1976d2,
+  danger: #ef5350,
+  danger-soft: #c62828,
 
   background: #181c2f,
   background-secondary: #232946,
+  background-soft: #1e2139,
   surface: #232946,
   surface-dark: #151a2e,
   overlay: rgba(79, 140, 255, 0.12),
   glass: rgba(35,41,70,0.7),
-  shadow: 0 4px 24px rgba(79, 140, 255, 0.12)
+  shadow: 0 4px 24px rgba(79, 140, 255, 0.12),
+  
+  border: #3a3d5c,
+  text: #f5f5f5,
+  text-soft: #a1a1a1,
+  heading: #f5f5f5
 );
 
 // Gradientes

@@ -39,5 +39,27 @@
         "label": "Route Planning"
       }
     }
+  },
+  "fileUploader": {
+    "dragAndDrop": "Drag and drop files here or",
+    "browse": "browse files",
+    "remove": "Remove image",
+    "errors": {
+      "singleFile": "You can only upload one file",
+      "tooManyFiles": "You cannot upload more than {max} files",
+      "fileTooBig": "File exceeds maximum allowed size of {maxSize}"
+    }
+  },
+  "camera": {
+    "capture": "Capture",
+    "cancel": "Cancel",
+    "switchCamera": "Switch camera",
+    "errors": {
+      "notSupported": "Camera is not supported in this browser",
+      "noCamera": "No camera found",
+      "permissionDenied": "Permission denied to access camera",
+      "accessDenied": "Could not access camera",
+      "captureError": "Error capturing photo"
+    }
   }
 } 
