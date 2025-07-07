@@ -2,10 +2,6 @@
 import { RouterLink, RouterView } from 'vue-router'
 import { useThemeStore } from '@/stores/theme'
 import { onMounted } from 'vue'
-import LanguageSwitcher from '@/shared/components/language-switcher.component.vue'
-import MainLayout from '@/layouts/main-layout.component.vue'
-import LoginView from '@/core/guards/views/login.component.vue'
-import VehicleManagementView from '@/features/orders/views/vehicle-management-view.vue'
 import Snackbar from '@/shared/components/snackbar.vue'
 import { uxStore } from '@/core/services/ux.service.js'
 

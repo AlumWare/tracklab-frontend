@@ -141,7 +141,8 @@
 import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useOrderStore } from '@/stores/order.store'
-import { Order } from '../models/order.entity'
+import { OrderEntity } from '../models/order.entity'
+import { OrderStatus } from '../models/order-status.enum'
 
 const router = useRouter()
 const orderStore = useOrderStore()
@@ -154,35 +155,33 @@ const selectedOrder = computed(() => orderStore.getSelectedOrder)
 // Timeline dinámico según el estado de la orden
 const operations = computed(() => {
   if (!selectedOrder.value) return []
-  if (selectedOrder.value.status === Order.STATUS.PENDING) {
+  if (selectedOrder.value.status.isPending()) {
     return []
   }
+  
   const base = [
     {
       type: 'pickup',
-      title: 'Recogida de Materiales',
-      description: 'Recogida de materiales en almacén principal',
-      timestamp: '2024-06-10 09:00'
+      title: 'Recogida en almacén',
+      description: 'Los materiales han sido recogidos del almacén',
+      completed: true,
+      timestamp: '2024-06-01 09:00'
     },
     {
-      type: 'transfer',
-      title: 'Traslado',
-      description: 'Traslado de materiales a punto de distribución',
-      timestamp: '2024-06-10 11:30'
-    },
-    {
-      type: 'delivery',
-      title: 'Entrega Parcial',
-      description: 'Entrega de primera parte de materiales',
-      timestamp: '2024-06-10 14:00'
+      type: 'transit',
+      title: 'En tránsito',
+      description: 'Los materiales están siendo transportados',
+      completed: selectedOrder.value.status.isInProcess() || selectedOrder.value.status.isDelivered(),
+      timestamp: selectedOrder.value.status.isInProcess() || selectedOrder.value.status.isDelivered() ? '2024-06-01 10:30' : null
     }
   ]
-  if (selectedOrder.value.status === Order.STATUS.DELIVERED) {
+  if (selectedOrder.value.status.isDelivered()) {
     base.push({
       type: 'final',
-      title: 'Entrega Final',
-      description: 'Entrega completa de todos los materiales',
-      timestamp: '2024-06-10 16:00'
+      title: 'Entregado',
+      description: 'Los materiales han sido entregados exitosamente',
+      completed: true,
+      timestamp: '2024-06-01 14:00'
     })
   }
   return base
@@ -209,12 +208,7 @@ function viewPhotos(operation) {
 }
 
 function statusLabel(status) {
-  switch (status) {
-    case Order.STATUS.PENDING: return 'Pendiente'
-    case Order.STATUS.IN_PROCESS: return 'En Proceso'
-    case Order.STATUS.DELIVERED: return 'Entregado'
-    default: return status
-  }
+  return status.description
 }
 
 function progress(order) {

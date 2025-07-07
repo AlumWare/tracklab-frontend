@@ -153,5 +153,201 @@
       "Maintenance": "Mantenimiento",
       "OutOfService": "Fuera de Servicio"
     }
+  },
+  "products": {
+    "management": {
+      "title": "Gestión de Productos",
+      "create": "Crear Producto",
+      "edit": "Editar Producto",
+      "details": "Detalles del Producto"
+    },
+    "list": {
+      "title": "Productos",
+      "search": "Buscar productos",
+      "noResults": "No se encontraron productos",
+      "loadMore": "Cargar más"
+    },
+    "form": {
+      "name": "Nombre del Producto",
+      "description": "Descripción",
+      "price": "Precio",
+      "category": "Categoría",
+      "stock": "Stock",
+      "currency": "Moneda",
+      "images": "Imágenes",
+      "specifications": "Especificaciones",
+      "weight": "Peso (kg)",
+      "dimensions": "Dimensiones",
+      "manufacturer": "Fabricante"
+    },
+    "status": {
+      "inStock": "En Stock",
+      "lowStock": "Stock Bajo",
+      "outOfStock": "Sin Stock",
+      "discontinued": "Descontinuado"
+    },
+    "categories": {
+      "all": "Todas las Categorías",
+      "electronics": "Electrónicos",
+      "office": "Oficina",
+      "furniture": "Mobiliario",
+      "other": "Otros"
+    },
+    "actions": {
+      "select": "Seleccionar Producto",
+      "deselect": "Quitar de Selección",
+      "addToOrder": "Agregar a la Orden",
+      "removeFromOrder": "Quitar de la Orden",
+      "updateStock": "Actualizar Stock",
+      "viewDetails": "Ver Detalles"
+    },
+    "messages": {
+      "addedToOrder": "Producto agregado a la orden",
+      "removedFromOrder": "Producto quitado de la orden",
+      "stockUpdated": "Stock actualizado exitosamente"
+    },
+    "details": {
+      "specifications": "Especificaciones",
+      "stock": "Información de Stock",
+      "pricing": "Información de Precios",
+      "history": "Historial de Precios",
+      "related": "Productos Relacionados"
+    },
+    "errors": {
+      "loadFailed": "Error al cargar los productos",
+      "updateFailed": "Error al actualizar el producto",
+      "invalidPrice": "Precio inválido",
+      "invalidStock": "Cantidad de stock inválida"
+    },
+    "title": "Productos",
+    "list": "Lista de Productos",
+    "create": "Crear Producto",
+    "edit": "Editar Producto",
+    "details": "Detalles del Producto",
+    "fields": {
+      "name": "Nombre",
+      "description": "Descripción",
+      "price": "Precio",
+      "stock": "Stock",
+      "manufacturer": "Fabricante",
+      "category": "Categoría",
+      "dimensions": "Dimensiones",
+      "weight": "Peso",
+      "specifications": "Especificaciones",
+      "images": "Imágenes"
+    },
+    "status": {
+      "available": "Disponible",
+      "outOfStock": "Sin Stock",
+      "discontinued": "Descontinuado",
+      "lowStock": "Stock Bajo"
+    },
+    "actions": {
+      "add": "Agregar Producto",
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "view": "Ver Detalles",
+      "search": "Buscar Productos",
+      "filter": "Filtrar",
+      "sort": "Ordenar",
+      "upload": "Subir Imagen"
+    },
+    "messages": {
+      "createSuccess": "Producto creado exitosamente",
+      "updateSuccess": "Producto actualizado exitosamente",
+      "deleteSuccess": "Producto eliminado exitosamente",
+      "error": "Ha ocurrido un error",
+      "confirmDelete": "¿Está seguro que desea eliminar este producto?",
+      "noProducts": "No hay productos disponibles",
+      "loadingError": "Error al cargar los productos"
+    }
+  },
+  "resources": {
+    "products": {
+      "title": "Productos",
+      "list": "Lista de Productos",
+      "create": "Crear Producto",
+      "edit": "Editar Producto",
+      "details": "Detalles del Producto",
+      "fields": {
+        "name": "Nombre",
+        "description": "Descripción",
+        "price": "Precio",
+        "stock": "Stock",
+        "manufacturer": "Fabricante",
+        "category": "Categoría",
+        "dimensions": "Dimensiones",
+        "weight": "Peso",
+        "specifications": "Especificaciones",
+        "images": "Imágenes"
+      },
+      "status": {
+        "available": "Disponible",
+        "outOfStock": "Sin Stock",
+        "discontinued": "Descontinuado",
+        "lowStock": "Stock Bajo"
+      },
+      "actions": {
+        "add": "Agregar Producto",
+        "edit": "Editar",
+        "delete": "Eliminar",
+        "view": "Ver Detalles",
+        "search": "Buscar Productos",
+        "filter": "Filtrar",
+        "sort": "Ordenar",
+        "upload": "Subir Imagen"
+      },
+      "messages": {
+        "createSuccess": "Producto creado exitosamente",
+        "updateSuccess": "Producto actualizado exitosamente",
+        "deleteSuccess": "Producto eliminado exitosamente",
+        "error": "Ha ocurrido un error",
+        "confirmDelete": "¿Está seguro que desea eliminar este producto?",
+        "noProducts": "No hay productos disponibles",
+        "loadingError": "Error al cargar los productos"
+      }
+    },
+    "vehicles": {
+      "title": "Vehículos",
+      "list": "Lista de Vehículos",
+      "create": "Crear Vehículo",
+      "edit": "Editar Vehículo",
+      "details": "Detalles del Vehículo",
+      "fields": {
+        "licensePlate": "Placa",
+        "brand": "Marca",
+        "model": "Modelo",
+        "year": "Año",
+        "capacity": "Capacidad",
+        "status": "Estado",
+        "driver": "Conductor",
+        "location": "Ubicación"
+      },
+      "status": {
+        "active": "Activo",
+        "inactive": "Inactivo",
+        "maintenance": "En Mantenimiento",
+        "outOfService": "Fuera de Servicio"
+      },
+      "actions": {
+        "add": "Agregar Vehículo",
+        "edit": "Editar",
+        "delete": "Eliminar",
+        "view": "Ver Detalles",
+        "search": "Buscar Vehículos",
+        "filter": "Filtrar",
+        "sort": "Ordenar",
+        "upload": "Subir Imagen"
+      },
+      "messages": {
+        "createSuccess": "Vehículo creado exitosamente",
+        "updateSuccess": "Vehículo actualizado exitosamente",
+        "deleteSuccess": "Vehículo eliminado exitosamente",
+        "error": "Ha ocurrido un error",
+        "confirmDelete": "¿Está seguro que desea eliminar este vehículo?",
+        "noVehicles": "No hay vehículos disponibles",
+        "loadingError": "Error al cargar los vehículos"
+      }
+    }
   }
 }

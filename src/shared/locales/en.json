@@ -9,7 +9,11 @@
     "edit": "Edit",
     "create": "Create",
     "search": "Search",
-    "close": "Close"
+    "close": "Close",
+    "add": "Add",
+    "remove": "Remove",
+    "moveUp": "Move up",
+    "moveDown": "Move down"
   },
   "sidebar": {
     "menu": {

@@ -8,7 +8,7 @@ import { CreateUserRequest } from '@/features/iam/models/create-user.request.js'
  */
 export class UserService {
   constructor() {
-    this.baseUrl = '/Authentication/users';
+    this.baseUrl = 'v1/Authentication/users';
   }
 
   /**

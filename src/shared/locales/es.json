@@ -9,7 +9,11 @@
     "edit": "Editar",
     "create": "Crear",
     "search": "Buscar",
-    "close": "Cerrar"
+    "close": "Cerrar",
+    "add": "Agregar",
+    "remove": "Quitar",
+    "moveUp": "Subir",
+    "moveDown": "Bajar"
   },
   "sidebar": {
     "menu": {

@@ -366,5 +366,51 @@
       "createAnother": "Create Another Order",
       "viewOrders": "Go to Orders List"
     }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "view": "View",
+    "search": "Search",
+    "filter": "Filter",
+    "retry": "Retry",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "confirm": "Confirm",
+    "close": "Close",
+    "actions": "Actions",
+    "details": "Details",
+    "name": "Name",
+    "description": "Description",
+    "status": "Status",
+    "date": "Date",
+    "time": "Time",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "navigation": {
+    "home": "Home",
+    "orders": "Orders",
+    "tracking": "Tracking",
+    "resources": "Resources",
+    "billing": "Billing",
+    "settings": "Settings",
+    "profile": "Profile",
+    "logout": "Logout"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot Password?",
+    "rememberMe": "Remember Me"
   }
 }

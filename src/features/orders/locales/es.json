@@ -1,3 +1,157 @@
 {
-    
+  "orders": {
+    "order": "Orden",
+    "orderStatus": "Estado de la Orden",
+    "orderDetails": "Detalles de la Orden",
+    "orderItems": "Artículos de la Orden",
+    "createOrder": "Crear Orden",
+    "cancelOrder": "Cancelar Orden",
+    "trackOrder": "Rastrear Orden",
+    "viewDetails": "Ver Detalles",
+    "shippingInfo": "Información de Envío",
+    "orderSummary": "Resumen de la Orden",
+    "product": "Producto",
+    "quantity": "Cantidad",
+    "price": "Precio",
+    "totalPrice": "Precio Total",
+    "shippingAddress": "Dirección de Envío",
+    "orderDate": "Fecha de Orden",
+    "items": "artículo | artículos",
+    "noOrders": "No hay órdenes disponibles",
+    "loadingOrders": "Cargando órdenes...",
+    "orderCreatedSuccess": "¡Orden Creada Exitosamente!",
+    "orderCreatedMessage": "Tu orden ha sido creada y será procesada pronto.",
+    "orderCancelledSuccess": "Orden cancelada exitosamente",
+    "orderUpdatedSuccess": "Orden actualizada exitosamente",
+    "cancelOrderTitle": "Cancelar Orden",
+    "cancelOrderMessage": "¿Estás seguro de que deseas cancelar la orden #{orderId}?",
+    "createOrderTitle": "Crear Nueva Orden",
+    "selectProducts": "Seleccionar Productos",
+    "addToOrder": "Agregar a la Orden",
+    "removeFromOrder": "Quitar de la Orden",
+    "orderTotal": "Total de la Orden",
+    "proceedToCheckout": "Proceder al Pago",
+    "orderConfirmation": "Confirmación de Orden",
+    "thankYouForOrder": "¡Gracias por tu orden!",
+    "estimatedDelivery": "Entrega Estimada",
+    "trackingNumber": "Número de Seguimiento",
+    "orderHistory": "Historial de Órdenes",
+    "recentOrders": "Órdenes Recientes",
+    "allOrders": "Todas las Órdenes",
+    "filterByStatus": "Filtrar por Estado",
+    "searchOrders": "Buscar Órdenes",
+    "sortBy": "Ordenar Por",
+    "orderNumber": "Número de Orden",
+    "customer": "Cliente",
+    "logistics": "Logística",
+    "orderPlaced": "Orden Realizada",
+    "orderConfirmed": "Orden Confirmada",
+    "orderShipped": "Orden Enviada",
+    "orderDelivered": "Orden Entregada",
+    "orderCancelled": "Orden Cancelada",
+    "createFirstOrder": "Crea tu primera orden para comenzar",
+    "totalOrders": "Total de Órdenes",
+    "pendingOrders": "Órdenes Pendientes",
+    "totalSpent": "Total Gastado",
+    "errorLoadingOrders": "Error al cargar las órdenes",
+    "errorCancellingOrder": "Error al cancelar la orden",
+    "deliveryDate": "Fecha de Entrega",
+    "logisticsCompany": "Empresa Logística",
+    "totalItems": "Total de Artículos",
+    "createAnother": "Crear Otra Orden",
+    "viewOrders": "Ver Mis Órdenes",
+    "form": {
+      "addressPlaceholder": "Ingresa la dirección de entrega",
+      "selectLogisticsPlaceholder": "Selecciona una empresa logística"
+    },
+    "error": {
+      "createFailed": "Error al crear la orden. Por favor, intenta nuevamente."
+    }
+  },
+  "orderCreation": {
+    "steps": {
+      "logistics": "Logística",
+      "items": "Productos",
+      "summary": "Resumen"
+    },
+    "logistics": {
+      "title": "Seleccionar Empresa Logística",
+      "selectPlaceholder": "Selecciona una empresa logística"
+    },
+    "items": {
+      "title": "Agregar Productos",
+      "delivery": {
+        "address": "Dirección de Entrega",
+        "addressPlaceholder": "Ingresa la dirección de entrega",
+        "date": "Fecha de Entrega"
+      },
+      "table": {
+        "description": "Descripción",
+        "quantity": "Cantidad",
+        "weight": "Peso",
+        "actions": "Acciones"
+      },
+      "descriptionPlaceholder": "Descripción del producto",
+      "addItem": "Agregar Producto",
+      "removeItem": "Eliminar"
+    },
+    "summary": {
+      "title": "Resumen de la Orden",
+      "logisticsCompany": "Empresa Logística",
+      "totalItems": "Total de Productos",
+      "totalWeight": "Peso Total",
+      "includedItems": "Productos Incluidos"
+    },
+    "navigation": {
+      "previous": "Anterior",
+      "next": "Siguiente",
+      "submit": "Crear Orden"
+    },
+    "success": {
+      "title": "¡Orden Creada Exitosamente!",
+      "message": "Tu orden ha sido creada y enviada al proveedor logístico",
+      "viewOrders": "Ver Mis Órdenes"
+    },
+    "error": {
+      "message": "Error al crear la orden. Inténtalo de nuevo."
+    }
+  },
+  "common": {
+    "confirm": "Confirmar",
+    "cancel": "Cancelar",
+    "accept": "Aceptar",
+    "save": "Guardar",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "create": "Crear",
+    "update": "Actualizar",
+    "close": "Cerrar",
+    "back": "Volver",
+    "next": "Siguiente",
+    "previous": "Anterior",
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "Éxito",
+    "warning": "Advertencia",
+    "info": "Información",
+    "noData": "No hay datos disponibles",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "sort": "Ordenar",
+    "toggleDetails": "Alternar Detalles",
+    "expand": "Expandir",
+    "collapse": "Contraer",
+    "actions": "Acciones",
+    "status": "Estado",
+    "date": "Fecha",
+    "total": "Total",
+    "subtotal": "Subtotal",
+    "tax": "Impuesto",
+    "shipping": "Envío",
+    "discount": "Descuento",
+    "showing": "Mostrando",
+    "of": "de",
+    "noResults": "No se encontraron resultados",
+    "required": "Este campo es requerido"
+  }
 }

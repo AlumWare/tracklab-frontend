@@ -7,7 +7,7 @@ import { WarehouseResource } from '../models/warehouse.resource.js'
  */
 export class WarehouseService {
   constructor() {
-    this.baseUrl = '/warehouses'
+    this.baseUrl = 'v1/warehouses'
   }
 
   /**

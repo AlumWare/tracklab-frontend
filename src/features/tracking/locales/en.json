@@ -1,3 +1,63 @@
 {
-    
+  "routePlanning": {
+    "planTab": "Plan",
+    "savedTab": "Saved",
+    "selectWarehouse": "Select warehouse",
+    "routeNodes": "Route nodes",
+    "saveRoute": "Save route",
+    "savedRoutes": "Saved routes",
+    "visualization": "Route visualization",
+    "visualizationPlaceholder": "The route will be visualized here graphically",
+    "vehicle": "Vehicle",
+    "plannedStartDate": "Planned Start Date",
+    "totalWarehouses": "Total Warehouses",
+    "progress": "Progress",
+    "addWarehouseSuccess": "Warehouse added to route",
+    "removeWarehouseSuccess": "Warehouse removed from route",
+    "routeSaved": "Route saved successfully",
+    "routeName": "Route name",
+    "routeNamePlaceholder": "E.g. Lima - Arequipa Route",
+    "description": "Description",
+    "descriptionPlaceholder": "Brief description of the route",
+    "selectVehicle": "Select a vehicle",
+    "completeAllFields": "Complete all fields and select at least one warehouse and one order to save the route.",
+    "routeLoaded": "Route loaded successfully",
+    "add": "Add",
+    "remove": "Remove",
+    "plan": "Plan",
+    "saved": "Saved",
+    "plannedDate": "Planned date",
+    "errorLoadingData": "Error loading data",
+    "errorSavingRoute": "Error saving route",
+    "errorLoadingRoute": "Error loading route",
+    "noSavedRoutes": "No saved routes",
+    "selectOrders": "Select orders",
+    "searchOrders": "Search orders...",
+    "searchWarehouses": "Search warehouses...",
+    "allStatuses": "All statuses",
+    "allTypes": "All types",
+    "noOrdersAvailable": "No orders available",
+    "noWarehousesAvailable": "No warehouses available",
+    "selectedOrders": "Selected orders",
+    "routeData": "Route data",
+    "summary": "Summary",
+    "plannedStartDatePlaceholder": "Select a date and time"
+  },
+  "orders": {
+    "status": {
+      "pending": "Pending",
+      "inTransit": "In Transit",
+      "delivered": "Delivered"
+    },
+    "customer": "Customer",
+    "items": "items",
+    "noAddress": "No address"
+  },
+  "warehouses": {
+    "type": {
+      "distribution": "Distribution",
+      "storage": "Storage",
+      "fulfillment": "Fulfillment"
+    }
+  }
 }

@@ -9,19 +9,17 @@ const AuthLayout = () => import('../layouts/auth-layout.component.vue')
 const LoginView = () => import('../features/iam/views/login.component.vue')
 const RegisterView = () => import('../features/iam/views/register.component.vue')
 const VehicleManagementView = () => import('@/features/resources/views/manage-vehicles.component.vue')
-const AdminUserManagementView = () => import('@/features/orders/views/admin-user-management-view.vue')
 const UserManagementView = () => import('../features/iam/views/user-management.component.vue')
 const OrderDetailsView = () => import('@/features/orders/views/OrderDetailsView.vue')
-const ClientOrderCreationView = () => import('@/features/orders/views/ClientOrderCreationView.vue')
+const ClientOrderCreationView = () => import('@/features/orders/views/client-create-order.component.vue')
 const OperationHistoryView = () => import('@/features/orders/views/OperationHistoryView.vue')
 const OperationExecutionView = () => import('@/features/orders/views/OperationExecutionView.vue')
-const routePlanningView = () => import('@/features/orders/views/route-planning-view.vue')
+const RoutePlanningView = () => import('@/features/tracking/views/route-planning.component.vue')
 const ClientHomeView = () => import('@/features/home/views/client-home.view.vue')
 const LogisticsHomeView = () => import('@/features/home/views/logistics-home.view.vue')
 const ContainerDetailView = () => import('@/features/orders/views/ContainerDetailView.vue')
 const RegisterCompanyView = () => import('@/features/iam/components/register-company-view.component.vue')
 const SubscriptionPlanComponent = () => import('@/core/guards/views/subscription-plan.component.vue')
-const WareHouseManagementView = () => import('@/features/orders/views/ware-house-management-view.vue')
 const WarehouseManagementView = () => import('@/features/resources/views/manage-warehouses.component.vue')
 
 const router = createRouter({
@@ -102,7 +100,7 @@ const router = createRouter({
         {
           path: 'orders',
           name: 'client-orders',
-          component: () => import('@/features/orders/views/ClientOrderListView.vue')
+          component: () => import('@/features/orders/views/client-order-list.component.vue')
         },
         {
           path: 'orders/create',
@@ -135,6 +133,11 @@ const router = createRouter({
           component: OrderDetailsView
         },
         {
+          path: 'orders/:id/tracking',
+          name: 'order-tracking',
+          component: () => import('@/features/tracking/views/OrderTrackingView.vue')
+        },
+        {
           path: 'vehiculos',
           name: 'vehicle-management',
           component: VehicleManagementView
@@ -147,7 +150,7 @@ const router = createRouter({
         {
           path: 'route-planing-view',
           name: 'route-planing-view',
-          component: routePlanningView
+          component: RoutePlanningView
         },
         {
           path: 'styles',

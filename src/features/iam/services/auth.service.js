@@ -10,7 +10,7 @@ import { Role } from '../models/roles.enum';
  * Authentication service for handling user authentication
  */
 export class AuthService {
-  static API_BASE = '/Authentication';
+  static API_BASE = 'v1/Authentication';
 
   /**
    * Sign in user

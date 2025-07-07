@@ -1,36 +1,37 @@
 import { defineStore } from 'pinia'
-import { Order } from '@/features/orders/models/order.entity'
+import { OrderEntity } from '@/features/orders/models/order.entity'
+import { OrderStatus } from '@/features/orders/models/order-status.enum'
 
 export const useOrderStore = defineStore('order', {
   state: () => ({
     orders: [
-      new Order({
+      new OrderEntity({
         id: 1,
-        status: Order.STATUS.PENDING,
+        status: OrderStatus.Pending,
         date: '2024-06-01',
         materials: [
-          { name: 'Filtros para maquinaria pesada', quantity: 60, unit: 'unidades', delivered: 0 },
-          { name: 'Filtros de aire', quantity: 30, unit: 'unidades', delivered: 0 }
+          { name: 'Cemento', quantity: 50, unit: 'sacos' },
+          { name: 'Arena', quantity: 2, unit: 'm³' }
         ],
-        destination: 'Proyecto Minero Cerro Verde – Arequipa',
-        totalItems: 90,
+        totalPrice: 4250.00,
+        shippingAddress: 'Av. Lima 123, San Isidro',
         deliveredItems: 0
       }),
-      new Order({
+      new OrderEntity({
         id: 2,
-        status: Order.STATUS.IN_PROCESS,
+        status: OrderStatus.InProcess,
         date: '2024-06-02',
         materials: [
-          { name: 'Paneles de drywall', quantity: 100, unit: 'paneles', delivered: 20 },
-          { name: 'Pernos de anclaje', quantity: 200, unit: 'unidades', delivered: 0 }
+          { name: 'Ladrillos', quantity: 1000, unit: 'unidades' },
+          { name: 'Cemento', quantity: 30, unit: 'sacos' }
         ],
-        destination: 'Almacén de materiales – San Juan de Lurigancho',
-        totalItems: 300,
+        totalPrice: 5500.00,
+        shippingAddress: 'Jr. Arequipa 456, Miraflores',
         deliveredItems: 20
       }),
-      new Order({
+      new OrderEntity({
         id: 3,
-        status: Order.STATUS.IN_PROCESS,
+        status: OrderEntity.STATUS.IN_PROCESS,
         date: '2024-06-03',
         materials: [
           { name: 'Ladrillos King Kong', quantity: 1000, unit: 'unidades', delivered: 150 },
@@ -40,9 +41,9 @@ export const useOrderStore = defineStore('order', {
         totalItems: 1500,
         deliveredItems: 650
       }),
-      new Order({
+      new OrderEntity({
         id: 4,
-        status: Order.STATUS.PENDING,
+        status: OrderEntity.STATUS.PENDING,
         date: '2024-06-04',
         materials: [
           { name: 'Puertas de madera', quantity: 20, unit: 'puertas', delivered: 0 },
@@ -52,9 +53,9 @@ export const useOrderStore = defineStore('order', {
         totalItems: 70,
         deliveredItems: 0
       }),
-      new Order({
+      new OrderEntity({
         id: 5,
-        status: Order.STATUS.IN_PROCESS,
+        status: OrderEntity.STATUS.IN_PROCESS,
         date: '2024-06-05',
         materials: [
           { name: 'Tuberías de PVC', quantity: 20, unit: 'tubos', delivered: 10 },
@@ -64,9 +65,9 @@ export const useOrderStore = defineStore('order', {
         totalItems: 120,
         deliveredItems: 60
       }),
-      new Order({
+      new OrderEntity({
         id: 6,
-        status: Order.STATUS.PENDING,
+        status: OrderEntity.STATUS.PENDING,
         date: '2024-06-06',
         materials: [
           { name: 'Ladrillos King Kong', quantity: 500, unit: 'unidades', delivered: 0 },
@@ -76,9 +77,9 @@ export const useOrderStore = defineStore('order', {
         totalItems: 510,
         deliveredItems: 0
       }),
-      new Order({
+      new OrderEntity({
         id: 7,
-        status: Order.STATUS.IN_PROCESS,
+        status: OrderEntity.STATUS.IN_PROCESS,
         date: '2024-06-07',
         materials: [
           { name: 'Paneles de drywall', quantity: 50, unit: 'paneles', delivered: 0 },
@@ -88,9 +89,9 @@ export const useOrderStore = defineStore('order', {
         totalItems: 100,
         deliveredItems: 40
       }),
-      new Order({
+      new OrderEntity({
         id: 8,
-        status: Order.STATUS.DELIVERED,
+        status: OrderEntity.STATUS.DELIVERED,
         date: '2024-06-08',
         materials: [
           { name: 'Filtros para maquinaria pesada', quantity: 10, unit: 'unidades', delivered: 10 },
@@ -100,9 +101,9 @@ export const useOrderStore = defineStore('order', {
         totalItems: 20,
         deliveredItems: 20
       }),
-      new Order({
+      new OrderEntity({
         id: 9,
-        status: Order.STATUS.DELIVERED,
+        status: OrderEntity.STATUS.DELIVERED,
         date: '2024-06-09',
         materials: [
           { name: 'Varillas de acero', quantity: 100, unit: 'varillas', delivered: 100 },
@@ -112,9 +113,9 @@ export const useOrderStore = defineStore('order', {
         totalItems: 110,
         deliveredItems: 110
       }),
-      new Order({
+      new OrderEntity({
         id: 10,
-        status: Order.STATUS.DELIVERED,
+        status: OrderEntity.STATUS.DELIVERED,
         date: '2024-06-10',
         materials: [
           { name: 'Puertas de madera', quantity: 5, unit: 'puertas', delivered: 5 },
@@ -131,9 +132,9 @@ export const useOrderStore = defineStore('order', {
   getters: {
     getOrders: (state) => state.orders,
     getSelectedOrder: (state) => state.selectedOrder,
-    getPendingOrders: (state) => state.orders.filter(order => order.status === Order.STATUS.PENDING),
-    getInProcessOrders: (state) => state.orders.filter(order => order.status === Order.STATUS.IN_PROCESS),
-    getDeliveredOrders: (state) => state.orders.filter(order => order.status === Order.STATUS.DELIVERED)
+    getPendingOrders: (state) => state.orders.filter(order => order.status === OrderEntity.STATUS.PENDING),
+    getInProcessOrders: (state) => state.orders.filter(order => order.status === OrderEntity.STATUS.IN_PROCESS),
+    getDeliveredOrders: (state) => state.orders.filter(order => order.status === OrderEntity.STATUS.DELIVERED)
   },
 
   actions: {
@@ -142,13 +143,13 @@ export const useOrderStore = defineStore('order', {
     },
 
     addOrder(order) {
-      this.orders.push(new Order(order))
+      this.orders.push(new OrderEntity(order))
     },
 
     updateOrder(orderId, updatedData) {
       const index = this.orders.findIndex(order => order.id === orderId)
       if (index !== -1) {
-        this.orders[index] = new Order({ ...this.orders[index], ...updatedData })
+        this.orders[index] = new OrderEntity({ ...this.orders[index], ...updatedData })
       }
     },
 

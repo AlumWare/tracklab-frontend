@@ -1,3 +1,157 @@
 {
-    
+  "orders": {
+    "order": "Order",
+    "orderStatus": "Order Status",
+    "orderDetails": "Order Details",
+    "orderItems": "Order Items",
+    "createOrder": "Create Order",
+    "cancelOrder": "Cancel Order",
+    "trackOrder": "Track Order",
+    "viewDetails": "View Details",
+    "shippingInfo": "Shipping Info",
+    "orderSummary": "Order Summary",
+    "product": "Product",
+    "quantity": "Quantity",
+    "price": "Price",
+    "totalPrice": "Total Price",
+    "shippingAddress": "Shipping Address",
+    "orderDate": "Order Date",
+    "items": "item | items",
+    "noOrders": "No orders available",
+    "loadingOrders": "Loading orders...",
+    "orderCreatedSuccess": "Order Created Successfully!",
+    "orderCreatedMessage": "Your order has been created and will be processed soon.",
+    "orderCancelledSuccess": "Order cancelled successfully",
+    "orderUpdatedSuccess": "Order updated successfully",
+    "cancelOrderTitle": "Cancel Order",
+    "cancelOrderMessage": "Are you sure you want to cancel order #{orderId}?",
+    "createOrderTitle": "Create New Order",
+    "selectProducts": "Select Products",
+    "addToOrder": "Add to Order",
+    "removeFromOrder": "Remove from Order",
+    "orderTotal": "Order Total",
+    "proceedToCheckout": "Proceed to Checkout",
+    "orderConfirmation": "Order Confirmation",
+    "thankYouForOrder": "Thank you for your order!",
+    "estimatedDelivery": "Estimated Delivery",
+    "trackingNumber": "Tracking Number",
+    "orderHistory": "Order History",
+    "recentOrders": "Recent Orders",
+    "allOrders": "All Orders",
+    "filterByStatus": "Filter by Status",
+    "searchOrders": "Search Orders",
+    "sortBy": "Sort By",
+    "orderNumber": "Order Number",
+    "customer": "Customer",
+    "logistics": "Logistics",
+    "orderPlaced": "Order Placed",
+    "orderConfirmed": "Order Confirmed",
+    "orderShipped": "Order Shipped",
+    "orderDelivered": "Order Delivered",
+    "orderCancelled": "Order Cancelled",
+    "createFirstOrder": "Create your first order to get started",
+    "totalOrders": "Total Orders",
+    "pendingOrders": "Pending Orders",
+    "totalSpent": "Total Spent",
+    "errorLoadingOrders": "Error loading orders",
+    "errorCancellingOrder": "Error cancelling order",
+    "deliveryDate": "Delivery Date",
+    "logisticsCompany": "Logistics Company",
+    "totalItems": "Total Items",
+    "createAnother": "Create Another Order",
+    "viewOrders": "View My Orders",
+    "form": {
+      "addressPlaceholder": "Enter delivery address",
+      "selectLogisticsPlaceholder": "Select a logistics company"
+    },
+    "error": {
+      "createFailed": "Error creating order. Please try again."
+    }
+  },
+  "orderCreation": {
+    "steps": {
+      "logistics": "Logistics",
+      "items": "Products",
+      "summary": "Summary"
+    },
+    "logistics": {
+      "title": "Select Logistics Company",
+      "selectPlaceholder": "Select a logistics company"
+    },
+    "items": {
+      "title": "Add Products",
+      "delivery": {
+        "address": "Delivery Address",
+        "addressPlaceholder": "Enter delivery address",
+        "date": "Delivery Date"
+      },
+      "table": {
+        "description": "Description",
+        "quantity": "Quantity",
+        "weight": "Weight",
+        "actions": "Actions"
+      },
+      "descriptionPlaceholder": "Product description",
+      "addItem": "Add Product",
+      "removeItem": "Remove"
+    },
+    "summary": {
+      "title": "Order Summary",
+      "logisticsCompany": "Logistics Company",
+      "totalItems": "Total Products",
+      "totalWeight": "Total Weight",
+      "includedItems": "Included Products"
+    },
+    "navigation": {
+      "previous": "Previous",
+      "next": "Next",
+      "submit": "Create Order"
+    },
+    "success": {
+      "title": "Order Created Successfully!",
+      "message": "Your order has been created and sent to the logistics provider",
+      "viewOrders": "View My Orders"
+    },
+    "error": {
+      "message": "Error creating order. Please try again."
+    }
+  },
+  "common": {
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "accept": "Accept",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "create": "Create",
+    "update": "Update",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "warning": "Warning",
+    "info": "Information",
+    "noData": "No data available",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "toggleDetails": "Toggle Details",
+    "expand": "Expand",
+    "collapse": "Collapse",
+    "actions": "Actions",
+    "status": "Status",
+    "date": "Date",
+    "total": "Total",
+    "subtotal": "Subtotal",
+    "tax": "Tax",
+    "shipping": "Shipping",
+    "discount": "Discount",
+    "showing": "Showing",
+    "of": "of",
+    "noResults": "No results found",
+    "required": "This field is required"
+  }
 }

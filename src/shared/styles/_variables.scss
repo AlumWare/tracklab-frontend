@@ -116,3 +116,93 @@ $spacing-xl: 3rem;
 // Transiciones
 $transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 $transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+
+// Colors
+$color-primary: #1976d2;
+$color-primary-light: #42a5f5;
+$color-primary-dark: #1565c0;
+
+$color-secondary: #f50057;
+$color-secondary-light: #ff4081;
+$color-secondary-dark: #c51162;
+
+$color-success: #4caf50;
+$color-error: #f44336;
+$color-warning: #ff9800;
+$color-info: #2196f3;
+
+// Text Colors - Mejorado el contraste
+$color-text-primary: #212121;
+$color-text-secondary: #757575;
+$color-text-disabled: #9e9e9e;
+$color-text-inverse: #ffffff;
+
+// Background Colors
+$color-background-primary: #fafafa;
+$color-background-secondary: #f5f5f5;
+$color-background-card: #ffffff;
+$color-background-selected: #e3f2fd;
+$color-background-hover: #f0f0f0;
+$color-background-disabled: #eeeeee;
+
+// Border Colors
+$color-border: #e0e0e0;
+$color-border-focus: $color-primary;
+$color-border-error: $color-error;
+
+// Button Colors
+$color-button-primary: $color-primary;
+$color-button-secondary: $color-secondary;
+$color-button-disabled: $color-text-disabled;
+$color-button-text: $color-text-inverse;
+
+// Shadows
+$shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.1);
+
+:root {
+  // Colors
+  --color-primary: #{$color-primary};
+  --color-primary-light: #{$color-primary-light};
+  --color-primary-dark: #{$color-primary-dark};
+  
+  --color-secondary: #{$color-secondary};
+  --color-secondary-light: #{$color-secondary-light};
+  --color-secondary-dark: #{$color-secondary-dark};
+  
+  --color-success: #{$color-success};
+  --color-error: #{$color-error};
+  --color-warning: #{$color-warning};
+  --color-info: #{$color-info};
+  
+  // Text Colors
+  --color-text-primary: #{$color-text-primary};
+  --color-text-secondary: #{$color-text-secondary};
+  --color-text-disabled: #{$color-text-disabled};
+  --color-text-inverse: #{$color-text-inverse};
+  
+  // Background Colors
+  --color-background-primary: #{$color-background-primary};
+  --color-background-secondary: #{$color-background-secondary};
+  --color-background-card: #{$color-background-card};
+  --color-background-selected: #{$color-background-selected};
+  --color-background-hover: #{$color-background-hover};
+  --color-background-disabled: #{$color-background-disabled};
+  
+  // Border Colors
+  --color-border: #{$color-border};
+  --color-border-focus: #{$color-border-focus};
+  --color-border-error: #{$color-border-error};
+  
+  // Button Colors
+  --color-button-primary: #{$color-button-primary};
+  --color-button-secondary: #{$color-button-secondary};
+  --color-button-disabled: #{$color-button-disabled};
+  --color-button-text: #{$color-button-text};
+  
+  // Shadows
+  --shadow-sm: #{$shadow-sm};
+  --shadow-md: #{$shadow-md};
+  --shadow-lg: #{$shadow-lg};
+}

@@ -7,7 +7,7 @@ import { VehicleResource, VehicleImageResource, CreateVehicleResource } from '..
  */
 export class VehicleService {
   constructor() {
-    this.baseUrl = '/vehicles';
+    this.baseUrl = 'v1/vehicles';
   }
 
   /**

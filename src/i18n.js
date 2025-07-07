@@ -1,6 +1,7 @@
 import { createI18n } from "vue-i18n";
 import { LocalStorageService } from '@/core/services/local-storage.service';
 import { I18nLoaderService } from '@/shared/services/i18n-loader.service';
+import { LanguageService } from '@/core/services/language.service';
 
 const STORAGE_KEY = 'preferredLanguage';
 const DEFAULT_LANGUAGE = 'en';
@@ -12,6 +13,9 @@ const i18n = createI18n({
   globalInjection: true,
   messages: {}
 });
+
+// Initialize LanguageService with i18n instance
+LanguageService.initialize(i18n);
 
 // Load translations asynchronously
 I18nLoaderService.loadAllTranslations(i18n);
