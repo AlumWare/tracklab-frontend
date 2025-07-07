@@ -11,9 +11,9 @@
         />
         <select v-model="typeFilter" class="type-filter">
           <option value="">{{ t('routePlanning.allTypes') }}</option>
-          <option value="DISTRIBUTION">{{ t('warehouses.type.distribution') }}</option>
-          <option value="STORAGE">{{ t('warehouses.type.storage') }}</option>
-          <option value="FULFILLMENT">{{ t('warehouses.type.fulfillment') }}</option>
+          <option value="Client">{{ t('warehouse.types.Client') }}</option>
+          <option value="Provider">{{ t('warehouse.types.Provider') }}</option>
+          <option value="Logistics">{{ t('warehouse.types.Logistics') }}</option>
         </select>
       </div>
     </div>
@@ -32,7 +32,7 @@
           <div class="warehouse-info">
             <div class="warehouse-header">
               <span class="name">{{ warehouse.name }}</span>
-              <span class="type">{{ t(`warehouses.type.${warehouse.type.toLowerCase()}`) }}</span>
+              <span class="type">{{ t(`warehouse.types.${warehouse.type}`) }}</span>
             </div>
             <div class="warehouse-address">
               {{ warehouse.address }}

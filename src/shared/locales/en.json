@@ -13,7 +13,8 @@
     "add": "Add",
     "remove": "Remove",
     "moveUp": "Move up",
-    "moveDown": "Move down"
+    "moveDown": "Move down",
+    "load": "Load"
   },
   "sidebar": {
     "menu": {

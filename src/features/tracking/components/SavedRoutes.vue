@@ -1,6 +1,6 @@
 <template>
   <div class="saved-routes">
-    <h4>{{ t('tracking.routePlanning.savedRoutes') }}</h4>
+    <h4>{{ t('routePlanning.savedRoutes') }}</h4>
     <div v-if="loading" class="loading">
       {{ t('common.loading') }}
     </div>
