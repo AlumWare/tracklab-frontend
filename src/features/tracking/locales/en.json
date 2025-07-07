@@ -59,5 +59,19 @@
       "storage": "Storage",
       "fulfillment": "Fulfillment"
     }
+  },
+  "qrScanner": {
+    "title": "Scan QR Code",
+    "useCamera": "Use Camera",
+    "uploadFile": "Upload Image",
+    "startScan": "Start Camera Scan",
+    "scanning": "Scanning...",
+    "cancel": "Cancel",
+    "success": "QR scanned successfully",
+    "scanAgain": "Scan Again",
+    "invalidQR": "Invalid QR code. Only numeric codes are allowed.",
+    "error": "Error scanning QR code.",
+    "cameraError": "Camera access denied or not available.",
+    "processImage": "Process Image"
   }
 }

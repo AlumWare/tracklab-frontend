@@ -213,5 +213,19 @@
       "storage": "Almacenaje",
       "fulfillment": "Cumplimiento"
     }
+  },
+  "qrScanner": {
+    "title": "Escanear código QR",
+    "useCamera": "Usar cámara",
+    "uploadFile": "Subir imagen",
+    "startScan": "Iniciar escaneo con cámara",
+    "scanning": "Escaneando...",
+    "cancel": "Cancelar",
+    "success": "QR escaneado correctamente",
+    "scanAgain": "Escanear de nuevo",
+    "invalidQR": "Código QR inválido. Solo se permiten códigos numéricos.",
+    "error": "Error al escanear el código QR.",
+    "cameraError": "Acceso a la cámara denegado o no disponible.",
+    "processImage": "Procesar imagen"
   }
 }

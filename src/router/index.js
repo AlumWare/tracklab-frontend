@@ -21,6 +21,7 @@ const ContainerDetailView = () => import('@/features/orders/views/ContainerDetai
 const RegisterCompanyView = () => import('@/features/iam/components/register-company-view.component.vue')
 const SubscriptionPlanComponent = () => import('@/core/guards/views/subscription-plan.component.vue')
 const WarehouseManagementView = () => import('@/features/resources/views/manage-warehouses.component.vue')
+const testComponent = () => import('@/features/tracking/views/test.component.vue')
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -120,7 +121,7 @@ const router = createRouter({
         {
           path: 'container-detail-view',
           name: 'container-detail-view',
-          component: ContainerDetailView
+          component: testComponent
         },
         {
           path: 'operation-execution-view',
