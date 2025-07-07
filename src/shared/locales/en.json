@@ -18,31 +18,25 @@
   },
   "sidebar": {
     "menu": {
-      "home": {
-        "label": "Home",
-        "client": "Client",
-        "company": "Company"
-      },
-      "orders": {
-        "label": "Orders",
-        "create": "Create Order",
-        "history": "History",
-        "list": "Order List"
-      },
-      "admin": {
-        "label": "Administration",
-        "users": "Users",
-        "vehicles": "Vehicles",
-        "warehouses": "Warehouses"
-      },
-      "containers": {
-        "label": "Containers",
-        "details": "Details",
-        "manage": "Manage"
-      },
-      "routePlanning": {
-        "label": "Route Planning"
-      }
+      "dashboard": "Dashboard",
+      "home": "Home",
+      "orders": "Orders",
+      "administration": "Administration",
+      "routes": "Routes",
+      "scanner": "QR Scanner"
+    },
+    "routes": {
+      "clientHome": "Client Home",
+      "logisticsHome": "Logistics Home",
+      "userManagement": "User Management",
+      "orders": "Order List",
+      "createOrder": "Create Order",
+      "products": "Products",
+      "warehouses": "Warehouses",
+      "vehicles": "Vehicles",
+      "routePlanning": "Route Planning",
+      "routeSelection": "Route Selection",
+      "containerScanner": "Container Scanner"
     }
   },
   "fileUploader": {

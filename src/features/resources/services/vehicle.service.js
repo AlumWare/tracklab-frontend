@@ -56,22 +56,25 @@ export class VehicleService {
       formData.append('longitude', vehicleResource.longitude);
       formData.append('tonnage', vehicleResource.tonnage);
       
-      // Add images if present
+      // Add images if present - use same key for IFormFile[] binding
       if (vehicleResource.images && vehicleResource.images.length > 0) {
-        vehicleResource.images.forEach((image, index) => {
-          formData.append(`images[${index}]`, image);
+        vehicleResource.images.forEach((image) => {
+          formData.append('images', image);
         });
       }
 
-      const response = await http.post(this.baseUrl, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+      console.log('Creating vehicle with data:');
+      console.log('FormData entries:');
+      for (let pair of formData.entries()) {
+        console.log(pair[0], pair[1]);
+      }
+
+      const response = await http.upload(this.baseUrl, formData);
       
       return this.mapToEntity(response.data);
     } catch (error) {
       console.error('Error creating vehicle:', error);
+      console.error('Response data:', error.response?.data);
       throw new Error('Error al crear el vehículo');
     }
   }
@@ -115,19 +118,25 @@ export class VehicleService {
   async uploadImages(vehicleId, images) {
     try {
       const formData = new FormData();
-      images.forEach((image, index) => {
-        formData.append(`images[${index}]`, image);
+      
+      // Append each image with the same key name for IFormFile[] binding
+      images.forEach((image) => {
+        formData.append('images', image);
       });
 
-      const response = await http.post(`${this.baseUrl}/${vehicleId}/images`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+      console.log('Uploading images for vehicle:', vehicleId);
+      console.log('Images to upload:', images);
+      console.log('FormData entries:');
+      for (let pair of formData.entries()) {
+        console.log(pair[0], pair[1]);
+      }
+
+      const response = await http.upload(`${this.baseUrl}/${vehicleId}/images`, formData);
       
       return response.data.map(imageData => this.mapImageToEntity(imageData));
     } catch (error) {
       console.error(`Error uploading images for vehicle ${vehicleId}:`, error);
+      console.error('Response data:', error.response?.data);
       throw new Error('Error al subir las imágenes');
     }
   }

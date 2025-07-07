@@ -2,7 +2,9 @@ import { http } from '@/shared/services/http.instance.js'
 import { 
   ContainerResource, 
   RouteResource, 
-  TrackingEventResource 
+  TrackingEventResource,
+  CreateContainerResource,
+  CompleteContainerResource
 } from '../models'
 
 /**
@@ -109,8 +111,7 @@ export class TrackingService {
    */
   static async getContainersByWarehouse(warehouseId) {
     try {
-      const response = await http.get(`${this.baseUrl}/warehouses/${warehouseId}/containers`)
-      return response.data.map(container => new ContainerResource(container))
+      return await this.getContainers({ warehouseId })
     } catch (error) {
       console.error('Error fetching containers by warehouse:', error)
       throw error
@@ -307,6 +308,93 @@ export class TrackingService {
       return response.data
     } catch (error) {
       console.error('Error uploading delivery proof:', error)
+      throw error
+    }
+  }
+
+  /**
+   * Create a new container using the backend API
+   * @param {CreateContainerResource} containerData - Container creation data
+   * @returns {Promise<ContainerResource>} - Created container with QR code
+   */
+  static async createContainer(containerData) {
+    try {
+      const response = await http.post('containers', containerData)
+      return new ContainerResource(response.data)
+    } catch (error) {
+      console.error('Error creating container:', error)
+      throw error
+    }
+  }
+
+  /**
+   * Get all containers with optional filters
+   * @param {Object} filters - Filter parameters
+   * @param {number} [filters.pageSize] - Page size for pagination
+   * @param {number} [filters.pageNumber] - Page number for pagination  
+   * @param {number} [filters.orderId] - Filter by order ID
+   * @param {number} [filters.warehouseId] - Filter by warehouse ID
+   * @returns {Promise<ContainerResource[]>}
+   */
+  static async getContainers(filters = {}) {
+    try {
+      const params = new URLSearchParams()
+      
+      Object.entries(filters).forEach(([key, value]) => {
+        if (value !== undefined && value !== null && value !== '') {
+          params.append(key, value.toString())
+        }
+      })
+
+      const response = await http.get(`containers?${params.toString()}`)
+      return response.data.map(container => new ContainerResource(container))
+    } catch (error) {
+      console.error('Error fetching containers:', error)
+      throw error
+    }
+  }
+
+  /**
+   * Get container by ID
+   * @param {number} containerId - Container ID
+   * @returns {Promise<ContainerResource>}
+   */
+  static async getContainerById(containerId) {
+    try {
+      const response = await http.get(`containers/${containerId}`)
+      return new ContainerResource(response.data)
+    } catch (error) {
+      console.error('Error fetching container:', error)
+      throw error
+    }
+  }
+
+  /**
+   * Complete a container when delivered at destination warehouse
+   * @param {number} containerId - Container ID
+   * @param {CompleteContainerResource} completionData - Completion data
+   * @returns {Promise<ContainerResource>}
+   */
+  static async completeContainer(containerId, completionData) {
+    try {
+      const response = await http.post(`containers/${containerId}/complete`, completionData)
+      return new ContainerResource(response.data)
+    } catch (error) {
+      console.error('Error completing container:', error)
+      throw error
+    }
+  }
+
+  /**
+   * Get containers by order
+   * @param {number} orderId - Order ID
+   * @returns {Promise<ContainerResource[]>}
+   */
+  static async getContainersByOrder(orderId) {
+    try {
+      return await this.getContainers({ orderId })
+    } catch (error) {
+      console.error('Error fetching containers by order:', error)
       throw error
     }
   }

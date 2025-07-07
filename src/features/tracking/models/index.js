@@ -1,5 +1,12 @@
 // Resources
-export { ContainerResource } from './container.resource.js'
+export { 
+  ContainerResource,
+  CreateContainerResource,
+  ShipItemResource,
+  CreateShipItemResource,
+  QrCodeResource,
+  CompleteContainerResource
+} from './container.resource.js'
 export { RouteResource } from './route.resource.js'
 export { TrackingEventResource } from './tracking-event.resource.js'
 

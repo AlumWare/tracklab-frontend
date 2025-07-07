@@ -22,6 +22,8 @@ const RegisterCompanyView = () => import('@/features/iam/components/register-com
 const SubscriptionPlanComponent = () => import('@/core/guards/views/subscription-plan.component.vue')
 const WarehouseManagementView = () => import('@/features/resources/views/manage-warehouses.component.vue')
 const testComponent = () => import('@/features/tracking/views/test.component.vue')
+const RouteExecutionView = () => import('@/features/tracking/views/route-execution-view.vue')
+const RouteSelectorView = () => import('@/features/tracking/views/route-selector-view.vue')
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -119,9 +121,9 @@ const router = createRouter({
           component: UserManagementView
         },
         {
-          path: 'container-detail-view',
-          name: 'container-detail-view',
-          component: testComponent
+          path: 'routes/:routeId/execute',
+          name: 'route-execution-view',
+          component: RouteExecutionView
         },
         {
           path: 'operation-execution-view',
@@ -154,9 +156,26 @@ const router = createRouter({
           component: RoutePlanningView
         },
         {
+          path: 'routes',
+          name: 'route-selector-view',
+          component: RouteSelectorView
+        },
+        {
           path: 'styles',
           name: 'styles',
           component: StyleGuide
+        },
+        {
+          path: 'route-selector',
+          name: 'RouteSelector',
+          component: () => import('../features/tracking/views/route-selector-view.vue'),
+          meta: { requiresAuth: true, layout: 'main' }
+        },
+        {
+          path: 'container-scanner',
+          name: 'ContainerScanner',
+          component: () => import('../features/tracking/views/container-scanner-view.vue'),
+          meta: { requiresAuth: true, layout: 'main' }
         }
       ]
     },

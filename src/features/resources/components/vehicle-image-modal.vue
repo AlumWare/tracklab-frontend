@@ -116,10 +116,33 @@ export default {
         return
       }
 
+      // Validate that all items are File objects
+      const validImages = newImages.value.filter(image => image instanceof File)
+      if (validImages.length === 0) {
+        imageError.value = 'No se encontraron archivos válidos para subir'
+        return
+      }
+
+      if (validImages.length !== newImages.value.length) {
+        imageError.value = `Solo ${validImages.length} de ${newImages.value.length} archivos son válidos`
+        return
+      }
+
+      console.log('Uploading images:', validImages)
+      console.log('Image details:')
+      validImages.forEach((img, index) => {
+        console.log(`Image ${index}:`, {
+          name: img.name,
+          size: img.size,
+          type: img.type,
+          lastModified: img.lastModified
+        })
+      })
+
       loading.value = true
       
       try {
-        emit('upload', newImages.value)
+        emit('upload', validImages)
       } catch (error) {
         console.error('Error al subir imágenes:', error)
         imageError.value = 'Error al subir las imágenes'

@@ -5,7 +5,6 @@ const httpInstance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api/',
   timeout: 10000,
   headers: {
-    'Content-Type': 'application/json',
     'Accept': 'application/json',
   },
 });
@@ -18,6 +17,11 @@ httpInstance.interceptors.request.use(
     
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
+    }
+    
+    // Only set JSON Content-Type if data is not FormData
+    if (!(config.data instanceof FormData)) {
+      config.headers['Content-Type'] = 'application/json';
     }
     
     // Add timestamp to avoid cache
@@ -123,7 +127,7 @@ export const http = {
       ...config,
       headers: {
         ...config.headers,
-        'Content-Type': 'multipart/form-data',
+        // Don't set Content-Type manually for FormData - let browser set it with boundary
       },
     });
   },

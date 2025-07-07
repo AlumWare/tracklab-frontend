@@ -23,54 +23,55 @@ const menuItems = computed(() => [
   {
     id: 1,
     icon: 'pi pi-home',
-    label: t('sidebar.menu.home.label'),
+    label: t('sidebar.menu.home'),
     route: null,
     expanded: expandedItems.value.has(1),
     children: [
-      { id: 11, icon: 'pi pi-home', label: t('sidebar.menu.home.client'), route: '/tracklab/client-home' },
-      { id: 12, icon: 'pi pi-home', label: t('sidebar.menu.home.company'), route: '/tracklab/logistics-home' },
+      { id: 11, icon: 'pi pi-home', label: t('sidebar.routes.clientHome'), route: '/tracklab/client-home' },
+      { id: 12, icon: 'pi pi-truck', label: t('sidebar.routes.logisticsHome'), route: '/tracklab/logistics-home' },
     ]
   },
   {
     id: 2,
     icon: 'pi pi-box',
-    label: t('sidebar.menu.orders.label'),
+    label: t('sidebar.menu.orders'),
     route: null,
     expanded: expandedItems.value.has(2),
     children: [
-      { id: 21, icon: 'pi pi-box', label: t('sidebar.menu.orders.create'), route: '/tracklab/orders/create' },
-      { id: 22, icon: 'pi pi-check-circle', label: t('sidebar.menu.orders.history'), route: '/tracklab/orders/history' },
-      { id: 23, icon: 'pi pi-sync', label: t('sidebar.menu.orders.list'), route: '/tracklab/orders' }
+      { id: 21, icon: 'pi pi-plus', label: t('sidebar.routes.createOrder'), route: '/tracklab/orders/create' },
+      { id: 22, icon: 'pi pi-list', label: t('sidebar.routes.orders'), route: '/tracklab/orders' }
     ]
   },
   {
     id: 3,
     icon: 'pi pi-cog',
-    label: t('sidebar.menu.admin.label'),
+    label: t('sidebar.menu.administration'),
     route: null,
     expanded: expandedItems.value.has(3),
     children: [
-      { id: 31, icon: 'pi pi-users', label: t('sidebar.menu.admin.users'), route: '/tracklab/admin-usuarios' },
-      { id: 32, icon: 'pi pi-car', label: t('sidebar.menu.admin.vehicles'), route: '/tracklab/vehiculos' },
-      { id: 33, icon: 'pi pi-building', label: t('sidebar.menu.admin.warehouses'), route: '/tracklab/ware-house-management-view' }
+      { id: 31, icon: 'pi pi-users', label: t('sidebar.routes.userManagement'), route: '/tracklab/admin-usuarios' },
+      { id: 32, icon: 'pi pi-shopping-cart', label: t('sidebar.routes.products'), route: '/tracklab/productos' },
+      { id: 33, icon: 'pi pi-car', label: t('sidebar.routes.vehicles'), route: '/tracklab/vehiculos' },
+      { id: 34, icon: 'pi pi-building', label: t('sidebar.routes.warehouses'), route: '/tracklab/ware-house-management-view' }
     ]
   },
   {
     id: 4,
-    icon: 'pi pi-file',
-    label: t('sidebar.menu.containers.label'),
+    icon: 'pi pi-map',
+    label: t('sidebar.menu.routes'),
     route: null,
     expanded: expandedItems.value.has(4),
     children: [
-      { id: 41, icon: 'pi pi-box', label: t('sidebar.menu.containers.details'), route: '/tracklab/container-detail-view' },
-      { id: 42, icon: 'pi pi-check-circle', label: t('sidebar.menu.containers.manage'), route: '/tracklab/operation-execution-view' }
+      { id: 41, icon: 'pi pi-sitemap', label: t('sidebar.routes.routePlanning'), route: '/tracklab/route-planing-view' },
+      { id: 42, icon: 'pi pi-send', label: t('sidebar.routes.routeSelection'), route: '/tracklab/route-selector' }
     ]
   },
   {
     id: 5,
-    icon: 'pi pi-palette',
-    label: t('sidebar.menu.routePlanning.label'),
-    route: '/tracklab/route-planing-view',
+    icon: 'pi pi-qrcode',
+    label: t('sidebar.menu.scanner'),
+    route: '/tracklab/container-scanner',
+    expanded: false,
     children: null
   }
 ])
